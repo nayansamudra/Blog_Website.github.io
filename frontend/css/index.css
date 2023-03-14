@@ -1151,6 +1151,15 @@ post section style 1
 .ad-banner-img img {
   border-radius: 4px;
 }
+@media (max-width:525px) {
+  #add_col_12{
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  #add_col_12 img {
+    height: 100px;
+  }
+}
 
 /*===========================
 //  feature-section-style-1
