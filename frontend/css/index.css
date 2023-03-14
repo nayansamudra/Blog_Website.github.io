@@ -654,6 +654,9 @@ Everything a trader need
   }
 }
 @media (max-width: 450px) {
+  body{
+    overflow-x: hidden !important;
+  }
   #Main_Heading{
     margin-top: 0 !important;
     padding-left: 0 !important;
