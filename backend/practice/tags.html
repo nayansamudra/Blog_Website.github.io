@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background-color: #F0F0F0;
+            border-radius: 20px;
+            color: #333;
+            font-size: 14px;
+            margin: 5px;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tag-container">
+        <input type="text" id="tag-input" placeholder="Add a tag">
+        <!-- <button onclick="addTag()">Add</button> -->
+    </div>
+
+    <script>
+        var tagContainer = document.querySelector(".tag-container");
+        var input = document.getElementById("tag-input");
+
+        input.addEventListener("keydown", function (event) {
+            if (event.key === "," || event.keyCode === 188) { // detect comma key press
+                event.preventDefault(); // prevent comma from being entered in input field
+                var tags = input.value.split(","); // split input text into tags
+                tags.forEach(function (tag) {
+                    if (tag.trim() !== "") { // ignore empty tags
+                        var newTag = document.createElement("div");
+                        newTag.classList.add("tag");
+                        newTag.textContent = tag.trim();
+                        tagContainer.appendChild(newTag); // add new tag to container
+                    }
+                });
+                input.value = ""; // clear input field
+            }
+        });
+    </script>
+</body>
+
+</html>

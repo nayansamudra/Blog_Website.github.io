@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TCI Admin - Blog backend</title>
+    <!-- Bootstrap CSS  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+
+    <!-- Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Manual CSS  -->
+    <link type="text/css" rel="stylesheet" href="css/index.css" />
+</head>
+
+<body>
+    <!-- Header  -->
+    <header class="rt-header sticky-on">
+        <!-- sticky-placeholder -->
+        <div id="sticky-placeholder" style="height: 0px;"></div>
+        <!-- Header Main -->
+        <div class="header-main header-main-style-1 navbar-wrap" id="navbar-wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="d-flex align-items-center justify-content-between">
+
+                        <!-- start logo here -->
+                        <div class="site-branding">
+                            <a class="dark-logo" href="index.html">
+                                <img width="162" height="52" src="img/logo-dark.svg" alt="neeon">
+                            </a>
+                            <a class="light-logo" href="index.html">
+                                <img width="162" height="52" src="img/logo-light.svg" alt="neeon">
+                            </a>
+                        </div>
+                        <!-- end logo here -->
+
+                        <!-- start main menu -->
+                        <div class="main-menu">
+                            <nav class="main-menu__nav">
+                                <ul>
+                                    <li class="main-menu__nav_sub list active">
+                                        <a class="animation" href="javascript:void(0)">Home</a>
+                                        <ul class="main-menu__dropdown">
+                                            <li><a href="index.html">Home 01 - Main</a></li>
+                                            <li><a href="index2.html">Home 02 - Technology</a></li>
+                                            <li><a href="index3.html">Home 03 - Gaming</a></li>
+                                            <li><a href="index4.html">Home 04 - Illustration</a></li>
+                                            <li><a href="index5.html">Home 05 - Newspaper</a></li>
+                                            <li><a href="index6.html">Home 06 - Magazine</a></li>
+                                            <li><a href="index7.html">Home 07 - Sports</a></li>
+                                            <li><a href="index8.html">Home 08 - Travels</a></li>
+                                            <li><a href="index9.html">Home 09 - Fitness</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="main-menu__nav_sub list">
+                                        <a class="animation" href="javascript:void(0)">Features</a>
+                                        <ul class="main-menu__dropdown">
+                                            <li class="main-menu__nav_sub">
+                                                <a href="javascript:void(0)">
+                                                    Post Layout
+                                                </a>
+                                                <ul>
+                                                    <li><a href="single-post1.html">Single Post 01</a></li>
+                                                    <li><a href="single-post2.html">Single Post 02</a></li>
+                                                    <li><a href="single-post3.html">Single Post 03</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="author.html">Author Deatils</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="main-menu__nav_sub list">
+                                        <a class="animation" href="javascript:void(0)">Categories </a>
+                                        <ul class="main-menu__dropdown">
+                                            <li><a href="life-style.html">Life Style</a></li>
+                                            <li><a href="technology.html">Technology</a></li>
+                                            <li><a href="gaming.html">Gaming</a></li>
+                                            <li><a href="graphics.html">Graphics</a></li>
+                                            <li><a href="politics.html">Politics</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="main-menu__nav_sub list">
+                                        <a class="animation" href="javascript:void(0)">Pages</a>
+                                        <ul class="main-menu__dropdown">
+                                            <li><a href="about.html">About Us</a></li>
+                                            <li><a href="contact.html">Contact Us</a></li>
+                                            <li><a href="404.html">404</a></li>
+
+                                        </ul>
+                                    </li>
+                                    <li class="main-menu__nav_sub list">
+                                        <a class="animation" href="javascript:void(0)">Shop</a>
+                                        <ul class="main-menu__dropdown">
+                                            <li><a href="shop.html">Shop</a></li>
+                                            <li><a href="single-shop.html">Shop Deatils</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- end main menu -->
+
+                        <!-- start header actions -->
+                        <ul class="header-action-items">
+                            <li class="item">
+                                <a href="#template-search"><i class="fas fa-search"></i></a>
+                            </li>
+                            <li class="item cart-icon">
+                                <a href="javascript:void(0)" class="cart-menu-btn menu-open-btn">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span class="item-count">0</span>
+                                </a>
+                            </li>
+                            <li class="item humburger offcanvas-menu-btn menu-status-open">
+                                <span></span>
+                            </li>
+                        </ul>
+                        <!-- end header actions -->
+
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </div>
+        <!-- End Header Main -->
+
+    </header>
+    <!-- End Header  -->
+    <!-- Start rt-mobile-header -->
+    <div class="rt-mobile-header mobile-sticky-on">
+
+        <div class="mobile-menu-bar-wrap" id="mobile-menu-bar-wrap">
+            <div class="mobile-menu-bar">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="img/logo-dark.svg" alt="neeon" width="162" height="52">
+                    </a>
+                </div>
+                <span class="sidebarBtn">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </span>
+            </div>
+            <div class="rt-slide-nav">
+                <div class="offscreen-navigation">
+                    <nav class="menu-main-primary-container">
+                        <ul class="menu">
+                            <li class="list menu-item-has-children menu-item-parent">
+                                <a class="animation" href="javascript:void(0)">Home</a>
+                                <ul class="main-menu__dropdown sub-menu">
+                                    <li><a href="index.html">Home 01 - Main</a></li>
+                                    <li><a href="index2.html">Home 02 - Technology</a></li>
+                                    <li><a href="index3.html">Home 03 - Gaming</a></li>
+                                    <li><a href="index4.html">Home 04 - Illustration</a></li>
+                                    <li><a href="index5.html">Home 05 - Newspaper</a></li>
+                                    <li><a href="index6.html">Home 06 - Magazine</a></li>
+                                    <li><a href="index7.html">Home 07 - Sports</a></li>
+                                    <li><a href="index8.html">Home 08 - Travels</a></li>
+                                    <li><a href="index9.html">Home 09 - Fitness</a></li>
+                                </ul>
+                            </li>
+                            <li class="list menu-item-has-children menu-item-parent">
+                                <a class="animation" href="javascript:void(0)">Features</a>
+                                <ul class="main-menu__dropdown sub-menu">
+                                    <li class="list menu-item-has-children">
+                                        <a href="javascript:void(0)">
+                                            Post Layout
+                                        </a>
+                                        <ul class="main-menu__dropdown sub-menu">
+                                            <li><a href="single-post1.html">Single Post 01</a></li>
+                                            <li><a href="single-post2.html">Single Post 02</a></li>
+                                            <li><a href="single-post3.html">Single Post 03</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="author.html">Author Deatils</a></li>
+                                </ul>
+
+                            </li>
+                            <li class="list menu-item-has-children menu-item-parent">
+                                <a class="animation" href="javascript:void(0)">Categories</a>
+                                <ul class="main-menu__dropdown sub-menu">
+                                    <li><a href="life-style.html">Life Style</a></li>
+                                    <li><a href="technology.html">Technology</a></li>
+                                    <li><a href="gaming.html">Gaming</a></li>
+                                    <li><a href="graphics.html">Graphics</a></li>
+                                    <li><a href="politics.html">Politics</a></li>
+                                </ul>
+                            </li>
+                            <li class="list menu-item-has-children menu-item-parent">
+                                <a class="animation" href="javascript:void(0)">Pages</a>
+                                <ul class="main-menu__dropdown sub-menu">
+                                    <li><a href="about.html">About Us</a></li>
+                                    <li><a href="contact.html">Contact Us</a></li>
+                                    <li><a href="404.html">404</a></li>
+
+                                </ul>
+                            </li>
+                            <li class="list menu-item-has-children menu-item-parent">
+                                <a class="animation" href="javascript:void(0)">Shop</a>
+                                <ul class="main-menu__dropdown sub-menu">
+                                    <li><a href="shop.html">Shop</a></li>
+                                    <li><a href="single-shop.html">Shop Deatils</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End rt-mobile-header -->
+
+    <!-- Heading and 7 Buttons  -->
+    <div class="mt-5 pt-5 container" id="Main_Heading">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="banner__content text-center">
+
+                    <h1 class="banner__title wow fadeInUp" data-wow-delay=".3s" style="visibility: visible;">
+                        Everything a Trader needs </h1>
+
+                    <div class="banner__btns wow fadeInUp" data-wow-delay=".7s" style="visibility: visible;">
+                        <a href="" class="tt-btn banner-btn">
+                            Info - Blogs </a>
+
+                        <a class="tt-btn banner-btn" href="">
+                            Scanners </a>
+
+                        <a href="" class="tt-btn banner-btn">
+                            Strategies </a>
+
+                        <a class="tt-btn banner-btn" href="">
+                            Free Mentorship </a>
+
+                        <a href="" class="tt-btn banner-btn">
+                            Course Review </a>
+
+                        <a class="tt-btn banner-btn" href="">
+                            Broker Review </a>
+
+                        <a class="tt-btn banner-btn" href="">
+                            Scam alerts </a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-lg-8 -->
+        </div>
+        <!-- /.row -->
+    </div>
+
+    <!-- start main post section style 1 -->
+    <section class="rt-main-post-section main-post-section-style-1 section-padding">
+        <div class="container">    
+            <div class="row gutter-24">
+                <div class="col-xl-7 col-lg-6 wow fadeInUp animated" data-wow-delay="200ms" data-wow-duration="800ms"
+                    style="visibility: visible; animation-duration: 800ms; animation-delay: 200ms; animation-name: fadeInUp;">
+                    <div class="rt-post-overlay rt-post-overlay-xl layout-1">
+                        <div class="post-img">
+                            <a href="single-post1.html" class="img-link">
+                                <img src="img/post-xl_1.jpg" alt="post-xl_1" width="900" height="600">
+                            </a>
+                        </div>
+                        <div class="post-content">
+                            <a href="life-style.html" class="fashion">Fashion</a>
+                            <h3 class="post-title bold-underline">
+                                <a href="single-post1.html">
+                                    How childhood viral infections may
+                                    year 2021 Section
+                                </a>
+                            </h3>
+                            <div class="post-meta">
+                                <ul>
+                                    <li>
+                                        <span class="rt-meta">
+                                            by <a href="author.html" class="name">Willum Skeem</a>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="rt-meta">
+                                            <i class="far fa-calendar-alt icon"></i>
+                                            DECEMBER 9, 2022
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="rt-meta">
+                                            <i class="far fa-comments icon"></i>
+                                            <a href="#"> 3,250</a>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+
+                <div class="col-xl-5 col-lg-6">
+                    <div class="row gutter-24">
+
+                        <div class="col-12 wow fadeInUp animated" data-wow-delay="400ms" data-wow-duration="800ms"
+                            style="visibility: visible; animation-duration: 800ms; animation-delay: 400ms; animation-name: fadeInUp;">
+                            <div class="rt-post post-md style-10">
+                                <div class="post-img">
+                                    <a href="single-post1.html">
+                                        <img src="img/post-lg_1.jpg" alt="post" width="696" height="491">
+                                    </a>
+                                </div>
+                                <div class="post-content">
+                                    <a href="life-style.html" class="food">Food</a>
+                                    <h3 class="post-title">
+                                        <a href="single-post1.html">
+                                            50 Years After The Moon
+                                            Landing: How Close Is
+                                            Space Travel, Really?
+                                        </a>
+                                    </h3>
+                                    <span class="rt-meta">
+                                        <i class="far fa-calendar-alt icon"></i>
+                                        DECEMBER 9, 2022
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end col -->
+
+                        <div class="col-12 wow fadeInUp animated" data-wow-delay="600ms" data-wow-duration="800ms"
+                            style="visibility: visible; animation-duration: 800ms; animation-delay: 600ms; animation-name: fadeInUp;">
+                            <div class="rt-post post-md style-10">
+                                <div class="post-img">
+                                    <a href="single-post1.html">
+                                        <img src="img/post-lg_2.jpg" alt="post" width="696" height="491">
+                                    </a>
+                                </div>
+                                <div class="post-content">
+                                    <a href="technology.html" class="technology">Technology</a>
+                                    <h3 class="post-title">
+                                        <a href="single-post1.html">
+                                            50 Years After The Moon
+                                            Landing: How Close Is
+                                            Space Travel, Really?
+                                        </a>
+                                    </h3>
+                                    <span class="rt-meta">
+                                        <i class="far fa-calendar-alt icon"></i>
+                                        DECEMBER 9, 2022
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end col -->
+
+                        <div class="col-12 wow fadeInUp animated" data-wow-delay="800ms" data-wow-duration="800ms"
+                            style="visibility: visible; animation-duration: 800ms; animation-delay: 800ms; animation-name: fadeInUp;">
+                            <div class="rt-post post-md style-10">
+                                <div class="post-img">
+                                    <a href="single-post1.html">
+                                        <img src="img/travel-lg_2.jpg" alt="post" width="696" height="491">
+                                    </a>
+                                </div>
+                                <div class="post-content">
+                                    <a href="life-style.html" class="travel">Travel</a>
+                                    <h3 class="post-title">
+                                        <a href="single-post1.html">
+                                            50 Years After The Moon
+                                            Landing: How Close Is
+                                            Space Travel, Really?
+                                        </a>
+                                    </h3>
+                                    <span class="rt-meta">
+                                        <i class="far fa-calendar-alt icon"></i>
+                                        DECEMBER 9, 2022
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end col -->
+                    </div>
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </section>
+
+    <!-- theme-switch-box  -->
+    <div class="theme-switch-box-wrap">
+        <div class="theme-switch-box">
+            <span class="theme-switch-box__theme-status"><i class="fas fa-cog"></i></span>
+            <label class="theme-switch-box__label" for="themeSwitchCheckbox">
+                <input class="theme-switch-box__input" type="checkbox" name="themeSwitchCheckbox"
+                    id="themeSwitchCheckbox">
+                <span class="theme-switch-box__main"></span>
+            </label>
+            <span class="theme-switch-box__theme-status"><i class="fas fa-moon"></i></span>
+        </div>
+    </div>
+
+    <!-- start back to top -->
+    <a href="#" id="back-to-top" style="display: none;">
+        <i class="fa-solid fa-up-long"></i>
+    </a>
+
+    <!-- Jquery CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+        integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Bootstrap JavaScript bundle (including Popper for positioning dropdowns, poppers, and tooltips)  -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+
+    <!-- Manual js-->
+    <script src="js/index.js"></script>
+</body>
+
+</html>

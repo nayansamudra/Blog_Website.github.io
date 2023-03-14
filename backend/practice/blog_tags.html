@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/thinline.css">
+
+    <style>
+        /* Import Google Font - Poppins */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: #5372F0;
+        }
+
+        ::selection {
+            color: #fff;
+            background: #5372F0;
+        }
+
+        .wrapper {
+            align-items: center;
+            justify-content: center;
+            width: 496px;
+            background: #fff;
+            border-radius: 10px;
+            padding: 18px 25px 20px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .wrapper :where(.title, li, li i, .details) {
+            display: flex;
+            align-items: center;
+        }
+
+        .title img {
+            max-width: 21px;
+        }
+
+        .title h2 {
+            font-size: 21px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .wrapper .content {
+            margin: 10px 0;
+        }
+
+        .content p {
+            font-size: 15px;
+        }
+
+        .content ul {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 7px;
+            margin: 12px 0;
+            border-radius: 5px;
+            border: 1px solid #a6a6a6;
+        }
+
+        .content ul li {
+            color: #333;
+            margin: 4px 3px;
+            list-style: none;
+            border-radius: 5px;
+            background: #F2F2F2;
+            padding: 5px 8px 5px 10px;
+            border: 1px solid #e3e1e1;
+        }
+
+        .content ul li i {
+            height: 20px;
+            width: 20px;
+            color: #808080;
+            margin-left: 8px;
+            font-size: 12px;
+            cursor: pointer;
+            border-radius: 50%;
+            background: #dfdfdf;
+            justify-content: center;
+        }
+
+        .content ul input {
+            flex: 1;
+            padding: 5px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+        }
+
+        .wrapper .details {
+            justify-content: space-between;
+        }
+
+        .details button {
+            border: none;
+            outline: none;
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+            padding: 9px 15px;
+            border-radius: 5px;
+            background: #5372F0;
+            transition: background 0.3s ease;
+        }
+
+        .details button:hover {
+            background: #2c52ed;
+        }
+    </style>
+
+    <!-- <style>
+        .tag {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #eee;
+            color: #333;
+            text-decoration: none;
+            border-radius: 3px;
+            margin-right: 5px;
+        }
+
+        .tag:hover {
+            background-color: #333;
+            color: #fff;
+        }
+    </style> -->
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-center">
+            <div class="wrapper">
+                <div class="title">
+                    <img src="img/tag.svg" alt="icon">
+                    <h2>Tags</h2>
+                </div>
+                <div class="content">
+                    <p>Press enter or add a comma after each tag</p>
+                    <ul><input type="text" spellcheck="false"></ul>
+                </div>
+                <div class="details">
+                    <p><span>10</span> tags are remaining</p>
+                    <button>Remove All</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="row d-flex justify-content-center">
+            <div>
+                <p>Here is some content about programming languages, including
+                    <a href="#" class="tag">Python</a>,
+                    <a href="#" class="tag">JavaScript</a>, and
+                    <a href="#" class="tag">Java</a>.
+                </p>
+            </div>
+        </div> -->
+    
+    </div>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+
+    <script>
+        const ul = document.querySelector("ul"),
+            input = document.querySelector("input"),
+            tagNumb = document.querySelector(".details span");
+
+        let maxTags = 10,
+            tags = [];
+
+        countTags();
+        createTag();
+
+        function countTags() {
+            input.focus();
+            tagNumb.innerText = maxTags - tags.length;
+        }
+
+        function createTag() {
+            ul.querySelectorAll("li").forEach(li => li.remove());
+            tags.slice().reverse().forEach(tag => {
+                let liTag = `<li>${tag} <i class="uit uit-multiply" onclick="remove(this, '${tag}')"></i></li>`;
+                ul.insertAdjacentHTML("afterbegin", liTag);
+            });
+            countTags();
+        }
+
+        function remove(element, tag) {
+            let index = tags.indexOf(tag);
+            tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
+            element.parentElement.remove();
+            console.log(tags)
+            countTags();
+        }
+
+        function addTag(e) {
+            if (e.key == "Enter") {
+                let tag = e.target.value.replace(/\s+/g, ' ');
+                if (tag.length > 1 && !tags.includes(tag)) {
+                    if (tags.length < 10) {
+                        tag.split(',').forEach(tag => {
+                            tags.push(tag);
+                            console.log(tags)
+                            createTag();
+                        });
+                    }
+                }
+                e.target.value = "";
+            }
+        }
+
+        input.addEventListener("keyup", addTag);
+
+        const removeBtn = document.querySelector(".details button");
+        removeBtn.addEventListener("click", () => {
+            tags.length = 0;
+            ul.querySelectorAll("li").forEach(li => li.remove());
+            countTags();
+        });
+
+    </script>
+
+</body>
+
+</html>
