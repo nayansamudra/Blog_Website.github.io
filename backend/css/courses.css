@@ -54,12 +54,10 @@ body {
   max-width: 21px;
 }
 
-.title h2,
-.Category h2,
+
 .Main_Heading h2,
 .Author_Name h2,
 .Image h2,
-.Blog_Description h2,
 .Meta_title h2,
 .Meta_keywords h2,
 .Meta_description h2,
@@ -119,9 +117,20 @@ body {
   width: 100%;
 }
 
-#category_input,
-#Main_Heading_input,
-#Author_Name_input,
+#Name_input,
+#Rating_input,
+#Website_input,
+#Main_social_media_input,
+#Audience_input,
+#Mentor_input,
+#Course_Name_input,
+#Course_Price_input,
+#Support_System_input,
+#Community_for_students_input,
+#Tools_for_students_input,
+#Revision_Session_input,
+#Live_Market_Session_input,
+#Students_Review_input,
 #Image_input,
 #Meta_title_input,
 #Meta_description_input,
@@ -139,41 +148,8 @@ body {
   width: 100%;
 }
 
-.Category select{
-  font-size: 16px;
-  flex-wrap: wrap;
-  padding: 7px;
-  margin: 12px 0;
-  border-radius: 5px;
-  border: 1px solid #a6a6a6;
-  width: 75%;
-}
-
-.Category button {
-  border: none;
-  outline: none;
-  color: #fff;
-  font-size: 14px;
-  cursor: pointer;
-  padding: 9px 15px;
-  border-radius: 5px;
-  background: #5372f0;
-  transition: background 0.3s ease;
-  height: fit-content;
-}
-
 .wrapper .details {
   justify-content: space-between;
-}
-
-.wrapper .Category div{
-  display: flex;
-  justify-content: space-between !important;
-}
-
-.wrapper .Category div button{
-  padding: 7px;
-  margin: 12px 0;
 }
 
 .details button {
@@ -202,7 +178,6 @@ body {
   border-radius: 5px;
   background: #5372f0;
   transition: background 0.3s ease;
-  
 }
 
 .details button:hover {
@@ -232,10 +207,4 @@ Datatable
 th,
 td {
   border: 1px solid black;
-}
-
-@media (max-width:470px) {
-  .Category select{
-    width: 65%;
-  }
 }

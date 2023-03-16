@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TCI Admin - Blog backend</title>
+    <title>TCI Admin - Courses backend</title>
     <!-- Bootstrap CSS  -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
@@ -15,32 +15,30 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Manual CSS  -->
-    <link type="text/css" rel="stylesheet" href="css/index.css" />
+    <link type="text/css" rel="stylesheet" href="css/courses.css" />
 
     <!-- Datatable.css-->
-    <link rel="stylesheet" type="text/css"
-        href="https://cdn.datatables.net/v/bs4/dt-1.11.3/r-2.2.9/datatables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.11.3/r-2.2.9/datatables.min.css"/>
 </head>
 
 <body>
     <div class="container-fluid">
         <div class="mx-0 row d-flex justify-content-center">
             <div class="wrapper_1">
-                <h6 class="text-center">All Blogs</h6>
-                <table id="BlogDatatable" class="row-border" style="font-size:14px">
+                <h6 class="text-center">All Courses</h6>
+                <table id="CourseDatatable" class="row-border" style="font-size:14px">
                     <thead>
                         <tr>
                             <th>&nbsp;Timestamp</th>
-                            <th>&nbsp;Blog ID</th>
-                            <th>&nbsp;Title</th>
-                            <th>&nbsp;Category</th>
+                            <th>&nbsp;Courses ID</th>
+                            <th>&nbsp;Name</th>
                             <th>&nbsp;Image</th>
                             <th>&nbsp;Short Des</th>
                             <th>&nbsp;Data</th>
                             <th>&nbsp;Action</th>
                         </tr>
                     </thead>
-                    <tbody id="BlogDatatable_data"></tbody>
+                    <tbody id="CourseDatatable_data"></tbody>
                 </table>
             </div>
         </div>
@@ -49,51 +47,69 @@
     <div class="container-fluid">
         <div class="mx-0 row d-flex justify-content-center">
             <div class="wrapper">
-                <div class="Category">
-                    <h2 class="required-field">Category</h2>
-                    <!-- <input type="text" spellcheck="false" > -->
-                    <div>
-                        <select id="myDropdown">
-                            <option value="">--Please choose an option--</option>
-                            <option value="Technology">Technology</option>
-                            <option value="Food">Food</option>
-                            <option value="Travel">Travel</option>
-                            <option value="Fashion">Fashion</option>
-                            <option value="Sports">Sports</option>
-                        </select>
-                        <button id="addOptionButton">Add Option</button>
-                    </div>
-
-                </div>
                 <div class="Main_Heading">
-                    <h2 class="required-field">Title</h2>
-                    <input type="text" spellcheck="false" id="Main_Heading_input">
+                    <h2 class="required-field">Name</h2>
+                    <input type="text" spellcheck="false" id="Name_input">
                 </div>
                 <div class="Author_Name">
-                    <h2 class="required-field">Author Name</h2>
-                    <input type="text" spellcheck="false" id="Author_Name_input">
+                    <h2 class="required-field">Rating (average of all reviews)</h2>
+                    <input type="text" spellcheck="false" id="Rating_input">
                 </div>
+                <div class="Main_Heading">
+                    <h2 class="required-field">Website</h2>
+                    <input type="text" spellcheck="false" id="Website_input">
+                </div>
+                <div class="Author_Name">
+                    <h2 class="required-field">Main Social Media</h2>
+                    <input type="text" spellcheck="false" id="Main_social_media_input">
+                </div>
+                <div class="Main_Heading">
+                    <h2 class="required-field">Audience</h2>
+                    <input type="text" spellcheck="false" id="Audience_input">
+                </div>
+                <div class="Author_Name">
+                    <h2 class="required-field">Mentor</h2>
+                    <input type="text" spellcheck="false" id="Mentor_input">
+                </div>
+                <div class="Main_Heading">
+                    <h2 class="required-field">Course Name</h2>
+                    <input type="text" spellcheck="false" id="Course_Name_input">
+                </div>
+                <div class="Author_Name">
+                    <h2 class="required-field">Course Price</h2>
+                    <input type="text" spellcheck="false" id="Course_Price_input">
+                </div>
+                <div class="Main_Heading">
+                    <h2 class="required-field">Support System</h2>
+                    <input type="text" spellcheck="false" id="Support_System_input">
+                </div>
+                <div class="Author_Name">
+                    <h2 class="required-field">Community for students</h2>
+                    <input type="text" spellcheck="false" id="Community_for_students_input">
+                </div>
+                <div class="Main_Heading">
+                    <h2 class="required-field">Tools for students</h2>
+                    <input type="text" spellcheck="false" id="Tools_for_students_input">
+                </div>
+                <div class="Author_Name">
+                    <h2 class="required-field">Revision Session</h2>
+                    <input type="text" spellcheck="false" id="Revision_Session_input">
+                </div>
+                <div class="Main_Heading">
+                    <h2 class="required-field">Live Market Session</h2>
+                    <input type="text" spellcheck="false" id="Live_Market_Session_input">
+                </div>
+                <div class="Author_Name">
+                    <h2 class="required-field">Students Review</h2>
+                    <input type="text" spellcheck="false" id="Students_Review_input">
+                </div>
+
                 <div class="Image">
                     <h2 class="required-field">Select Image</h2>
                     <input type="file" spellcheck="false" name="filename" id="Image_input"
                         accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .svg, .webp">
                 </div>
-                <div class="Blog_Description" id="Blog_Description">
-                    <h2 class="required-field">Blog Description</h2>
-                    <div id="editor"></div>
-                </div>
-                <div class="mt-2 title">
-                    <img src="img/tag.svg" alt="icon">
-                    <h2 class="required-field">Tags</h2>
-                </div>
-                <div class="content">
-                    <p>Press enter or comma after each tag</p>
-                    <ul><input type="text" spellcheck="false" id="tags_input"></ul>
-                </div>
-                <div class="details">
-                    <p><span>10</span> tags are remaining</p>
-                    <button>Remove All</button>
-                </div>
+                
                 <div class="Meta_title">
                     <h2 class="required-field">Meta title</h2>
                     <input type="text" spellcheck="false" id="Meta_title_input">
@@ -146,9 +162,9 @@
 
     <!-- Datatable.js-->
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.3/r-2.2.9/datatables.min.js"></script>
-
+    
     <!-- Manual js-->
-    <script src="js/index.js"></script>
+    <script src="js/courses.js"></script>
 </body>
 
 </html>

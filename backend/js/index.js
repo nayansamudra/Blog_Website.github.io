@@ -1,5 +1,4 @@
-// Blog Tags 
-
+//---------- Blog Tags
 const ul = document.querySelector("ul"),
     input = document.querySelector("#tags_input"),
     tagNumb = document.querySelector(".details span");
@@ -16,11 +15,14 @@ function countTags() {
 }
 
 function createTag() {
-    ul.querySelectorAll("li").forEach(li => li.remove());
-    tags.slice().reverse().forEach(tag => {
-        let liTag = `<li>${tag} <i class="fa-solid fa-xmark" onclick="remove(this, '${tag}')"></i></li>`;
-        ul.insertAdjacentHTML("afterbegin", liTag);
-    });
+    ul.querySelectorAll("li").forEach((li) => li.remove());
+    tags
+        .slice()
+        .reverse()
+        .forEach((tag) => {
+            let liTag = `<li>${tag} <i class="fa-solid fa-xmark" onclick="remove(this, '${tag}')"></i></li>`;
+            ul.insertAdjacentHTML("afterbegin", liTag);
+        });
     countTags();
 }
 
@@ -28,19 +30,19 @@ function remove(element, tag) {
     let index = tags.indexOf(tag);
     tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
     element.parentElement.remove();
-    console.log(tags)
+    console.log(tags);
     countTags();
 }
 
 function addTag(e) {
     if (e.key == "Enter") {
         e.preventDefault();
-        let tag = e.target.value.replace(/\s+/g, ' ');
+        let tag = e.target.value.replace(/\s+/g, " ");
         if (tag.length > 1 && !tags.includes(tag)) {
             if (tags.length < 10) {
-                tag.split(',').forEach(tag => {
+                tag.split(",").forEach((tag) => {
                     tags.push(tag);
-                    console.log(tags)
+                    console.log(tags);
                     createTag();
                 });
             }
@@ -54,71 +56,137 @@ input.addEventListener("keydown", addTag);
 const removeBtn = document.querySelector(".details button");
 removeBtn.addEventListener("click", () => {
     tags.length = 0;
-    ul.querySelectorAll("li").forEach(li => li.remove());
+    ul.querySelectorAll("li").forEach((li) => li.remove());
     countTags();
 });
 
 
-// Blog Descriptions
 
+//---------- Blog Descriptions
 let editorinstance;
 
 CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
     toolbar: {
         items: [
-            'exportPDF', 'exportWord', '|',
-            'findAndReplace', 'selectAll', '|',
-            'heading', '|',
-            'bold', 'italic', 'strikethrough', 'underline', 'code', 'subscript', 'superscript', 'removeFormat', '|',
-            'bulletedList', 'numberedList', 'todoList', '|',
-            'outdent', 'indent', '|',
-            'undo', 'redo',
-            '-',
-            'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'highlight', '|',
-            'alignment', '|',
-            'link', 'insertImage', 'blockQuote', 'insertTable', 'mediaEmbed', 'codeBlock', 'htmlEmbed', '|',
-            'specialCharacters', 'horizontalLine', 'pageBreak', '|',
-            'textPartLanguage', '|',
-            'sourceEditing'
+            "exportPDF",
+            "exportWord",
+            "|",
+            "findAndReplace",
+            "selectAll",
+            "|",
+            "heading",
+            "|",
+            "bold",
+            "italic",
+            "strikethrough",
+            "underline",
+            "code",
+            "subscript",
+            "superscript",
+            "removeFormat",
+            "|",
+            "bulletedList",
+            "numberedList",
+            "todoList",
+            "|",
+            "outdent",
+            "indent",
+            "|",
+            "undo",
+            "redo",
+            "-",
+            "fontSize",
+            "fontFamily",
+            "fontColor",
+            "fontBackgroundColor",
+            "highlight",
+            "|",
+            "alignment",
+            "|",
+            "link",
+            "insertImage",
+            "blockQuote",
+            "insertTable",
+            "mediaEmbed",
+            "codeBlock",
+            "htmlEmbed",
+            "|",
+            "specialCharacters",
+            "horizontalLine",
+            "pageBreak",
+            "|",
+            "textPartLanguage",
+            "|",
+            "sourceEditing",
         ],
-        shouldNotGroupWhenFull: true
+        shouldNotGroupWhenFull: true,
     },
     list: {
         properties: {
             styles: true,
             startIndex: true,
-            reversed: true
-        }
+            reversed: true,
+        },
     },
     heading: {
         options: [
-            { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-            { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
-            { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
-            { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' },
-            { model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4' },
-            { model: 'heading5', view: 'h5', title: 'Heading 5', class: 'ck-heading_heading5' },
-            { model: 'heading6', view: 'h6', title: 'Heading 6', class: 'ck-heading_heading6' }
-        ]
+            { model: "paragraph", title: "Paragraph", class: "ck-heading_paragraph" },
+            {
+                model: "heading1",
+                view: "h1",
+                title: "Heading 1",
+                class: "ck-heading_heading1",
+            },
+            {
+                model: "heading2",
+                view: "h2",
+                title: "Heading 2",
+                class: "ck-heading_heading2",
+            },
+            {
+                model: "heading3",
+                view: "h3",
+                title: "Heading 3",
+                class: "ck-heading_heading3",
+            },
+            {
+                model: "heading4",
+                view: "h4",
+                title: "Heading 4",
+                class: "ck-heading_heading4",
+            },
+            {
+                model: "heading5",
+                view: "h5",
+                title: "Heading 5",
+                class: "ck-heading_heading5",
+            },
+            {
+                model: "heading6",
+                view: "h6",
+                title: "Heading 6",
+                class: "ck-heading_heading6",
+            },
+        ],
     },
-    placeholder: 'Welcome to CKEditor 5!',
+    placeholder: "Welcome to CKEditor 5!",
     fontFamily: {
         options: [
-            'default',
-            'Arial, Helvetica, sans-serif',
-            'Courier New, Courier, monospace',
-            'Georgia, serif',
-            'Lucida Sans Unicode, Lucida Grande, sans-serif',
-            'Tahoma, Geneva, sans-serif',
-            'Times New Roman, Times, serif',
-            'Trebuchet MS, Helvetica, sans-serif',
-            'Verdana, Geneva, sans-serif'
+            "default",
+            "Arial, Helvetica, sans-serif",
+            "Courier New, Courier, monospace",
+            "Georgia, serif",
+            "Lucida Sans Unicode, Lucida Grande, sans-serif",
+            "Tahoma, Geneva, sans-serif",
+            "Times New Roman, Times, serif",
+            "Trebuchet MS, Helvetica, sans-serif",
+            "Verdana, Geneva, sans-serif",
         ],
-        supportAllValues: true
+        supportAllValues: true,
     },
     fontSize: {
-        options: [10, 12, 14, 'default', 18, 20, 22],
-        supportAllValues: true
+        options: [10, 12, 14, "default", 18, 20, 22],
+        supportAllValues: true,
     },
     htmlSupport: {
         allow: [
@@ -126,95 +194,403 @@ CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
                 name: /.*/,
                 attributes: true,
                 classes: true,
-                styles: true
-            }
-        ]
+                styles: true,
+            },
+        ],
     },
     htmlEmbed: {
-        showPreviews: true
+        showPreviews: true,
     },
     link: {
         decorators: {
             addTargetToExternalLinks: true,
-            defaultProtocol: 'https://',
+            defaultProtocol: "https://",
             toggleDownloadable: {
-                mode: 'manual',
-                label: 'Downloadable',
+                mode: "manual",
+                label: "Downloadable",
                 attributes: {
-                    download: 'file'
-                }
-            }
-        }
+                    download: "file",
+                },
+            },
+        },
     },
     mention: {
         feeds: [
             {
-                marker: '@',
+                marker: "@",
                 feed: [
-                    '@apple', '@bears', '@brownie', '@cake', '@cake', '@candy', '@canes', '@chocolate', '@cookie', '@cotton', '@cream',
-                    '@cupcake', '@danish', '@donut', '@dragée', '@fruitcake', '@gingerbread', '@gummi', '@ice', '@jelly-o',
-                    '@liquorice', '@macaroon', '@marzipan', '@oat', '@pie', '@plum', '@pudding', '@sesame', '@snaps', '@soufflé',
-                    '@sugar', '@sweet', '@topping', '@wafer'
+                    "@apple",
+                    "@bears",
+                    "@brownie",
+                    "@cake",
+                    "@cake",
+                    "@candy",
+                    "@canes",
+                    "@chocolate",
+                    "@cookie",
+                    "@cotton",
+                    "@cream",
+                    "@cupcake",
+                    "@danish",
+                    "@donut",
+                    "@dragée",
+                    "@fruitcake",
+                    "@gingerbread",
+                    "@gummi",
+                    "@ice",
+                    "@jelly-o",
+                    "@liquorice",
+                    "@macaroon",
+                    "@marzipan",
+                    "@oat",
+                    "@pie",
+                    "@plum",
+                    "@pudding",
+                    "@sesame",
+                    "@snaps",
+                    "@soufflé",
+                    "@sugar",
+                    "@sweet",
+                    "@topping",
+                    "@wafer",
                 ],
-                minimumCharacters: 1
-            }
-        ]
+                minimumCharacters: 1,
+            },
+        ],
     },
     removePlugins: [
-        'CKBox',
-        'CKFinder',
-        'EasyImage',
-        'RealTimeCollaborativeComments',
-        'RealTimeCollaborativeTrackChanges',
-        'RealTimeCollaborativeRevisionHistory',
-        'PresenceList',
-        'Comments',
-        'TrackChanges',
-        'TrackChangesData',
-        'RevisionHistory',
-        'Pagination',
-        'WProofreader',
-        'MathType'
-    ]
-}).then(editor => {
-    editorinstance = editor;
-    console.log('CKEditor initialized successfully');
-}).catch(error => {
-    console.error(error);
-});
-
-
-// Blog Submit
-
-document.querySelector('#submit').addEventListener('click', () => {
-    const Blog_Description = editorinstance.getData();
-    x = JSON.stringify(Blog_Description)
-    // console.log(x)
-    const category = $('#category_input').val()
-    const Main_Heading = $('#Main_Heading_input').val()
-    const Author_Name = $('#Author_Name_input').val()
-    const Image = $('#Image_input').val()
-    const Meta_title = $('#Meta_title_input').val()
-    const Meta_keywords = $('#Meta_keywords_input').val()
-    const Meta_description = $('#Meta_description_input').val()
-    const Meta_robots = $('#Meta_robots_input').val()
-    const Meta_viewport = $('#Meta_viewport_input').val()
-    const Meta_charset = $('#Meta_charset_input').val()
-
-    console.log(JSON.stringify(Blog_Description))
-    console.log(JSON.stringify(category))
-    console.log(JSON.stringify(Main_Heading))
-    console.log(JSON.stringify(Author_Name))
-    console.log(JSON.stringify(Image))
-    console.log(JSON.stringify(tags))
-    console.log(JSON.stringify(Meta_title))
-    console.log(JSON.stringify(Meta_description))   
-    console.log(JSON.stringify(Meta_keywords))   
-    console.log(JSON.stringify(Meta_robots))    
-    console.log(JSON.stringify(Meta_viewport))
-    console.log(JSON.stringify(Meta_charset))
-});
-
-$(document).ready(function(){
-    $("#category_input").focus();
+        "CKBox",
+        "CKFinder",
+        "EasyImage",
+        "RealTimeCollaborativeComments",
+        "RealTimeCollaborativeTrackChanges",
+        "RealTimeCollaborativeRevisionHistory",
+        "PresenceList",
+        "Comments",
+        "TrackChanges",
+        "TrackChangesData",
+        "RevisionHistory",
+        "Pagination",
+        "WProofreader",
+        "MathType",
+    ],
 })
+    .then((editor) => {
+        editorinstance = editor;
+        console.log("CKEditor initialized successfully");
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+
+
+
+//---------- Add Blog
+add_blog = () => {
+    var title = $("#Main_Heading_input").val();
+    var catg = $('#myDropdown option:selected').text();
+    var sh_desc = "";
+    var data_dict = {}
+
+    // input validation
+    if (title == "" || catg == "") {
+        alert("Please Enter all fields!");
+        return;
+    }
+
+    var Image = $("#Image_input").val()
+    console.log(Image)
+    var Blog_Description = editorinstance.getData();
+    var Author_Name = $("#Author_Name_input").val();
+    var Meta_title = $("#Meta_title_input").val();
+    var Meta_keywords = $("#Meta_keywords_input").val();
+    var Meta_description = $("#Meta_description_input").val();
+    var Meta_robots = $("#Meta_robots_input").val();
+    var Meta_viewport = $("#Meta_viewport_input").val();
+    var Meta_charset = $("#Meta_charset_input").val();
+
+    data_dict = {
+        Blog_Description: Blog_Description,
+        Author_Name: Author_Name,
+        Meta_title: Meta_title,
+        Meta_keywords: Meta_keywords,
+        Meta_description: Meta_description,
+        Meta_robots: Meta_robots,
+        Meta_viewport: Meta_viewport,
+        Meta_charset: Meta_charset,
+        Tags: tags
+    };
+
+    data = JSON.stringify(data_dict)
+
+    var formData = new FormData();
+    formData.append('title', title);
+    formData.append('catg', catg);
+    formData.append('file', $("#Image_input")[0].files[0]);
+    formData.append('sh_desc', sh_desc);
+    formData.append('data', data);
+
+    $.ajax({
+        type: "POST",
+        url: root + main_route + '/add_blog',
+        data: formData,
+        processData: false, // tell jQuery not to process the data
+        contentType: false, // tell jQuery not to set contentType
+        success: function (data) {
+            if (data == "success") {
+                alert("Post Uploaded Successfully!")
+                Fetch_All_Blog()
+                $(':input').val('');
+                tags = []
+                createTag()
+                editorinstance.setData('')
+                $('#update').hide()
+                $('#submit').show()
+            }
+            else {
+                alert("Unable to upload blog")
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+        }
+    })
+};
+
+
+
+//---------- Update Blog
+update_blog = (ts) => {
+    var title = $("#Main_Heading_input").val();
+    var catg = $('#myDropdown option:selected').text();
+    var sh_desc = "";
+    var data_dict = {}
+
+    // input validation
+    if (title == "" || catg == "") {
+        alert("Please Enter all fields!");
+        return;
+    }
+
+    var Image = $("#Image_input").val()
+    console.log(Image)
+    var Blog_Description = editorinstance.getData();
+    var Author_Name = $("#Author_Name_input").val();
+    var Meta_title = $("#Meta_title_input").val();
+    var Meta_keywords = $("#Meta_keywords_input").val();
+    var Meta_description = $("#Meta_description_input").val();
+    var Meta_robots = $("#Meta_robots_input").val();
+    var Meta_viewport = $("#Meta_viewport_input").val();
+    var Meta_charset = $("#Meta_charset_input").val();
+
+    data_dict = {
+        Blog_Description: Blog_Description,
+        Author_Name: Author_Name,
+        Meta_title: Meta_title,
+        Meta_keywords: Meta_keywords,
+        Meta_description: Meta_description,
+        Meta_robots: Meta_robots,
+        Meta_viewport: Meta_viewport,
+        Meta_charset: Meta_charset,
+        Tags: tags
+    };
+
+    data = JSON.stringify(data_dict)
+
+    if ($("#Image_input").val() == '') {
+        var formData = new FormData();
+        formData.append('blog_id', parseFloat(Edit_Blog[1]))
+        formData.append('title', title);
+        formData.append('catg', catg);
+        formData.append('sh_desc', sh_desc);
+        formData.append('data', data);
+    }
+    else {
+        var formData = new FormData();
+        formData.append('blog_id', parseFloat(Edit_Blog[1]))
+        formData.append('title', title);
+        formData.append('catg', catg);
+        formData.append('file', $("#Image_input")[0].files[0]);
+        formData.append('sh_desc', sh_desc);
+        formData.append('data', data);
+    }
+
+    $.ajax({
+        type: "POST",
+        url: root + main_route + '/update_blog',
+        data: formData,
+        processData: false, // tell jQuery not to process the data
+        contentType: false, // tell jQuery not to set contentType
+        success: function (data) {
+            if (data == "success") {
+                alert("Post Updated Successfully!")
+                Fetch_All_Blog()
+                $(':input').val('');
+                tags = []
+                createTag()
+                editorinstance.setData('')
+                $('#update').hide()
+                $('#submit').show()
+            }
+            else {
+                alert("Unable to upload blog")
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+        }
+    })
+};
+
+
+
+//---------- Edit Blog
+edit_blog = (ts) => {
+    console.log(ts)
+    $('#update').show()
+    $('#submit').hide()
+    for (var i = 0; i < All_Blog.length; i++) {
+        if (ts == parseFloat(All_Blog[i][1])) {
+            Edit_Blog = All_Blog[i]
+            break;
+        }
+    }
+    $("#Main_Heading_input").val(Edit_Blog[2]);
+    var optionText = Edit_Blog[3];
+    $('#myDropdown option:contains('+ optionText +')').prop('selected', true);
+    $("#Author_Name_input").val(JSON.parse(Edit_Blog[6])['Author_Name']);
+    $("#Meta_title_input").val(JSON.parse(Edit_Blog[6])['Meta_title']);
+    $("#Meta_keywords_input").val(JSON.parse(Edit_Blog[6])['Meta_keywords']);
+    $("#Meta_description_input").val(JSON.parse(Edit_Blog[6])['Meta_description']);
+    $("#Meta_robots_input").val(JSON.parse(Edit_Blog[6])['Meta_robots']);
+    $("#Meta_viewport_input").val(JSON.parse(Edit_Blog[6])['Meta_viewport']);
+    $("#Meta_charset_input").val(JSON.parse(Edit_Blog[6])['Meta_charset']);
+    tags = JSON.parse(Edit_Blog[6])['Tags']
+    createTag()
+    editorinstance.setData(JSON.parse(Edit_Blog[6])['Blog_Description'])
+};
+
+
+
+//---------- Delete Blog
+del_blog = (ts) => {
+    $.post(root + main_route + '/delete_blog', { blog_id: ts }, function (data, status) {
+        console.log("Data: " + data + "\nStatus: " + status);
+        Fetch_All_Blog()
+        $(':input').val('');
+        tags = []
+        createTag()
+        editorinstance.setData('')
+        $('#update').hide()
+        $('#submit').show()
+    }).fail(function (response) {
+        console.log("Error: " + response);
+    })
+}
+
+
+
+//---------- Fetch All Blog
+Fetch_All_Blog = () => {
+    $.post(root + main_route + '/fetch_blog_all', function (data, status) {
+        console.log("Data: " + data + "\nStatus: " + status);
+        All_Blog = data
+        console.log(All_Blog)
+        for (var i = 0; i < data.length; i++) {
+            // data pre preprocessing
+            let ts = data[i][0]
+            let title = data[i][1]
+            let catg = data[i][2]
+            let Image = data[i][3]
+            let sh_desc = data[i][4]
+            let full_data = data[i][5]
+            data[i][0] = moment.unix(data[i][0]).format("DD-MMM HH:mm A")
+            data[i][1] = ts
+            data[i][2] = title
+            data[i][3] = catg
+            data[i][4] = Image
+            data[i][5] = sh_desc
+            data[i][6] = full_data
+            var str = '<button class="m-2" onclick="del_blog(' + ts + ')">&nbsp;Delete&nbsp;</button><button class="m-2" onclick="edit_blog(' + ts + ')">&nbsp;Edit&nbsp;</button>'
+            data[i][7] = str
+        }
+        if (data) {
+            if (counter_for_datatable == 0) {
+                counter_for_datatable += 1
+                datatable = $("#BlogDatatable").DataTable({
+                    "paging": true,
+                    "pageLength": 50,
+                    "info": false,
+                    "scrollX": true,
+                    "scrollY": 250,
+                });
+            }
+            datatable.clear();
+            datatable.rows.add(data);
+            datatable.draw();
+        }
+    }).fail(function (response) {
+        console.log("Error: " + response);
+    });
+}
+
+
+
+//---------- Blog Submit
+document.querySelector("#submit").addEventListener("click", () => {
+    add_blog()
+});
+
+
+
+//---------- Blog Update
+document.querySelector("#update").addEventListener("click", () => {
+    update_blog(parseFloat(Edit_Blog[1]))
+});
+
+
+
+//---------- On Ready - Refresh
+$(document).ready(function () {
+
+    $.ajaxSetup({ async: false }); // to stop async
+    
+    $("#Main_Heading_input").focus();
+    root = "https://tradingduniya.com";
+    main_route = "/blogs";
+
+    $('#update').hide()
+    $('#submit').show()
+
+    counter_for_datatable = 0
+
+    $("input[type='file']").on("change", function () {
+        try {
+            if (this.files[0].size > 2000000) {
+                alert("Please upload file less than 2MB. Thanks!!");
+                $(this).val('');
+            }
+        }
+        catch (e) { console.log("File Removed!"); return }
+
+        var allowed_ext = ['jpg', 'png', 'jpeg', 'webp', 'svg', 'gif', 'bmp', 'tif']
+        var curr_ext = $("#Image_input").val()
+        curr_ext = curr_ext.split('.').pop();
+        curr_ext = curr_ext.toLowerCase();
+        // console.log("Extension:" + curr_ext)
+        if (allowed_ext.includes(curr_ext)) {
+            // console.log("Ext allowed")
+        }
+        else {
+            alert("Please upload a image only!")
+            $(this).val('');
+        }
+    });//evt finish
+
+    Fetch_All_Blog()
+
+    $("#addOptionButton").on("click", function () {
+        var newOptionValue = prompt("Enter a value for the new option:");
+        var newOptionText = prompt("Enter a display text for the new option:");
+        $("#myDropdown").append("<option value='" + newOptionValue + "'>" + newOptionText + "</option>");
+    });
+
+});
