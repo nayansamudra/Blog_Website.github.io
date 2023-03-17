@@ -163,27 +163,30 @@ update_course = (ts) => {
         formData.append('data', data);
     }
 
-    $.ajax({
-        type: "POST",
-        url: root + main_route + '/update_course',
-        data: formData,
-        processData: false, // tell jQuery not to process the data
-        contentType: false, // tell jQuery not to set contentType
-        success: function (data) {
-            if (data == "success") {
-                alert("Post Updated Successfully!")
-                Fetch_All_Course()
-                $(':input').val('');
-                $('#update').hide()
-                $('#submit').show()
+    if (confirm("Are you Sure you want to update?")) {
+        $.ajax({
+            type: "POST",
+            url: root + main_route + '/update_course',
+            data: formData,
+            processData: false, // tell jQuery not to process the data
+            contentType: false, // tell jQuery not to set contentType
+            success: function (data) {
+                if (data == "success") {
+                    alert("Post Updated Successfully!")
+                    Fetch_All_Course()
+                    $(':input').val('');
+                    $('#update').hide()
+                    $('#submit').show()
+                }
+                else {
+                    alert("Unable to update Post")
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
             }
-            else {
-                alert("Unable to update Post")
-            }
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-        }
-    })
+        })
+    }
+    else { return }
 };
 
 
@@ -227,6 +230,8 @@ edit_course = (ts) => {
 
 //---------- Delete Course
 del_course = (ts) => {
+    if (confirm("Are you Sure?")) { }
+    else { return }
     $.post(root + main_route + '/delete_course', { blog_id: ts }, function (data, status) {
         console.log("Data: " + data + "\nStatus: " + status);
         Fetch_All_Course()
@@ -322,7 +327,7 @@ $(document).ready(function () {
         }
         catch (e) { console.log("File Removed!"); return }
 
-        var allowed_ext = ['jpg', 'png', 'jpeg', 'webp', 'svg', 'gif', 'bmp', 'tif']
+        var allowed_ext = ['jpg', 'png', 'jpeg', 'webp', 'svg']
         var curr_ext = $("#Image_input").val()
         curr_ext = curr_ext.split('.').pop();
         curr_ext = curr_ext.toLowerCase();

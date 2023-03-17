@@ -23,7 +23,7 @@ fetch_blog_list = () => {
                 <img src="${Object.values(distinctValues_1)[i][3]}" alt="cat-slider" width="696" height="491">
                 <div class="item-content">
                     <h4 class="title">
-                        <a href="Category.html">${Object.keys(distinctValues_1)[i]}</a>
+                        <a href="Category.html" class="category">${Object.keys(distinctValues_1)[i]}</a>
                     </h4>
                     <p class="count">
                         <span class="anim-overflow"> (${Object.values(distinctValues)[i]}) </span>
@@ -64,7 +64,7 @@ fetch_blog_list = () => {
                 </a>
             </div>
             <div class="post-content">
-                <a href="Category.html" class="life-style">${distinctData[i][2]}</a>
+                <a href="javascript:void(0)" class="life-style">${distinctData[i][2]}</a>
                 <h3 class="post-title">
                     <a href="Main_Blog_Page.html">${distinctData[i][1]}</a>
                 </h3>
@@ -153,6 +153,9 @@ $(document).ready(function () {
         fetch_blog_list()
     })
 
-
+    $('.category').on('click', function () {
+        clicked_category = $(this).text()
+        sessionStorage.setItem("clicked_category", clicked_category);
+    });
 
 })

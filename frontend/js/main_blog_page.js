@@ -1,15 +1,9 @@
 fetch_blog_list = () => {
-    // Latest Blog Section 
-    $('#Latest_Blog_Image').attr('src', Latest_Blog_Image)
-    $('#Latest_Blog_category').text(All_Blog[All_Blog.length - 1][2])
-    $('#Latest_Blog_Title').text(All_Blog[All_Blog.length - 1][1])
-    $('#Latest_Blog_Date').text(moment.unix(All_Blog[All_Blog.length - 1][0]).format("MMMM DD, YYYY"))
-
     $('#Latest_Blog_Image_1').attr('src', Latest_Blog_Image)
     $('#Latest_Blog_category_1').text(All_Blog[All_Blog.length - 1][2])
     $('#Latest_Blog_Title_1').text(All_Blog[All_Blog.length - 1][1])
     $('#Latest_Blog_Date_1').text(moment.unix(All_Blog[All_Blog.length - 1][0]).format("MMMM DD, YYYY"))
-    
+
     comapre_category = All_Blog[All_Blog.length - 1][2]
     list_of_next_three_catgory_blog = []
     for (var i = (All_Blog.length - 2); i > 0; i--) {
@@ -18,36 +12,56 @@ fetch_blog_list = () => {
             comapre_category = All_Blog[i][2]
         }
     }
-
-    $('#Second_Blog_Image').attr('src', list_of_next_three_catgory_blog[0][3])
-    $('#Second_Blog_Category').text(list_of_next_three_catgory_blog[0][2])
-    $('#Second_Blog_Title').text(list_of_next_three_catgory_blog[0][1])
-    $('#Second_Blog_Date').text(moment.unix(list_of_next_three_catgory_blog[0][0]).format("MMMM DD, YYYY"))
-
+    
     $('#Second_Blog_Image_1').attr('src', list_of_next_three_catgory_blog[0][3])
     $('#Second_Blog_Category_1').text(list_of_next_three_catgory_blog[0][2])
     $('#Second_Blog_Title_1').text(list_of_next_three_catgory_blog[0][1])
     $('#Second_Blog_Date_1').text(moment.unix(list_of_next_three_catgory_blog[0][0]).format("MMMM DD, YYYY"))
-
-    $('#Third_Blog_Image').attr('src', list_of_next_three_catgory_blog[1][3])
-    $('#Third_Blog_Category').text(list_of_next_three_catgory_blog[1][2])
-    $('#Third_Blog_Title').text(list_of_next_three_catgory_blog[1][1])
-    $('#Third_Blog_Date').text(moment.unix(list_of_next_three_catgory_blog[1][0]).format("MMMM DD, YYYY"))
 
     $('#Third_Blog_Image_1').attr('src', list_of_next_three_catgory_blog[1][3])
     $('#Third_Blog_Category_1').text(list_of_next_three_catgory_blog[1][2])
     $('#Third_Blog_Title_1').text(list_of_next_three_catgory_blog[1][1])
     $('#Third_Blog_Date_1').text(moment.unix(list_of_next_three_catgory_blog[1][0]).format("MMMM DD, YYYY"))
 
-    $('#Fourth_Blog_Image').attr('src', list_of_next_three_catgory_blog[2][3])
-    $('#Fourth_Blog_Category').text(list_of_next_three_catgory_blog[2][2])
-    $('#Fourth_Blog_Title').text(list_of_next_three_catgory_blog[2][1])
-    $('#Fourth_Blog_Date').text(moment.unix(list_of_next_three_catgory_blog[2][0]).format("MMMM DD, YYYY"))
-
     $('#Fourth_Blog_Image_1').attr('src', list_of_next_three_catgory_blog[2][3])
     $('#Fourth_Blog_Category_1').text(list_of_next_three_catgory_blog[2][2])
     $('#Fourth_Blog_Title_1').text(list_of_next_three_catgory_blog[2][1])
     $('#Fourth_Blog_Date_1').text(moment.unix(list_of_next_three_catgory_blog[2][0]).format("MMMM DD, YYYY"))
+
+    distinctValues = {};
+    for (var i = 0; i < All_Blog.length; i++) {
+        if (All_Blog[i][2] in distinctValues) {
+            distinctValues[All_Blog[i][2]]++;
+        } else {
+            distinctValues[All_Blog[i][2]] = 1;
+        }
+    }
+    distinctValues_1 = {};
+    for (var i = 0; i < All_Blog.length; i++) {
+        if (All_Blog[i][2] in distinctValues_1) {
+            continue;
+        } else {
+            distinctValues_1[All_Blog[i][2]] = All_Blog[i];
+        }
+    }
+
+    for (var i = 0; i < Object.keys(distinctValues).length; i++) {
+        $('.top-categories-grid-style-1').append(`<div class="cat-item">
+        <div class="rt-cart-item">
+            <div class="item-img">
+                <img src="${Object.values(distinctValues_1)[i][3]}" alt="cat-slider" width="696" height="491">
+                <div class="item-content">
+                    <h4 class="title">
+                        <a href="Category.html" class="category">${Object.keys(distinctValues_1)[i]}</a>
+                    </h4>
+                    <p class="count">
+                        <span class="anim-overflow"> (${Object.values(distinctValues)[i]}) </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>`)
+    }
 }
 
 $(document).ready(function () {
@@ -113,7 +127,7 @@ $(document).ready(function () {
     // }).done(function () {
     //     $('#Latest_Blog_Author').text(JSON.parse(Latest_Blog[0][5])['Author_Name'])
     // })
-    
+
     $('.category').on('click', function () {
         clicked_category = $(this).text()
         sessionStorage.setItem("clicked_category", clicked_category);

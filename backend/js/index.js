@@ -414,30 +414,33 @@ update_blog = (ts) => {
         formData.append('data', data);
     }
 
-    $.ajax({
-        type: "POST",
-        url: root + main_route + '/update_blog',
-        data: formData,
-        processData: false, // tell jQuery not to process the data
-        contentType: false, // tell jQuery not to set contentType
-        success: function (data) {
-            if (data == "success") {
-                alert("Post Updated Successfully!")
-                Fetch_All_Blog()
-                $(':input').val('');
-                tags = []
-                createTag()
-                editorinstance.setData('')
-                $('#update').hide()
-                $('#submit').show()
+    if (confirm("Are you Sure you want to update?")) {
+        $.ajax({
+            type: "POST",
+            url: root + main_route + '/update_blog',
+            data: formData,
+            processData: false, // tell jQuery not to process the data
+            contentType: false, // tell jQuery not to set contentType
+            success: function (data) {
+                if (data == "success") {
+                    alert("Post Updated Successfully!")
+                    Fetch_All_Blog()
+                    $(':input').val('');
+                    tags = []
+                    createTag()
+                    editorinstance.setData('')
+                    $('#update').hide()
+                    $('#submit').show()
+                }
+                else {
+                    alert("Unable to upload blog")
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
             }
-            else {
-                alert("Unable to upload blog")
-            }
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-        }
-    })
+        })
+    }
+    else { return }
 };
 
 
@@ -455,7 +458,7 @@ edit_blog = (ts) => {
     }
     $("#Main_Heading_input").val(Edit_Blog[2]);
     var optionText = Edit_Blog[3];
-    $('#myDropdown option:contains('+ optionText +')').prop('selected', true);
+    $('#myDropdown option:contains(' + optionText + ')').prop('selected', true);
     $("#Author_Name_input").val(JSON.parse(Edit_Blog[6])['Author_Name']);
     $("#Meta_title_input").val(JSON.parse(Edit_Blog[6])['Meta_title']);
     $("#Meta_keywords_input").val(JSON.parse(Edit_Blog[6])['Meta_keywords']);
@@ -472,6 +475,8 @@ edit_blog = (ts) => {
 
 //---------- Delete Blog
 del_blog = (ts) => {
+    if (confirm("Are you Sure?")) { }
+    else { return }
     $.post(root + main_route + '/delete_blog', { blog_id: ts }, function (data, status) {
         console.log("Data: " + data + "\nStatus: " + status);
         Fetch_All_Blog()
@@ -552,7 +557,7 @@ document.querySelector("#update").addEventListener("click", () => {
 $(document).ready(function () {
 
     $.ajaxSetup({ async: false }); // to stop async
-    
+
     $("#Main_Heading_input").focus();
     root = "https://tradingduniya.com";
     main_route = "/blogs";
@@ -571,7 +576,7 @@ $(document).ready(function () {
         }
         catch (e) { console.log("File Removed!"); return }
 
-        var allowed_ext = ['jpg', 'png', 'jpeg', 'webp', 'svg', 'gif', 'bmp', 'tif']
+        var allowed_ext = ['jpg', 'png', 'jpeg', 'webp', 'svg']
         var curr_ext = $("#Image_input").val()
         curr_ext = curr_ext.split('.').pop();
         curr_ext = curr_ext.toLowerCase();
