@@ -75,21 +75,63 @@ fetch_blog = () => {
     for (var i = 0; i < JSON.parse(Blog_data[0][5])['Tags'].length; i++) {
         $('.tag-list').append(`<a href="javascript:void(0)" class="tag-link">${JSON.parse(Blog_data[0][5])['Tags'][i]}</a>`)
     }
+
+    if (JSON.parse(Blog_data[0][5])['Meta_description'] != "") {
+        $('meta[name="description"]').attr('content', JSON.parse(Blog_data[0][5])['Meta_description']);
+    }
+
+    if (JSON.parse(Blog_data[0][5])['Meta_keywords'] != "") {
+        $('meta[name="keywords"]').attr('content', JSON.parse(Blog_data[0][5])['Meta_keywords']);
+    }
+
+    if (JSON.parse(Blog_data[0][5])['Meta_title'] != "") {
+        $('title').text(JSON.parse(Blog_data[0][5])['Meta_title']);
+    }
+
+    if (JSON.parse(Blog_data[0][5])['Meta_robots'] != "") {
+        $('meta[name="robots"]').attr('content', JSON.parse(Blog_data[0][5])['Meta_robots']);
+    }
+}
+
+prev_next = () => {
+    for (var i = 0; i < All_Blog.length; i++) {
+        if (Blog_data[0][0] == All_Blog[i][0]) {
+            if (i == 0) {
+                $('#Previous_article_heading').text(All_Blog[All_Blog.length - 1][1])
+                $('#Next_article_heading').text(All_Blog[i + 1][1])
+                $('#Previous_article_Date').text(moment.unix(All_Blog[All_Blog.length - 1][0]).format("MMMM DD, YYYY"))
+                $('#Next_article_Date').text(moment.unix(All_Blog[i + 1][0]).format("MMMM DD, YYYY"))
+            }
+            else if (i == (All_Blog.length - 1)) {
+                $('#Previous_article_heading').text(All_Blog[i - 1][1])
+                $('#Next_article_heading').text(All_Blog[0][1])
+                $('#Previous_article_Date').text(moment.unix(All_Blog[i - 1][0]).format("MMMM DD, YYYY"))
+                $('#Next_article_Date').text(moment.unix(All_Blog[0][0]).format("MMMM DD, YYYY"))
+            }
+            else {
+                $('#Previous_article_heading').text(All_Blog[i - 1][1])
+                $('#Next_article_heading').text(All_Blog[i + 1][1])
+                $('#Previous_article_Date').text(moment.unix(All_Blog[i - 1][0]).format("MMMM DD, YYYY"))
+                $('#Next_article_Date').text(moment.unix(All_Blog[i + 1][0]).format("MMMM DD, YYYY"))
+            }
+        }
+    }
 }
 
 $(document).ready(function () {
 
     $.ajaxSetup({ async: false }); // to stop async
 
-    if(sessionStorage.getItem("data-theme")==null){
+    if (sessionStorage.getItem("data-theme") == null) {
         $('html').attr('data-theme', 'light')
     }
-    else{
+    else {
         $('html').attr('data-theme', sessionStorage.getItem("data-theme"))
     }
 
     counter_for_click = 0
     counter_for_theme = 0
+    prev_next_array = []
 
     root = "https://tradingduniya.com";
     main_route = "/blogs";
@@ -156,6 +198,7 @@ $(document).ready(function () {
     }).done(function () {
         sessionStorage.removeItem("Blog_ID")
         fetch_blog()
+        prev_next()
     })
 
     $('.category').on('click', function () {

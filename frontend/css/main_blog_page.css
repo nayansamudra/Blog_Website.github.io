@@ -1056,6 +1056,38 @@ h2 {
   }
 }
 
+/* Next and Previous Button*/
+[data-theme=dark] .next-prev-wrap {
+  border-color: #222121;
+}
+.next-prev-wrap {
+  border: 1px solid #e1e1e1;
+  padding: 40px;
+}
+.next-prev-wrap .item-icon {
+  margin-bottom: 10px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.next-prev-wrap .item-icon a {
+  color: #7a7e83;
+}
+.next-prev-wrap .item-icon i {
+  margin-right: 8px;
+}
+[data-theme=dark] .next-prev-wrap .content .title {
+  color: #fff;
+}
+.next-prev-wrap .content .title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #111111;
+}
+.next-prev-wrap .content .title a {
+  color: inherit;
+}
+
 /* Right Col Start*/
 .sidebar-wrap {
   counter-reset: post-counter;

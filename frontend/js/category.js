@@ -53,51 +53,76 @@ fetch_blog_list = () => {
         distinctData = Object.values(distinctValues_1)
     }
 
-    for (var i = 0; i < distinctData.length; i++) {
-        $('#category_blog').append(`<div class="col-md-6 wow fadeInUp animated" data-wow-delay="100ms"
-        data-wow-duration="800ms"
-        style="visibility: visible; animation-duration: 800ms; animation-delay: 100ms; animation-name: fadeInUp;">
-        <div class="rt-post-overlay rt-post-overlay-md layout-6 Blog_ID" id="${distinctData[i][0]}">
-            <div class="post-img">
-                <a href="Main_Blog_Page.html" class="img-link">
-                    <img src="${distinctData[i][3]}" alt="post-xl_37" width="900" height="600">
-                </a>
-            </div>
-            <div class="post-content">
-                <a href="javascript:void(0)" class="life-style">${distinctData[i][2]}</a>
-                <h3 class="post-title">
-                    <a href="Main_Blog_Page.html">${distinctData[i][1]}</a>
-                </h3>
-                <div class="post-meta">
-                    <ul>
-                        <li>
-                            <span class="rt-meta">
-                                by <a href="" class="name">TCI</a>
-                            </span>
-                        </li>
-                        <li>
-                            <span class="rt-meta">
-                                <i class="far fa-calendar-alt icon"></i>
-                                ${moment.unix(distinctData[i][0]).format("MMMM DD, YYYY")}
-                            </span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>`)
+    displayBlogs = (pageNumber) => {
+        const startIndex = (pageNumber - 1) * postsPerPage;
+        const endIndex = startIndex + (postsPerPage - 1);
+
+        const blogList = document.getElementById('category_blog');
+        blogList.innerHTML = '';
+
+        for (let i = startIndex; i <= endIndex; i++) {
+            if (i < distinctData.length) {
+                console.log(i)
+                $('#category_blog').append(`<div class="col-md-6 wow fadeInUp animated" data-wow-delay="100ms" data-wow-duration="800ms"
+                    style="visibility: visible; animation-duration: 800ms; animation-delay: 100ms; animation-name: fadeInUp;">
+                    <div class="rt-post-overlay rt-post-overlay-md layout-6 Blog_ID" id="${distinctData[i][0]}">
+                        <div class="post-img">
+                            <a href="Main_Blog_Page.html" class="img-link">
+                                <img src="${distinctData[i][3]}" alt="post-xl_37" width="900" height="600">
+                            </a>
+                        </div>
+                        <div class="post-content">
+                            <a href="javascript:void(0)" class="life-style">${distinctData[i][2]}</a>
+                            <h3 class="post-title">
+                                <a href="Main_Blog_Page.html">${distinctData[i][1]}</a>
+                            </h3>
+                            <div class="post-meta">
+                                <ul>
+                                    <li>
+                                        <span class="rt-meta">
+                                            by <a href="" class="name">TCI</a>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="rt-meta">
+                                            <i class="far fa-calendar-alt icon"></i>
+                                            ${moment.unix(distinctData[i][0]).format("MMMM DD, YYYY")}
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>`)
+            }
+        }
     }
 
+    displayBlogs(1)
+
+    total_number_of_pages = Math.ceil(distinctData.length / postsPerPage)
+    if (total_number_of_pages > 1) {
+        // $('.pagination').append(`<li class="page-item prev"><a class="page-link" href="javascript:void(0)"><i class="fas fa-angle-double-left"></i></a></li>`)
+        for (var i = 0; i < total_number_of_pages; i++) {
+            if (i == 0) {
+                $('.pagination').append(`<li class="page-item active" aria-current="page"><span class="page-link">${i + 1}</span></li>`)
+            }
+            else {
+                $('.pagination').append(`<li class="page-item"><a class="page-link" href="#">${i + 1}</a></li>`)
+            }
+        }
+        // $('.pagination').append(`<li class="page-item next"><a class="page-link" href="#"><i class="fas fa-angle-double-right"></i></a></li>`)
+    }
 }
 
 $(document).ready(function () {
 
     $.ajaxSetup({ async: false }); // to stop async
 
-    if(sessionStorage.getItem("data-theme")==null){
+    if (sessionStorage.getItem("data-theme") == null) {
         $('html').attr('data-theme', 'light')
     }
-    else{
+    else {
         $('html').attr('data-theme', sessionStorage.getItem("data-theme"))
     }
 
@@ -105,6 +130,8 @@ $(document).ready(function () {
     counter_for_theme = 0
     counter_for_each_category = 0
     Final_All_Category = []
+
+    postsPerPage = 10
 
     root = "https://tradingduniya.com";
     main_route = "/blogs";
@@ -165,5 +192,23 @@ $(document).ready(function () {
         Blog_ID = parseFloat($(this).attr('id'))
         sessionStorage.setItem("Blog_ID", Blog_ID);
     });
+
+    $('.page-item').on('click', function () {
+        $('.page-item').removeClass('active')
+        $(this).addClass('active')
+        current_page = $(this).text()
+        displayBlogs(current_page)
+    });
+
+    $('.prev').on('click', function () {
+        current_page = $('.active').text()
+        displayBlogs(current_page - 1)
+        current_page = current_page - 1
+    })
+
+    $('.next').on('click', function () {
+        displayBlogs(current_page + 1)
+        current_page = current_page + 1
+    })
 
 })

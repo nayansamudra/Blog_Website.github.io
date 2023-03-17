@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const blogs = [
+            {
+                title: 'Blog 1',
+                content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                author: 'John Doe',
+                date: 'January 1, 2022'
+            },
+            {
+                title: 'Blog 2',
+                content: 'Pellentesque ac quam eu mi bibendum ullamcorper eu sed ante.',
+                author: 'Jane Smith',
+                date: 'February 14, 2022'
+            }, {
+                title: 'Blog 3',
+                content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                author: 'John Doe',
+                date: 'January 1, 2022'
+            },
+            {
+                title: 'Blog 4',
+                content: 'Pellentesque ac quam eu mi bibendum ullamcorper eu sed ante.',
+                author: 'Jane Smith',
+                date: 'February 14, 2022'
+            }, {
+                title: 'Blog 5',
+                content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                author: 'John Doe',
+                date: 'January 1, 2022'
+            },
+            {
+                title: 'Blog 6',
+                content: 'Pellentesque ac quam eu mi bibendum ullamcorper eu sed ante.',
+                author: 'Jane Smith',
+                date: 'February 14, 2022'
+            }, {
+                title: 'Blog 7',
+                content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                author: 'John Doe',
+                date: 'January 1, 2022'
+            },
+            {
+                title: 'Blog 8',
+                content: 'Pellentesque ac quam eu mi bibendum ullamcorper eu sed ante.',
+                author: 'Jane Smith',
+                date: 'February 14, 2022'
+            }, {
+                title: 'Blog 9',
+                content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                author: 'John Doe',
+                date: 'January 1, 2022'
+            },
+            {
+                title: 'Blog 10',
+                content: 'Pellentesque ac quam eu mi bibendum ullamcorper eu sed ante.',
+                author: 'Jane Smith',
+                date: 'February 14, 2022'
+            }, {
+                title: 'Blog 11',
+                content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                author: 'John Doe',
+                date: 'January 1, 2022'
+            },
+            {
+                title: 'Blog 12',
+                content: 'Pellentesque ac quam eu mi bibendum ullamcorper eu sed ante.',
+                author: 'Jane Smith',
+                date: 'February 14, 2022'
+            }, {
+                title: 'Blog 13',
+                content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                author: 'John Doe',
+                date: 'January 1, 2022'
+            },
+            {
+                title: 'Blog 14',
+                content: 'Pellentesque ac quam eu mi bibendum ullamcorper eu sed ante.',
+                author: 'Jane Smith',
+                date: 'February 14, 2022'
+            }, {
+                title: 'Blog 15',
+                content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                author: 'John Doe',
+                date: 'January 1, 2022'
+            },
+            {
+                title: 'Blog 16',
+                content: 'Pellentesque ac quam eu mi bibendum ullamcorper eu sed ante.',
+                author: 'Jane Smith',
+                date: 'February 14, 2022'
+            }, {
+                title: 'Blog 17',
+                content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                author: 'John Doe',
+                date: 'January 1, 2022'
+            },
+            {
+                title: 'Blog 18',
+                content: 'Pellentesque ac quam eu mi bibendum ullamcorper eu sed ante.',
+                author: 'Jane Smith',
+                date: 'February 14, 2022'
+            }, {
+                title: 'Blog 19',
+                content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                author: 'John Doe',
+                date: 'January 1, 2022'
+            },
+            {
+                title: 'Blog 20',
+                content: 'Pellentesque ac quam eu mi bibendum ullamcorper eu sed ante.',
+                author: 'Jane Smith',
+                date: 'February 14, 2022'
+            }, {
+                title: 'Blog 21',
+                content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                author: 'John Doe',
+                date: 'January 1, 2022'
+            },
+            {
+                title: 'Blog 22',
+                content: 'Pellentesque ac quam eu mi bibendum ullamcorper eu sed ante.',
+                author: 'Jane Smith',
+                date: 'February 14, 2022'
+            }, {
+                title: 'Blog 23',
+                content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                author: 'John Doe',
+                date: 'January 1, 2022'
+            },
+            {
+                title: 'Blog 24',
+                content: 'Pellentesque ac quam eu mi bibendum ullamcorper eu sed ante.',
+                author: 'Jane Smith',
+                date: 'February 14, 2022'
+            },
+            // and so on...
+        ];
+
+        function displayBlogs(pageNumber) {
+            const startIndex = (pageNumber - 1) * 10;
+            const endIndex = startIndex + 9;
+
+            const blogList = document.getElementById('blog-list');
+            blogList.innerHTML = '';
+
+            for (let i = startIndex; i <= endIndex; i++) {
+                if (blogs[i]) {
+                    const blog = blogs[i];
+                    const blogDiv = document.createElement('div');
+                    blogDiv.innerHTML = `
+        <h2>${blog.title}</h2>
+        <p>${blog.content}</p>
+        <p>Author: ${blog.author}</p>
+        <p>Date: ${blog.date}</p>
+      `;
+                    blogList.appendChild(blogDiv);
+                }
+            }
+        }
+
+
+
+        function generatePagination(totalBlogs) {
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+
+            const totalPages = Math.ceil(totalBlogs / 5);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const pageLink = document.createElement('a');
+                pageLink.href = '#';
+                pageLink.innerText = i;
+
+                pageLink.addEventListener('click', () => {
+                    displayBlogs(i);
+                });
+
+                pagination.appendChild(pageLink);
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <div id="blog-list"></div>
+    <div id="pagination"></div>
+</body>
+
+</html>
