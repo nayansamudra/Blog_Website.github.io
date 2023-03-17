@@ -57,7 +57,7 @@ fetch_blog_list = () => {
         $('#category_blog').append(`<div class="col-md-6 wow fadeInUp animated" data-wow-delay="100ms"
         data-wow-duration="800ms"
         style="visibility: visible; animation-duration: 800ms; animation-delay: 100ms; animation-name: fadeInUp;">
-        <div class="rt-post-overlay rt-post-overlay-md layout-6">
+        <div class="rt-post-overlay rt-post-overlay-md layout-6 Blog_ID" id="${distinctData[i][0]}">
             <div class="post-img">
                 <a href="Main_Blog_Page.html" class="img-link">
                     <img src="${distinctData[i][3]}" alt="post-xl_37" width="900" height="600">
@@ -81,12 +81,6 @@ fetch_blog_list = () => {
                                 ${moment.unix(distinctData[i][0]).format("MMMM DD, YYYY")}
                             </span>
                         </li>
-                        <li>
-                            <span class="rt-meta">
-                                <i class="far fa-comments icon"></i>
-                                <a href="#"> 3,250</a>
-                            </span>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -99,6 +93,13 @@ fetch_blog_list = () => {
 $(document).ready(function () {
 
     $.ajaxSetup({ async: false }); // to stop async
+
+    if(sessionStorage.getItem("data-theme")==null){
+        $('html').attr('data-theme', 'light')
+    }
+    else{
+        $('html').attr('data-theme', sessionStorage.getItem("data-theme"))
+    }
 
     counter_for_click = 0
     counter_for_theme = 0
@@ -127,8 +128,10 @@ $(document).ready(function () {
         counter_for_theme += 1
         if (counter_for_theme % 2 == 0) {
             $('html').attr('data-theme', 'light')
+            sessionStorage.setItem("data-theme", 'light')
         } else {
             $('html').attr('data-theme', 'dark')
+            sessionStorage.setItem("data-theme", 'dark')
         }
     });
 
@@ -156,6 +159,11 @@ $(document).ready(function () {
     $('.category').on('click', function () {
         clicked_category = $(this).text()
         sessionStorage.setItem("clicked_category", clicked_category);
+    });
+
+    $('.Blog_ID').on('click', function () {
+        Blog_ID = parseFloat($(this).attr('id'))
+        sessionStorage.setItem("Blog_ID", Blog_ID);
     });
 
 })

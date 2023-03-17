@@ -12,7 +12,7 @@ fetch_blog_list = () => {
             comapre_category = All_Blog[i][2]
         }
     }
-    
+
     $('#Second_Blog_Image_1').attr('src', list_of_next_three_catgory_blog[0][3])
     $('#Second_Blog_Category_1').text(list_of_next_three_catgory_blog[0][2])
     $('#Second_Blog_Title_1').text(list_of_next_three_catgory_blog[0][1])
@@ -64,9 +64,29 @@ fetch_blog_list = () => {
     }
 }
 
+fetch_blog = () => {
+    $('#Blog_Category').text(Blog_data[0][2])
+    $('#Blog_title').text(Blog_data[0][1])
+    $('#Blog_Date').text(moment.unix(Blog_data[0][0]).format("MMMM DD, YYYY"))
+    $('#Blog_img').attr('src', Blog_data[0][3])
+    $('#Blog_Author_Name').text(JSON.parse(Blog_data[0][5])['Author_Name'])
+    $('.post-body').text('')
+    $('.post-body').html(JSON.parse(Blog_data[0][5])['Blog_Description'])
+    for (var i = 0; i < JSON.parse(Blog_data[0][5])['Tags'].length; i++) {
+        $('.tag-list').append(`<a href="javascript:void(0)" class="tag-link">${JSON.parse(Blog_data[0][5])['Tags'][i]}</a>`)
+    }
+}
+
 $(document).ready(function () {
 
     $.ajaxSetup({ async: false }); // to stop async
+
+    if(sessionStorage.getItem("data-theme")==null){
+        $('html').attr('data-theme', 'light')
+    }
+    else{
+        $('html').attr('data-theme', sessionStorage.getItem("data-theme"))
+    }
 
     counter_for_click = 0
     counter_for_theme = 0
@@ -93,8 +113,10 @@ $(document).ready(function () {
         counter_for_theme += 1
         if (counter_for_theme % 2 == 0) {
             $('html').attr('data-theme', 'light')
+            sessionStorage.setItem("data-theme", 'light')
         } else {
             $('html').attr('data-theme', 'dark')
+            sessionStorage.setItem("data-theme", 'dark')
         }
     });
 
@@ -120,16 +142,44 @@ $(document).ready(function () {
         fetch_blog_list()
     })
 
-    // $.post(root + main_route + '/fetch_blog', { blog_id: All_Blog[All_Blog.length - 1][0] }, function (data, status) {
-    //     console.log("Status: " + status);
-    //     Latest_Blog = data
-    //     console.log(Latest_Blog)
-    // }).done(function () {
-    //     $('#Latest_Blog_Author').text(JSON.parse(Latest_Blog[0][5])['Author_Name'])
-    // })
+    if (sessionStorage.getItem("Blog_ID") != null) {
+        blog_id = sessionStorage.getItem("Blog_ID")
+    }
+    else {
+        blog_id = All_Blog[All_Blog.length - 1][0]
+    }
+
+    $.post(root + main_route + '/fetch_blog', { blog_id: blog_id }, function (data, status) {
+        console.log("Status: " + status);
+        Blog_data = data
+        console.log(Blog_data)
+    }).done(function () {
+        sessionStorage.removeItem("Blog_ID")
+        fetch_blog()
+    })
 
     $('.category').on('click', function () {
         clicked_category = $(this).text()
         sessionStorage.setItem("clicked_category", clicked_category);
+    });
+
+    $('.Latest_Blog').on('click', function () {
+        Blog_ID = All_Blog[All_Blog.length - 1][0]
+        sessionStorage.setItem("Blog_ID", Blog_ID);
+    });
+
+    $('.Second_Blog').on('click', function () {
+        Blog_ID = list_of_next_three_catgory_blog[0][0]
+        sessionStorage.setItem("Blog_ID", Blog_ID);
+    });
+
+    $('.Third_Blog').on('click', function () {
+        Blog_ID = list_of_next_three_catgory_blog[1][0]
+        sessionStorage.setItem("Blog_ID", Blog_ID);
+    });
+
+    $('.Fourth_Blog').on('click', function () {
+        Blog_ID = list_of_next_three_catgory_blog[2][0]
+        sessionStorage.setItem("Blog_ID", Blog_ID);
     });
 })

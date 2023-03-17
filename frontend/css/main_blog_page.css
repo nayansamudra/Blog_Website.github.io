@@ -820,6 +820,7 @@ h2 {
 }
 .rt-main-post-single > .post-img img {
   border-radius: 4px;
+  max-height: 600px;
 }
 
 /* Post Body  */

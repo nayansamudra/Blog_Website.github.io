@@ -54,6 +54,13 @@ $(document).ready(function () {
 
     $.ajaxSetup({ async: false }); // to stop async
 
+    if(sessionStorage.getItem("data-theme")==null){
+        $('html').attr('data-theme', 'light')
+    }
+    else {
+        $('html').attr('data-theme', sessionStorage.getItem("data-theme"))
+    }
+
     counter_for_click = 0
     counter_for_theme = 0
 
@@ -79,8 +86,10 @@ $(document).ready(function () {
         counter_for_theme += 1
         if (counter_for_theme % 2 == 0) {
             $('html').attr('data-theme', 'light')
+            sessionStorage.setItem("data-theme", 'light')
         } else {
             $('html').attr('data-theme', 'dark')
+            sessionStorage.setItem("data-theme", 'dark')
         }
     });
 
@@ -117,5 +126,25 @@ $(document).ready(function () {
     $('.category').on('click', function () {
         clicked_category = $(this).text()
         sessionStorage.setItem("clicked_category", clicked_category);
+    });
+
+    $('.Latest_Blog').on('click', function () {
+        Blog_ID = All_Blog[All_Blog.length - 1][0]
+        sessionStorage.setItem("Blog_ID", Blog_ID);
+    });
+
+    $('.Second_Blog').on('click', function () {
+        Blog_ID = list_of_next_three_catgory_blog[0][0]
+        sessionStorage.setItem("Blog_ID", Blog_ID);
+    });
+
+    $('.Third_Blog').on('click', function () {
+        Blog_ID = list_of_next_three_catgory_blog[1][0]
+        sessionStorage.setItem("Blog_ID", Blog_ID);
+    });
+
+    $('.Fourth_Blog').on('click', function () {
+        Blog_ID = list_of_next_three_catgory_blog[2][0]
+        sessionStorage.setItem("Blog_ID", Blog_ID);
     });
 })
