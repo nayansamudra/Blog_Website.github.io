@@ -962,7 +962,7 @@ post section style 1
 .post-md.style-10 .post-img {
   min-width: 205px;
   max-width: 205px;
-  max-height: 205px;
+  max-height: 150px;
 }
 .post-md.style-10 .post-img > a:first-of-type {
   width: 100%;

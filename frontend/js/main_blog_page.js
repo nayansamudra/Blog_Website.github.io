@@ -101,21 +101,39 @@ prev_next = () => {
                 $('#Next_article_heading').text(All_Blog[i + 1][1])
                 $('#Previous_article_Date').text(moment.unix(All_Blog[All_Blog.length - 1][0]).format("MMMM DD, YYYY"))
                 $('#Next_article_Date').text(moment.unix(All_Blog[i + 1][0]).format("MMMM DD, YYYY"))
+                $('.Previous_Button').attr("id", All_Blog[All_Blog.length - 1][0])
+                $('.Next_Button').attr("id", All_Blog[i + 1][0])
             }
             else if (i == (All_Blog.length - 1)) {
                 $('#Previous_article_heading').text(All_Blog[i - 1][1])
                 $('#Next_article_heading').text(All_Blog[0][1])
                 $('#Previous_article_Date').text(moment.unix(All_Blog[i - 1][0]).format("MMMM DD, YYYY"))
                 $('#Next_article_Date').text(moment.unix(All_Blog[0][0]).format("MMMM DD, YYYY"))
+                $('.Previous_Button').attr("id", All_Blog[i - 1][0])
+                $('.Next_Button').attr("id", All_Blog[0][0])
             }
             else {
                 $('#Previous_article_heading').text(All_Blog[i - 1][1])
                 $('#Next_article_heading').text(All_Blog[i + 1][1])
                 $('#Previous_article_Date').text(moment.unix(All_Blog[i - 1][0]).format("MMMM DD, YYYY"))
                 $('#Next_article_Date').text(moment.unix(All_Blog[i + 1][0]).format("MMMM DD, YYYY"))
+                $('.Previous_Button').attr("id", All_Blog[i - 1][0])
+                $('.Next_Button').attr("id", All_Blog[i + 1][0])
             }
         }
     }
+}
+
+main_blog_function = () => {
+    $.post(root + main_route + '/fetch_blog', { blog_id: blog_id }, function (data, status) {
+        console.log("Status: " + status);
+        Blog_data = data
+        console.log(Blog_data)
+    }).done(function () {
+        sessionStorage.removeItem("Blog_ID")
+        fetch_blog()
+        prev_next()
+    })
 }
 
 $(document).ready(function () {
@@ -191,15 +209,7 @@ $(document).ready(function () {
         blog_id = All_Blog[All_Blog.length - 1][0]
     }
 
-    $.post(root + main_route + '/fetch_blog', { blog_id: blog_id }, function (data, status) {
-        console.log("Status: " + status);
-        Blog_data = data
-        console.log(Blog_data)
-    }).done(function () {
-        sessionStorage.removeItem("Blog_ID")
-        fetch_blog()
-        prev_next()
-    })
+    main_blog_function()    
 
     $('.category').on('click', function () {
         clicked_category = $(this).text()
@@ -225,4 +235,9 @@ $(document).ready(function () {
         Blog_ID = list_of_next_three_catgory_blog[2][0]
         sessionStorage.setItem("Blog_ID", Blog_ID);
     });
+
+    $('.next-prev-wrap').on('click',function() {
+        blog_id = $(this).attr("id")
+        main_blog_function()
+    })
 })

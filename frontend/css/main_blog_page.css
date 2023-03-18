@@ -1088,6 +1088,12 @@ h2 {
   color: inherit;
 }
 
+@media (max-width: 500px) {
+  .next-prev-wrap {
+    padding: 15px;
+  }
+}
+
 /* Right Col Start*/
 .sidebar-wrap {
   counter-reset: post-counter;
