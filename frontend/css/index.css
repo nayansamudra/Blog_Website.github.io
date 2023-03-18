@@ -659,7 +659,7 @@ Everything a trader need
   }
 }
 @media (max-width: 450px) {
-  body{
+  html, body{
     overflow-x: hidden !important;
   }
   #Main_Heading{
