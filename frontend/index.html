@@ -108,16 +108,12 @@
                         <!-- start header actions -->
                         <ul class="header-action-items">
                             <li class="item">
-                                <a href="#template-search"><i class="fas fa-search"></i></a>
-                            </li>
-                            <li class="item cart-icon">
-                                <a href="javascript:void(0)" class="cart-menu-btn menu-open-btn">
-                                    <i class="fas fa-shopping-cart"></i>
-                                    <span class="item-count">0</span>
-                                </a>
-                            </li>
-                            <li class="item humburger offcanvas-menu-btn menu-status-open">
-                                <span></span>
+                                <!-- <a href="#template-search"><i class="fas fa-search"></i></a> -->
+                                <form class="d-flex" role="search">
+                                    <input class="form-control me-2" type="search" placeholder="Search"
+                                        aria-label="Search">
+                                    <button class="btn btn-outline-success" type="submit">Search</button>
+                                </form>
                             </li>
                         </ul>
                         <!-- end header actions -->
@@ -142,6 +138,10 @@
                         <img src="img/logo-dark.svg" alt="neeon" width="162" height="52">
                     </a>
                 </div>
+                <form class="d-flex mobile_form" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search_box">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
                 <span class="sidebarBtn">
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -238,7 +238,7 @@
                             Strategies </a>
 
                         <a class="tt-btn banner-btn" href="">
-                            Free Mentorship </a>
+                            Free Course </a>
 
                         <a href="" class="tt-btn banner-btn">
                             Course Review </a>

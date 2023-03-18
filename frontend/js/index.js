@@ -9,7 +9,7 @@ fetch_blog_list = () => {
     $('#Latest_Blog_category_1').text(All_Blog[All_Blog.length - 1][2])
     $('#Latest_Blog_Title_1').text(All_Blog[All_Blog.length - 1][1])
     $('#Latest_Blog_Date_1').text(moment.unix(All_Blog[All_Blog.length - 1][0]).format("MMMM DD, YYYY"))
-    
+
     comapre_category = All_Blog[All_Blog.length - 1][2]
     list_of_next_three_catgory_blog = []
     for (var i = (All_Blog.length - 2); i > 0; i--) {
@@ -54,7 +54,7 @@ $(document).ready(function () {
 
     $.ajaxSetup({ async: false }); // to stop async
 
-    if(sessionStorage.getItem("data-theme")==null){
+    if (sessionStorage.getItem("data-theme") == null) {
         $('html').attr('data-theme', 'light')
     }
     else {
@@ -122,7 +122,7 @@ $(document).ready(function () {
     // }).done(function () {
     //     $('#Latest_Blog_Author').text(JSON.parse(Latest_Blog[0][5])['Author_Name'])
     // })
-    
+
     $('.category').on('click', function () {
         clicked_category = $(this).text()
         sessionStorage.setItem("clicked_category", clicked_category);
@@ -146,5 +146,29 @@ $(document).ready(function () {
     $('.Fourth_Blog').on('click', function () {
         Blog_ID = list_of_next_three_catgory_blog[2][0]
         sessionStorage.setItem("Blog_ID", Blog_ID);
+    });
+
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const searchText = document.querySelector('input').value;
+        const searchResult = window.find(searchText);
+
+        if (!searchResult) {
+            alert('No matches found');
+        }
+    });
+
+    const form_1 = document.querySelector('.mobile_form');
+    form_1.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const searchText_1 = document.querySelector('#search_box').value;
+        const searchResult_1 = window.find(searchText_1);
+
+        if (!searchResult_1) {
+            alert('No matches found');
+        }
     });
 })

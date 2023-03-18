@@ -240,4 +240,28 @@ $(document).ready(function () {
         blog_id = $(this).attr("id")
         main_blog_function()
     })
+
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const searchText = document.querySelector('input').value;
+        const searchResult = window.find(searchText);
+
+        if (!searchResult) {
+            alert('No matches found');
+        }
+    });
+
+    const form_1 = document.querySelector('.mobile_form');
+    form_1.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const searchText_1 = document.querySelector('#search_box').value;
+        const searchResult_1 = window.find(searchText_1);
+
+        if (!searchResult_1) {
+            alert('No matches found');
+        }
+    });
 })

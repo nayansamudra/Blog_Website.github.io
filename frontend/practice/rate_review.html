@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="review-form">
+        <div>
+            <label for="rating">Rating:</label>
+            <select id="rating" name="rating">
+                <option value="5">5 stars</option>
+                <option value="4">4 stars</option>
+                <option value="3">3 stars</option>
+                <option value="2">2 stars</option>
+                <option value="1">1 star</option>
+            </select>
+        </div>
+        <div>
+            <label for="review">Review:</label>
+            <textarea id="review" name="review" rows="4" cols="50"></textarea>
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+
+    <script>
+        const form = document.getElementById('review-form');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const rating = document.getElementById('rating').value;
+            const review = document.getElementById('review').value;
+
+            const reviewData = {
+                rating: rating,
+                review: review
+            };
+
+            let reviews = [];
+
+            if (localStorage.getItem('reviews')) {
+                reviews = JSON.parse(localStorage.getItem('reviews'));
+            }
+
+            reviews.push(reviewData);
+            localStorage.setItem('reviews', JSON.stringify(reviews));
+
+            alert('Your review has been submitted!');
+        });
+
+    </script>
+
+    <script>
+        const reviewContainer = document.getElementById('reviews');
+
+        let reviews = [];
+
+        if (localStorage.getItem('reviews')) {
+            reviews = JSON.parse(localStorage.getItem('reviews'));
+        }
+
+        reviews.forEach(function (review) {
+            const rating = review.rating;
+            const reviewText = review.review;
+
+            const ratingElement = document.createElement('div');
+            ratingElement.innerHTML = 'Rating: ' + rating + ' stars';
+
+            const reviewElement = document.createElement('div');
+            reviewElement.innerHTML = reviewText;
+
+            const reviewWrapper = document.createElement('div');
+            reviewWrapper.appendChild(ratingElement);
+            reviewWrapper.appendChild(reviewElement);
+
+            reviewContainer.appendChild(reviewWrapper);
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -624,6 +624,17 @@ body .sidebarBtn .bar:last-child {
   margin-bottom: 0;
 }
 
+@media (max-width:500px) {
+  .btn-outline-success,.form-control {
+    padding: 4px;
+    font-size: 14px;
+  }
+  .mobile_form {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+}
+
 /* -------------------------
 rt-sidebar-section-layout-1  
 -------------------------- */
