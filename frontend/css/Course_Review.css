@@ -668,4 +668,7 @@ post section style 1
   #button_id{
     margin-top: 20px;
   }
+  .form-select {
+    background-image: none;
+  }
 }

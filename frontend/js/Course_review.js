@@ -1,5 +1,4 @@
 
-
 $(document).ready(function () {
 
     $.ajaxSetup({ async: false }); // to stop async
@@ -72,4 +71,8 @@ $(document).ready(function () {
             alert('No matches found');
         }
     });
+
+    $('.swiper-slide').on('click',()=>{
+        window.location.href = "Main_Course_Page.html"
+    })
 })

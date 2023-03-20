@@ -59,6 +59,9 @@ $(document).ready(function () {
     }
     else {
         $('html').attr('data-theme', sessionStorage.getItem("data-theme"))
+        if(sessionStorage.getItem("data-theme") == 'dark'){
+            $('#themeSwitchCheckbox').click()
+        }
     }
 
     counter_for_click = 0

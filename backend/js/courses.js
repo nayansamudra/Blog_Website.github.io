@@ -13,7 +13,7 @@ add_course = () => {
     var Image = $("#Image_input").val()
     console.log(Image)
 
-    var Rating = $("#Rating_input").val();
+    var Rating = $('#myDropdown option:selected').text();
     var Website = $("#Website_input").val();
     var Main_social_media = $("#Main_social_media_input").val();
     var Audience = $("#Audience_input").val();
@@ -103,7 +103,7 @@ update_course = (ts) => {
     var Image = $("#Image_input").val()
     console.log(Image)
 
-    var Rating = $("#Rating_input").val();
+    var Rating = $('#myDropdown option:selected').text();
     var Website = $("#Website_input").val();
     var Main_social_media = $("#Main_social_media_input").val();
     var Audience = $("#Audience_input").val();
@@ -204,7 +204,9 @@ edit_course = (ts) => {
     }
     $("#Name_input").val(Edit_Course[2]);
 
-    $("#Rating_input").val(JSON.parse(Edit_Course[5])['Rating']);
+    var optionText = JSON.parse(Edit_Course[5])['Rating'];
+    $('#myDropdown option:contains(' + optionText + ')').prop('selected', true);
+    // $("#Rating_input").val(JSON.parse(Edit_Course[5])['Rating']);
     $("#Website_input").val(JSON.parse(Edit_Course[5])['Website']);
     $("#Main_social_media_input").val(JSON.parse(Edit_Course[5])['Main_social_media']);
     $("#Audience_input").val(JSON.parse(Edit_Course[5])['Audience']);
@@ -223,7 +225,6 @@ edit_course = (ts) => {
     $("#Meta_robots_input").val(JSON.parse(Edit_Course[5])['Meta_robots']);
     $("#Meta_viewport_input").val(JSON.parse(Edit_Course[5])['Meta_viewport']);
     $("#Meta_charset_input").val(JSON.parse(Edit_Course[5])['Meta_charset']);
-
 };
 
 
@@ -299,7 +300,7 @@ document.querySelector("#submit").addEventListener("click", () => {
 
 //---------- Course Update
 document.querySelector("#update").addEventListener("click", () => {
-    update_course(parseFloat(Edit_Post[1]))
+    update_course(parseFloat(Edit_Course[1]))
 });
 
 
