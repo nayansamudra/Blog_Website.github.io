@@ -81,6 +81,13 @@ fetch_course = () => {
     $('#Table_Revision_Session').text(JSON.parse(Course_data[0][4])['Revision_Session'])
     $('#Table_Live_Market_Session').text(JSON.parse(Course_data[0][4])['Live_Market_Session'])
     $('#Table_Students_Review').text(JSON.parse(Course_data[0][4])['Students_Review'])
+
+    var numToActivate = parseFloat(JSON.parse(Course_data[0][4])['Rating']);
+    var spans = $('.fa-star');
+    for (var i = 0; i < numToActivate; i++) {
+        $(spans[i]).addClass('checked');
+      }
+
     
 
     if (JSON.parse(Course_data[0][4])['Meta_description'] != "") {
