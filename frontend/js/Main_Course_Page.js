@@ -22,7 +22,20 @@ fetch_course = () => {
         $(spans[i]).addClass('checked');
     }
 
-
+    for (var i = 0; i < All_Course.length; i++) {
+        $('.top-categories-grid-style-1').append(`<div class="cat-item All_courses" id="ID_${All_Course[i][0]}">
+        <div class="rt-cart-item">
+            <div class="item-img">
+                <img src="${All_Course[i][2]}" alt="cat-slider" width="696" height="491">
+                <div class="item-content">
+                    <h4 class="title mb-4">
+                        <a href="Main_Course_Page.html" class="category">${All_Course[i][1]}</a>
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>`)
+    }
 
     if (JSON.parse(Course_data[0][4])['Meta_description'] != "") {
         $('meta[name="description"]').attr('content', JSON.parse(Course_data[0][5])['Meta_description']);
@@ -47,7 +60,7 @@ main_course_function = () => {
         Course_data = data
         console.log(Course_data)
     }).done(function () {
-        sessionStorage.removeItem("Course_ID")
+        // sessionStorage.removeItem("Course_ID")
         fetch_course()
     })
 }
@@ -70,7 +83,6 @@ $(document).ready(function () {
             counter_for_theme = 1
         }
     }
-
 
     root = "https://tradingduniya.com";
     main_route = "/courses";
@@ -114,6 +126,14 @@ $(document).ready(function () {
         }
     });
 
+    $.post(root + main_route + '/fetch_course_list', function (data, status) {
+        console.log("Status: " + status);
+        All_Course = data
+        console.log(All_Course)
+    }).done(function () {
+        console.log('DONE')
+    })
+
     if (sessionStorage.getItem("Course_ID") != null) {
         course_id = sessionStorage.getItem("Course_ID")
     }
@@ -146,4 +166,10 @@ $(document).ready(function () {
             alert('No matches found');
         }
     });
+
+
+    $('.All_courses').click(function() {
+        $(this).attr('id')
+        console.log($(this).attr('id'))
+    })
 })

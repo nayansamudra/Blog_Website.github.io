@@ -27,6 +27,10 @@ fetch_course_list = () => {
     }
 }
 
+fetch_all_course = () => {
+    
+}
+
 $(document).ready(function () {
 
     $.ajaxSetup({ async: false }); // to stop async
