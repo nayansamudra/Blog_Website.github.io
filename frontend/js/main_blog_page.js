@@ -140,19 +140,21 @@ $(document).ready(function () {
 
     $.ajaxSetup({ async: false }); // to stop async
 
-    if (sessionStorage.getItem("data-theme") == null) {
-        $('html').attr('data-theme', 'light')
-    }
-    else {
-        $('html').attr('data-theme', sessionStorage.getItem("data-theme"))
-        if(sessionStorage.getItem("data-theme") == 'dark'){
-            $('#themeSwitchCheckbox').click()
-        }
-    }
-
     counter_for_click = 0
     counter_for_theme = 0
     prev_next_array = []
+
+    if (sessionStorage.getItem("data-theme") == null) {
+        $('html').attr('data-theme', 'light')
+        sessionStorage.setItem("data-theme",'light')
+    }
+    else {
+        $('html').attr('data-theme', sessionStorage.getItem("data-theme"))
+        if (sessionStorage.getItem("data-theme") == 'dark') {
+            $('#themeSwitchCheckbox').click()
+            counter_for_theme = 1
+        }
+    }
 
     root = "https://tradingduniya.com";
     main_route = "/blogs";
@@ -172,7 +174,7 @@ $(document).ready(function () {
         $(this).children().last().toggle();
     });
 
-    $("#themeSwitchCheckbox").click(function () {
+    $("#themeSwitchCheckbox").on('click', function () {
         counter_for_theme += 1
         if (counter_for_theme % 2 == 0) {
             $('html').attr('data-theme', 'light')
@@ -212,7 +214,7 @@ $(document).ready(function () {
         blog_id = All_Blog[All_Blog.length - 1][0]
     }
 
-    main_blog_function()    
+    main_blog_function()
 
     $('.category').on('click', function () {
         clicked_category = $(this).text()
@@ -239,7 +241,7 @@ $(document).ready(function () {
         sessionStorage.setItem("Blog_ID", Blog_ID);
     });
 
-    $('.next-prev-wrap').on('click',function() {
+    $('.next-prev-wrap').on('click', function () {
         blog_id = $(this).attr("id")
         main_blog_function()
     })

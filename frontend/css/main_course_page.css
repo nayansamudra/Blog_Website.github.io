@@ -742,9 +742,10 @@ Table
 .styled-table {
   border-collapse: collapse;
   margin: 25px 0;
-  font-size: 0.9em;
+  font-size: 1em;
+  font-weight: bold;
   font-family: sans-serif;
-  min-width: 400px;
+  /* min-width: 400px; */
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 .styled-table th,
@@ -754,7 +755,15 @@ Table
 .styled-table tbody tr {
   border-bottom: 1px solid #dddddd;
 }
+[data-theme="dark"] .styled-table tbody tr {
+  background-color: #9c9c9c;
+  border-bottom: 1px solid #dddddd;
+  color: #424242;
+}
 .styled-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+[data-theme="dark"].styled-table tbody tr:nth-of-type(even) {
   background-color: #f3f3f3;
 }
 .styled-table tbody tr:last-of-type {

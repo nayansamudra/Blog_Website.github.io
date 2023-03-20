@@ -54,18 +54,20 @@ $(document).ready(function () {
 
     $.ajaxSetup({ async: false }); // to stop async
 
+    counter_for_click = 0
+    counter_for_theme = 0
+
     if (sessionStorage.getItem("data-theme") == null) {
         $('html').attr('data-theme', 'light')
+        sessionStorage.setItem("data-theme", 'light')
     }
     else {
         $('html').attr('data-theme', sessionStorage.getItem("data-theme"))
-        if(sessionStorage.getItem("data-theme") == 'dark'){
+        if (sessionStorage.getItem("data-theme") == 'dark') {
             $('#themeSwitchCheckbox').click()
+            counter_for_theme = 1
         }
     }
-
-    counter_for_click = 0
-    counter_for_theme = 0
 
     root = "https://tradingduniya.com";
     main_route = "/blogs";
@@ -85,7 +87,7 @@ $(document).ready(function () {
         $(this).children().last().toggle();
     });
 
-    $("#themeSwitchCheckbox").click(function () {
+    $("#themeSwitchCheckbox").on('click', function () {
         counter_for_theme += 1
         if (counter_for_theme % 2 == 0) {
             $('html').attr('data-theme', 'light')

@@ -119,20 +119,22 @@ $(document).ready(function () {
 
     $.ajaxSetup({ async: false }); // to stop async
 
-    if (sessionStorage.getItem("data-theme") == null) {
-        $('html').attr('data-theme', 'light')
-    }
-    else {
-        $('html').attr('data-theme', sessionStorage.getItem("data-theme"))
-        if(sessionStorage.getItem("data-theme") == 'dark'){
-            $('#themeSwitchCheckbox').click()
-        }
-    }
-
     counter_for_click = 0
     counter_for_theme = 0
     counter_for_each_category = 0
     Final_All_Category = []
+
+    if (sessionStorage.getItem("data-theme") == null) {
+        $('html').attr('data-theme', 'light')
+        sessionStorage.setItem("data-theme",'light')
+    }
+    else {
+        $('html').attr('data-theme', sessionStorage.getItem("data-theme"))
+        if (sessionStorage.getItem("data-theme") == 'dark') {
+            $('#themeSwitchCheckbox').click()
+            counter_for_theme = 1
+        }
+    }
 
     postsPerPage = 10
 
@@ -154,7 +156,7 @@ $(document).ready(function () {
         $(this).children().last().toggle();
     });
 
-    $("#themeSwitchCheckbox").click(function () {
+    $("#themeSwitchCheckbox").on('click', function () {
         counter_for_theme += 1
         if (counter_for_theme % 2 == 0) {
             $('html').attr('data-theme', 'light')
@@ -203,16 +205,16 @@ $(document).ready(function () {
         displayBlogs(current_page)
     });
 
-    $('.prev').on('click', function () {
-        current_page = $('.active').text()
-        displayBlogs(current_page - 1)
-        current_page = current_page - 1
-    })
+    // $('.prev').on('click', function () {
+    //     current_page = $('.active').text()
+    //     displayBlogs(current_page - 1)
+    //     current_page = current_page - 1
+    // })
 
-    $('.next').on('click', function () {
-        displayBlogs(current_page + 1)
-        current_page = current_page + 1
-    })
+    // $('.next').on('click', function () {
+    //     displayBlogs(current_page + 1)
+    //     current_page = current_page + 1
+    // })
 
     const form = document.querySelector('form');
     form.addEventListener('submit', function (event) {
