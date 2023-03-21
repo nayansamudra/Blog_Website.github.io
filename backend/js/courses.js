@@ -196,35 +196,35 @@ edit_course = (ts) => {
     console.log(ts)
     $('#update').show()
     $('#submit').hide()
-    for (var i = 0; i < All_Course.length; i++) {
-        if (ts == parseFloat(All_Course[i][1])) {
-            Edit_Course = All_Course[i]
+    for (var i = 0; i < All_Course_1.length; i++) {
+        if (ts == parseFloat(All_Course_1[i][0])) {
+            Edit_Course = All_Course_1[i]
             break;
         }
     }
-    $("#Name_input").val(Edit_Course[2]);
+    $("#Name_input").val(Edit_Course[1]);
 
-    var optionText = JSON.parse(Edit_Course[5])['Rating'];
+    var optionText = JSON.parse(Edit_Course[4])['Rating'];
     $('#myDropdown option:contains(' + optionText + ')').prop('selected', true);
-    // $("#Rating_input").val(JSON.parse(Edit_Course[5])['Rating']);
-    $("#Website_input").val(JSON.parse(Edit_Course[5])['Website']);
-    $("#Main_social_media_input").val(JSON.parse(Edit_Course[5])['Main_social_media']);
-    $("#Audience_input").val(JSON.parse(Edit_Course[5])['Audience']);
-    $("#Mentor_input").val(JSON.parse(Edit_Course[5])['Mentor']);
-    $("#Course_Name_input").val(JSON.parse(Edit_Course[5])['Course_Name']);
-    $("#Course_Price_input").val(JSON.parse(Edit_Course[5])['Course_Price']);
-    $("#Support_System_input").val(JSON.parse(Edit_Course[5])['Support_System']);
-    $("#Community_for_students_input").val(JSON.parse(Edit_Course[5])['Community_for_students']);
-    $("#Tools_for_students_input").val(JSON.parse(Edit_Course[5])['Tools_for_students']);
-    $("#Revision_Session_input").val(JSON.parse(Edit_Course[5])['Revision_Session']);
-    $("#Live_Market_Session_input").val(JSON.parse(Edit_Course[5])['Live_Market_Session']);
-    $("#Students_Review_input").val(JSON.parse(Edit_Course[5])['Students_Review']);
-    $("#Meta_title_input").val(JSON.parse(Edit_Course[5])['Meta_title']);
-    $("#Meta_keywords_input").val(JSON.parse(Edit_Course[5])['Meta_keywords']);
-    $("#Meta_description_input").val(JSON.parse(Edit_Course[5])['Meta_description']);
-    $("#Meta_robots_input").val(JSON.parse(Edit_Course[5])['Meta_robots']);
-    $("#Meta_viewport_input").val(JSON.parse(Edit_Course[5])['Meta_viewport']);
-    $("#Meta_charset_input").val(JSON.parse(Edit_Course[5])['Meta_charset']);
+    // $("#Rating_input").val(JSON.parse(Edit_Course[4])['Rating']);
+    $("#Website_input").val(JSON.parse(Edit_Course[4])['Website']);
+    $("#Main_social_media_input").val(JSON.parse(Edit_Course[4])['Main_social_media']);
+    $("#Audience_input").val(JSON.parse(Edit_Course[4])['Audience']);
+    $("#Mentor_input").val(JSON.parse(Edit_Course[4])['Mentor']);
+    $("#Course_Name_input").val(JSON.parse(Edit_Course[4])['Course_Name']);
+    $("#Course_Price_input").val(JSON.parse(Edit_Course[4])['Course_Price']);
+    $("#Support_System_input").val(JSON.parse(Edit_Course[4])['Support_System']);
+    $("#Community_for_students_input").val(JSON.parse(Edit_Course[4])['Community_for_students']);
+    $("#Tools_for_students_input").val(JSON.parse(Edit_Course[4])['Tools_for_students']);
+    $("#Revision_Session_input").val(JSON.parse(Edit_Course[4])['Revision_Session']);
+    $("#Live_Market_Session_input").val(JSON.parse(Edit_Course[4])['Live_Market_Session']);
+    $("#Students_Review_input").val(JSON.parse(Edit_Course[4])['Students_Review']);
+    $("#Meta_title_input").val(JSON.parse(Edit_Course[4])['Meta_title']);
+    $("#Meta_keywords_input").val(JSON.parse(Edit_Course[4])['Meta_keywords']);
+    $("#Meta_description_input").val(JSON.parse(Edit_Course[4])['Meta_description']);
+    $("#Meta_robots_input").val(JSON.parse(Edit_Course[4])['Meta_robots']);
+    $("#Meta_viewport_input").val(JSON.parse(Edit_Course[4])['Meta_viewport']);
+    $("#Meta_charset_input").val(JSON.parse(Edit_Course[4])['Meta_charset']);
 };
 
 
@@ -249,26 +249,25 @@ del_course = (ts) => {
 //---------- Fetch All Course
 Fetch_All_Course = () => {
     $.post(root + main_route + '/fetch_course_all', function (data, status) {
-        console.log("Data: " + data + "\nStatus: " + status);
-        All_Course = data
-        console.log(All_Course)
+        All_Course_1 = JSON.parse(JSON.stringify(data));
+        All_Course = JSON.parse(JSON.stringify(data));
         for (var i = 0; i < data.length; i++) {
             // data pre preprocessing
-            let ts = data[i][0]
-            let title = data[i][1]
-            let Image = data[i][2]
-            let sh_desc = data[i][3]
-            let full_data = data[i][4]
-            data[i][0] = moment.unix(data[i][0]).format("DD-MMM HH:mm A")
-            data[i][1] = ts
-            data[i][2] = title
-            data[i][3] = Image
-            data[i][4] = sh_desc
-            data[i][5] = shorten(full_data)
+            let ts = All_Course[i][0]
+            let title = All_Course[i][1]
+            let Image = All_Course[i][2]
+            let sh_desc = All_Course[i][3]
+            let full_data = All_Course[i][4]
+            All_Course[i][0] = moment.unix(All_Course[i][0]).format("DD-MMM HH:mm A")
+            All_Course[i][1] = ts
+            All_Course[i][2] = title
+            All_Course[i][3] = Image
+            All_Course[i][4] = sh_desc
+            All_Course[i][5] = shorten(full_data)
             var str = '<button class="m-2" onclick="del_course(' + ts + ')">&nbsp;Delete&nbsp;</button><button class="m-2" onclick="edit_course(' + ts + ')">&nbsp;Edit&nbsp;</button>'
-            data[i][6] = str
+            All_Course[i][6] = str
         }
-        if (data) {
+        if (All_Course) {
             if (counter_for_datatable == 0) {
                 counter_for_datatable += 1
                 datatable = $("#CourseDatatable").DataTable({
@@ -281,7 +280,7 @@ Fetch_All_Course = () => {
                 });
             }
             datatable.clear();
-            datatable.rows.add(data);
+            datatable.rows.add(All_Course);
             datatable.draw();
         }
     }).fail(function (response) {

@@ -36,10 +36,22 @@
                         <!-- start logo here -->
                         <div class="site-branding">
                             <a class="dark-logo" href="index.html">
-                                <img width="162" height="52" src="img/logo-dark.svg" alt="neeon">
+                                <div class="row">
+                                    <div class="col px-0"><img width="75" height="52" src="img/Logo.png" alt="neeon"></div>
+                                    <div class="col">
+                                        <div class="row main_heading_logo_1" style="color:#000; font-size: xx-large; font-weight: bolder;">TRADING</div>
+                                        <div class="row main_heading_logo_2" style="color:#8d8d8d; font-size: large; font-weight: bolder;">&nbsp;DUNIYA</div>
+                                    </div>
+                                </div>
                             </a>
                             <a class="light-logo" href="index.html">
-                                <img width="162" height="52" src="img/logo-light.svg" alt="neeon">
+                                <div class="row">
+                                    <div class="col px-0"><img width="75" height="52" src="img/Logo.png" alt="neeon"></div>
+                                    <div class="col">
+                                        <div class="row main_heading_logo_1" style="color:#ffffff; font-size: xx-large; font-weight: bolder;">TRADING</div>
+                                        <div class="row main_heading_logo_2" style="color:#8d8d8d; font-size: large; font-weight: bolder;">&nbsp;DUNIYA</div>
+                                    </div>
+                                </div>
                             </a>
                         </div>
                         <!-- end logo here -->
@@ -94,7 +106,6 @@
                                             <li><a href="">About Us</a></li>
                                             <li><a href="">Contact Us</a></li>
                                             <li><a href="">404</a></li>
-
                                         </ul>
                                     </li>
                                     <li class="main-menu__nav_sub list">
@@ -137,10 +148,16 @@
     <div class="rt-mobile-header mobile-sticky-on">
 
         <div class="mobile-menu-bar-wrap" id="mobile-menu-bar-wrap">
-            <div class="mobile-menu-bar">
+            <div class="d-flex mobile-menu-bar">
                 <div class="logo">
                     <a href="index.html">
-                        <img src="img/logo-dark.svg" alt="neeon" width="162" height="52">
+                        <div class="row">
+                            <div class="col px-0"><img width="50" height="52" src="img/Logo.png" alt="neeon"></div>
+                            <div class="col">
+                                <div class="row main_heading_logo_1" style="color:#000; font-size: large; font-weight: bolder;">TRADING</div>
+                                <div class="row main_heading_logo_2" style="color:#8d8d8d; font-size: medium; font-weight: bolder;">&nbsp;DUNIYA</div>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <form class="d-flex mobile_form" role="search">
@@ -484,7 +501,7 @@
                                 <div class="blog-post-comment mb--50">
                                     <form action="#" class="rt-contact-form comments-form-style-1" novalidate="true">
                                         <div class="row">
-                                            <div class="col-xl-4">
+                                            <!-- <div class="col-xl-4">
                                                 <div class="rt-form-group">
                                                     <label for="name">Your Name *</label>
                                                     <input type="text" name="name" id="name" class="form-control"
@@ -507,31 +524,30 @@
                                                         data-error="Web Url field is required" required="">
                                                     <div class="help-block with-errors"></div>
                                                 </div>
+                                            </div> -->
+                                            <div class="col-12">
+                                                <div class="rt-form-group">
+                                                    <label for="comment">Rate</label>
+                                                    <div class="rating">
+                                                        <span class="star" data-value="1">&#9733;</span>
+                                                        <span class="star" data-value="2">&#9733;</span>
+                                                        <span class="star" data-value="3">&#9733;</span>
+                                                        <span class="star" data-value="4">&#9733;</span>
+                                                        <span class="star" data-value="5">&#9733;</span>
+                                                      </div>
+                                                </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="rt-form-group">
-                                                    <label for="comment">Comments *</label>
+                                                    <label for="comment">Review *</label>
                                                     <textarea name="comment" id="comment" class="form-control text-area"
                                                         data-error="Comment field is required" required=""></textarea>
                                                     <div class="help-block with-errors"></div>
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <div class="rt-form-group">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="comment-form-check1">
-                                                        <label class="form-check-label" for="comment-form-check1">
-                                                            Save my name, email, and website in this browser for the
-                                                            next time I
-                                                            comment.
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
                                                 <button type="submit" class="submit-btn disabled">
-                                                    Post Comment
+                                                    Post Review
                                                 </button>
                                             </div>
                                             <div class="form-response"></div>

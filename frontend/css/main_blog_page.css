@@ -367,6 +367,33 @@ h6 {
   cursor: pointer;
 }
 
+@media (min-width:992px) and (max-width:1050px) {
+  .main_heading_logo_1 {
+    padding-top: 7px !important;
+    font-size: large !important;
+  }
+}
+
+@media (max-width:500px) {
+  .main_heading_logo_1 {
+    padding-top: 7px !important;
+    font-size: large !important;
+  }
+  #search_box {
+    width: 75px !important;
+  }
+  .main_heading_logo_1,
+  .main_heading_logo_2{
+    font-size: small !important;
+  }
+}
+
+@media (max-width:375px) {
+  #search_box {
+    width: 55px !important;
+  }
+}
+
 /*=====================================
 //  Mobile menu
 ======================================*/
@@ -1078,6 +1105,8 @@ h2 {
   }
 }
 
+
+
 /* Next and Previous Button*/
 [data-theme=dark] .next-prev-wrap {
   border-color: #222121;
@@ -1366,6 +1395,8 @@ h2 {
   --color-white: #fff;
   --color-black: #000;
 }
+
+
 
 /* --------------
 theme-switch-box 

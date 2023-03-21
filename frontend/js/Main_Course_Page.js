@@ -172,4 +172,25 @@ $(document).ready(function () {
         course_id = parseFloat($(this).attr('id'));
         sessionStorage.setItem("Course_ID", course_id)
     })
+
+
+    $('.form_hover').hover(()=>{
+        $(this).attr('class','fa fa-star form_hover checked')
+    })
+
+    $('.star').hover(function() {
+        $(this).addClass('active');
+        $(this).prevAll('.star').addClass('active');
+      }, function() {
+        $(this).removeClass('active');
+        $(this).prevAll('.star').removeClass('active');
+      });
+      
+      $('.star').click(function() {
+        $('.star').removeClass('selected');
+        $(this).addClass('selected');
+        $(this).prevAll('.star').addClass('selected');
+        var rating = $(this).data('value');
+        console.log('Rating is ' + rating);
+      });
 })

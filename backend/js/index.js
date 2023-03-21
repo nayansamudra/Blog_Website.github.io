@@ -450,25 +450,25 @@ edit_blog = (ts) => {
     console.log(ts)
     $('#update').show()
     $('#submit').hide()
-    for (var i = 0; i < All_Blog.length; i++) {
-        if (ts == parseFloat(All_Blog[i][1])) {
-            Edit_Blog = All_Blog[i]
+    for (var i = 0; i < All_Blog_1.length; i++) {
+        if (ts == parseFloat(All_Blog_1[i][0])) {
+            Edit_Blog = All_Blog_1[i]
             break;
         }
     }
-    $("#Main_Heading_input").val(Edit_Blog[2]);
-    var optionText = Edit_Blog[3];
+    $("#Main_Heading_input").val(Edit_Blog[1]);
+    var optionText = Edit_Blog[2];
     $('#myDropdown option:contains(' + optionText + ')').prop('selected', true);
-    $("#Author_Name_input").val(JSON.parse(Edit_Blog[6])['Author_Name']);
-    $("#Meta_title_input").val(JSON.parse(Edit_Blog[6])['Meta_title']);
-    $("#Meta_keywords_input").val(JSON.parse(Edit_Blog[6])['Meta_keywords']);
-    $("#Meta_description_input").val(JSON.parse(Edit_Blog[6])['Meta_description']);
-    $("#Meta_robots_input").val(JSON.parse(Edit_Blog[6])['Meta_robots']);
-    $("#Meta_viewport_input").val(JSON.parse(Edit_Blog[6])['Meta_viewport']);
-    $("#Meta_charset_input").val(JSON.parse(Edit_Blog[6])['Meta_charset']);
-    tags = JSON.parse(Edit_Blog[6])['Tags']
+    $("#Author_Name_input").val(JSON.parse(Edit_Blog[5])['Author_Name']);
+    $("#Meta_title_input").val(JSON.parse(Edit_Blog[5])['Meta_title']);
+    $("#Meta_keywords_input").val(JSON.parse(Edit_Blog[5])['Meta_keywords']);
+    $("#Meta_description_input").val(JSON.parse(Edit_Blog[5])['Meta_description']);
+    $("#Meta_robots_input").val(JSON.parse(Edit_Blog[5])['Meta_robots']);
+    $("#Meta_viewport_input").val(JSON.parse(Edit_Blog[5])['Meta_viewport']);
+    $("#Meta_charset_input").val(JSON.parse(Edit_Blog[5])['Meta_charset']);
+    tags = JSON.parse(Edit_Blog[5])['Tags']
     createTag()
-    editorinstance.setData(JSON.parse(Edit_Blog[6])['Blog_Description'])
+    editorinstance.setData(JSON.parse(Edit_Blog[5])['Blog_Description'])
 };
 
 
@@ -496,28 +496,27 @@ del_blog = (ts) => {
 //---------- Fetch All Blog
 Fetch_All_Blog = () => {
     $.post(root + main_route + '/fetch_blog_all', function (data, status) {
-        console.log("Data: " + data + "\nStatus: " + status);
-        All_Blog = data
-        console.log(All_Blog)
-        for (var i = 0; i < data.length; i++) {
+        All_Blog_1 = JSON.parse(JSON.stringify(data));
+        All_Blog = JSON.parse(JSON.stringify(data));
+        for (var i = 0; i < All_Blog.length; i++) {
             // data pre preprocessing
-            let ts = data[i][0]
-            let title = data[i][1]
-            let catg = data[i][2]
-            let Image = data[i][3]
-            let sh_desc = data[i][4]
-            let full_data = data[i][5]
-            data[i][0] = moment.unix(data[i][0]).format("DD-MMM HH:mm A")
-            data[i][1] = ts
-            data[i][2] = title
-            data[i][3] = catg
-            data[i][4] = Image
-            data[i][5] = sh_desc
-            data[i][6] = shorten(full_data)
+            let ts = All_Blog[i][0]
+            let title = All_Blog[i][1]
+            let catg = All_Blog[i][2]
+            let Image = All_Blog[i][3]
+            let sh_desc = All_Blog[i][4]
+            let full_data = All_Blog[i][5]
+            All_Blog[i][0] = moment.unix(All_Blog[i][0]).format("DD-MMM HH:mm A")
+            All_Blog[i][1] = ts
+            All_Blog[i][2] = title
+            All_Blog[i][3] = catg
+            All_Blog[i][4] = Image
+            All_Blog[i][5] = sh_desc
+            All_Blog[i][6] = shorten(full_data)
             var str = '<button class="m-2" onclick="del_blog(' + ts + ')">&nbsp;Delete&nbsp;</button><button class="m-2" onclick="edit_blog(' + ts + ')">&nbsp;Edit&nbsp;</button>'
-            data[i][7] = str
+            All_Blog[i][7] = str
         }
-        if (data) {
+        if (All_Blog) {
             if (counter_for_datatable == 0) {
                 counter_for_datatable += 1
                 datatable = $("#BlogDatatable").DataTable({
@@ -529,7 +528,7 @@ Fetch_All_Blog = () => {
                 });
             }
             datatable.clear();
-            datatable.rows.add(data);
+            datatable.rows.add(All_Blog);
             datatable.draw();
         }
     }).fail(function (response) {
@@ -561,6 +560,7 @@ shorten = (text, length = 75) => {
     if (text.length <= length) {
         return text;
     }
+    temp.push(text)
     text = text.substring(0, length);
     // last = text.lastIndexOf(" ");
     // text = text.substring(0, last);
@@ -582,6 +582,7 @@ $(document).ready(function () {
     $('#submit').show()
 
     counter_for_datatable = 0
+    temp = []
 
     $("input[type='file']").on("change", function () {
         try {
