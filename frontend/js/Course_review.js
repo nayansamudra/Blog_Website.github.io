@@ -165,7 +165,7 @@ $(document).ready(function () {
         $('#Table_Tools_for_students_1').text(JSON.parse(Course_1_Data[0][4])['Tools_for_students'])
         $('#Table_Revision_Session_1').text(JSON.parse(Course_1_Data[0][4])['Revision_Session'])
         $('#Table_Live_Market_Session_1').text(JSON.parse(Course_1_Data[0][4])['Live_Market_Session'])
-        $('#Table_Students_Review_1').text(JSON.parse(Course_1_Data[0][4])['Rating'] + '🌟 OR ' + JSON.parse(Course_1_Data[0][4])['Rating'] + '/5')
+        $('#Table_Students_Review_1').text(JSON.parse(Course_1_Data[0][4])['Rating'] + '🌟')
 
         $('#Table_Name_2').text(Course_2_Data[0][1])
         $('#Table_Website_2').text(JSON.parse(Course_2_Data[0][4])['Website'])
@@ -178,7 +178,7 @@ $(document).ready(function () {
         $('#Table_Tools_for_students_2').text(JSON.parse(Course_2_Data[0][4])['Tools_for_students'])
         $('#Table_Revision_Session_2').text(JSON.parse(Course_2_Data[0][4])['Revision_Session'])
         $('#Table_Live_Market_Session_2').text(JSON.parse(Course_2_Data[0][4])['Live_Market_Session'])
-        $('#Table_Students_Review_2').text(JSON.parse(Course_2_Data[0][4])['Rating'] + '🌟 OR ' + JSON.parse(Course_2_Data[0][4])['Rating'] + '/5')
+        $('#Table_Students_Review_2').text(JSON.parse(Course_2_Data[0][4])['Rating'] + '🌟')
         
         $('#Course_Comparision').show();
     })

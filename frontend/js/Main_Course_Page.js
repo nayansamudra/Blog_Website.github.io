@@ -14,7 +14,6 @@ fetch_course = () => {
     $('#Table_Tools_for_students').text(JSON.parse(Course_data[0][4])['Tools_for_students'])
     $('#Table_Revision_Session').text(JSON.parse(Course_data[0][4])['Revision_Session'])
     $('#Table_Live_Market_Session').text(JSON.parse(Course_data[0][4])['Live_Market_Session'])
-    $('#Table_Students_Review').text(JSON.parse(Course_data[0][4])['Students_Review'])
     $('#user_rating').text(JSON.parse(Course_data[0][4])['Rating'])
     var numToActivate = parseFloat(JSON.parse(Course_data[0][4])['Rating']);
     var spans = $('.fa-star');

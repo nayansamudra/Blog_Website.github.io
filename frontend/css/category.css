@@ -375,6 +375,7 @@ h6 {
   .main_heading_logo_1 {
     padding-top: 7px !important;
     font-size: large !important;
+    max-height: 25px !important;
   }
 }
 
