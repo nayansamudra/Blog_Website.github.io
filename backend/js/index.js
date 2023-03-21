@@ -614,4 +614,19 @@ $(document).ready(function () {
         $("#myDropdown").append("<option value='" + newOptionValue + "'>" + newOptionText + "</option>");
     });
 
+    $('#BlogDatatable tbody').on('click', 'td', function () {
+        
+        var cell = $(this);
+        var text = cell.text();
+
+        if (cell.children().length === 0 && cell.contents().length === 1 && cell.contents()[0].nodeType === Node.TEXT_NODE) {
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    console.log('Text copied to clipboard: ' + text);
+                })
+                .catch(err => {
+                    console.error('Failed to copy text: ' + err);
+                });
+        }
+    });
 });

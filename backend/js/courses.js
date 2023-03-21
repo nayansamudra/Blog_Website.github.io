@@ -306,7 +306,7 @@ document.querySelector("#update").addEventListener("click", () => {
 
 
 //---------- Shorten Function
-shorten = (text, length = 100) => {
+shorten = (text, length = 75) => {
     if (text == null) {
         return "";
     }
@@ -359,4 +359,20 @@ $(document).ready(function () {
     });//evt finish
 
     Fetch_All_Course()
+
+    $('#CourseDatatable tbody').on('click', 'td', function () {
+
+        var cell = $(this);
+        var text = cell.text();
+
+        if (cell.children().length === 0 && cell.contents().length === 1 && cell.contents()[0].nodeType === Node.TEXT_NODE) {
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    console.log('Text copied to clipboard: ' + text);
+                })
+                .catch(err => {
+                    console.error('Failed to copy text: ' + err);
+                });
+        }
+    });
 });
