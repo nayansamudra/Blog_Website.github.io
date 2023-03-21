@@ -513,7 +513,7 @@ Fetch_All_Blog = () => {
             data[i][3] = catg
             data[i][4] = Image
             data[i][5] = sh_desc
-            data[i][6] = full_data
+            data[i][6] = shorten(full_data)
             var str = '<button class="m-2" onclick="del_blog(' + ts + ')">&nbsp;Delete&nbsp;</button><button class="m-2" onclick="edit_blog(' + ts + ')">&nbsp;Edit&nbsp;</button>'
             data[i][7] = str
         }
@@ -550,6 +550,22 @@ document.querySelector("#submit").addEventListener("click", () => {
 document.querySelector("#update").addEventListener("click", () => {
     update_blog(parseFloat(Edit_Blog[1]))
 });
+
+
+
+//---------- Shorten Function
+shorten = (text, length = 75) => {
+    if (text == null) {
+        return "";
+    }
+    if (text.length <= length) {
+        return text;
+    }
+    text = text.substring(0, length);
+    // last = text.lastIndexOf(" ");
+    // text = text.substring(0, last);
+    return text + "...";
+}
 
 
 

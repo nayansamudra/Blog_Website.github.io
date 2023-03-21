@@ -640,17 +640,77 @@
                                 </select>
                             </div>
                             <div class="col-md-auto col-12 py-1 d-flex justify-content-center" id="button_id">
-                                <input type="button" class="btn btn-primary"
-                                    onclick="Javascript:if(document.frmCompareBroker1.broker1.value == ''){alert('Please choose broker 1.');return;}if(document.frmCompareBroker1.broker2.value == ''){alert('Please choose broker 2.');return;}document.frmCompareBroker1.submit();"
-                                    value="Compare">
+                                <a href="#Course_Comparision"><input type="button" class="btn btn-primary" value="Compare"></a>
                             </div>
                         </div>
                     </form>
                 </div>
-                <!-- <form class="mt-5 mb-5 d-flex">
-                    <input class="form-control me-2" placeholder="Add New Courses">
-                    <button class="btn btn-outline-success me-2" type="submit">Request</button>
-                </form> -->
+                <div class="col-12" id="Course_Comparision" style="display: none;">
+                    <table id="table_body_content" class="styled-table" style="width:100%">
+                        <tbody>
+                            <tr>
+                                <td>Name</td>
+                                <td id="Table_Name_1"></td>
+                                <td id="Table_Name_2"></td>
+                            </tr>
+                            <tr>
+                                <td>Website</td>
+                                <td id="Table_Website_1"></td>
+                                <td id="Table_Website_2"></td>
+                            </tr>
+                            <tr>
+                                <td>Audience</td>
+                                <td id="Table_Audience_1"></td>
+                                <td id="Table_Audience_2"></td>
+                            </tr>
+                            <tr>
+                                <td>Mentor</td>
+                                <td id="Table_Mentor_1"></td>
+                                <td id="Table_Mentor_2"></td>
+                            </tr>
+                            <tr>
+                                <td>Course Name</td>
+                                <td id="Table_Course_Name_1"></td>
+                                <td id="Table_Course_Name_2"></td>
+                            </tr>
+                            <tr>
+                                <td>Course Price</td>
+                                <td id="Table_Course_Price_1"></td>
+                                <td id="Table_Course_Price_2"></td>
+                            </tr>
+                            <tr>
+                                <td>Support System</td>
+                                <td id="Table_Support_System_1"></td>
+                                <td id="Table_Support_System_2"></td>
+                            </tr>
+                            <tr>
+                                <td>Community for students</td>
+                                <td id="Table_Community_for_students_1"></td>
+                                <td id="Table_Community_for_students_2"></td>
+                            </tr>
+                            <tr>
+                                <td>Tools for students</td>
+                                <td id="Table_Tools_for_students_1"></td>
+                                <td id="Table_Tools_for_students_2"></td>
+                            </tr>
+                            <tr>
+                                <td>Revision Session</td>
+                                <td id="Table_Revision_Session_1"></td>
+                                <td id="Table_Revision_Session_2"></td>
+                            </tr>
+                            <tr>
+                                <td>Live Market Session</td>
+                                <td id="Table_Live_Market_Session_1"></td>
+                                <td id="Table_Live_Market_Session_2"></td>
+                            </tr>
+                            <tr>
+                                <td>Students Review</td>
+                                <td id="Table_Students_Review_1"></td>
+                                <td id="Table_Students_Review_2"></td>
+                            </tr>
+                        </tbody>
+                    </table>   
+                </div>
             </div>
             <!-- end row -->
         </div>

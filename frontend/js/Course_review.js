@@ -22,13 +22,18 @@ fetch_course_list = () => {
             on 254 reviews.</span>
     </div>`)
 
-        $('#course_1').append(`<option value="Course1_option${i}">${All_Course[i][1]}</option>`)
-        $('#course_2').append(`<option value="Course2_option${i}">${All_Course[i][1]}</option>`)
+        $('#course_1').append(`<option class="${All_Course[i][0]}" value="Course1_option${i}">${All_Course[i][1]}</option>`)
+        $('#course_2').append(`<option class="${All_Course[i][0]}" value="Course2_option${i}">${All_Course[i][1]}</option>`)
     }
 }
 
-fetch_all_course = () => {
-    
+fetch_course = (ts) => {
+    $.post(root + main_route + '/fetch_course',{course_id: ts}, function (data, status) {
+        console.log("Status: " + status);
+        Course_Data = data
+    }).done(function () {
+        console.log("Done")
+    })
 }
 
 $(document).ready(function () {
@@ -40,7 +45,7 @@ $(document).ready(function () {
 
     if (sessionStorage.getItem("data-theme") == null) {
         $('html').attr('data-theme', 'light')
-        sessionStorage.setItem("data-theme",'light')
+        sessionStorage.setItem("data-theme", 'light')
     }
     else {
         $('html').attr('data-theme', sessionStorage.getItem("data-theme"))
@@ -129,5 +134,52 @@ $(document).ready(function () {
         Course_ID = $(this).attr('id')
         sessionStorage.setItem('Course_ID', Course_ID)
         window.location.href = "Main_Course_Page.html"
+    })
+
+    $('#button_id').click(() => {
+        Course_1_val = $('#course_1').val()
+        Course_2_val = $('#course_2').val()
+        if (Course_1_val == null) { alert('Please choose course 1.'); return; }
+
+        if (Course_2_val == null) { alert('Please choose course 2.'); return; }
+
+        if ($("#course_1 option:selected").text() == $("#course_2 option:selected").text()) { alert('Both courses are same.'); return; }
+
+        Course_1_ID = parseFloat($("#course_1 option:selected").attr('class'))
+        fetch_course(Course_1_ID)
+        Course_1_Data = Course_Data
+
+        Course_2_ID = parseFloat($("#course_2 option:selected").attr('class'))
+        fetch_course(Course_2_ID)
+        Course_2_Data = Course_Data
+
+
+        $('#Table_Name_1').text(Course_1_Data[0][1])
+        $('#Table_Website_1').attr('href', JSON.parse(Course_1_Data[0][4])['Website'])
+        $('#Table_Audience_1').text(JSON.parse(Course_1_Data[0][4])['Audience'])
+        $('#Table_Mentor_1').text(JSON.parse(Course_1_Data[0][4])['Mentor'])
+        $('#Table_Course_Name_1').text(JSON.parse(Course_1_Data[0][4])['Course_Name'])
+        $('#Table_Course_Price_1').text(JSON.parse(Course_1_Data[0][4])['Course_Price'])
+        $('#Table_Support_System_1').text(JSON.parse(Course_1_Data[0][4])['Support_System'])
+        $('#Table_Community_for_students_1').text(JSON.parse(Course_1_Data[0][4])['Community_for_students'])
+        $('#Table_Tools_for_students_1').text(JSON.parse(Course_1_Data[0][4])['Tools_for_students'])
+        $('#Table_Revision_Session_1').text(JSON.parse(Course_1_Data[0][4])['Revision_Session'])
+        $('#Table_Live_Market_Session_1').text(JSON.parse(Course_1_Data[0][4])['Live_Market_Session'])
+        $('#Table_Students_Review_1').text(JSON.parse(Course_1_Data[0][4])['Students_Review'])
+
+        $('#Table_Name_2').text(Course_2_Data[0][1])
+        $('#Table_Website_2').attr('href', JSON.parse(Course_2_Data[0][4])['Website'])
+        $('#Table_Audience_2').text(JSON.parse(Course_2_Data[0][4])['Audience'])
+        $('#Table_Mentor_2').text(JSON.parse(Course_2_Data[0][4])['Mentor'])
+        $('#Table_Course_Name_2').text(JSON.parse(Course_2_Data[0][4])['Course_Name'])
+        $('#Table_Course_Price_2').text(JSON.parse(Course_2_Data[0][4])['Course_Price'])
+        $('#Table_Support_System_2').text(JSON.parse(Course_2_Data[0][4])['Support_System'])
+        $('#Table_Community_for_students_2').text(JSON.parse(Course_2_Data[0][4])['Community_for_students'])
+        $('#Table_Tools_for_students_2').text(JSON.parse(Course_2_Data[0][4])['Tools_for_students'])
+        $('#Table_Revision_Session_2').text(JSON.parse(Course_2_Data[0][4])['Revision_Session'])
+        $('#Table_Live_Market_Session_2').text(JSON.parse(Course_2_Data[0][4])['Live_Market_Session'])
+        $('#Table_Students_Review_2').text(JSON.parse(Course_2_Data[0][4])['Students_Review'])
+        
+        $('#Course_Comparision').show();
     })
 })

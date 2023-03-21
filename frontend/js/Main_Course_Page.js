@@ -23,7 +23,7 @@ fetch_course = () => {
     }
 
     for (var i = 0; i < All_Course.length; i++) {
-        $('.top-categories-grid-style-1').append(`<div class="cat-item All_courses" id="ID_${All_Course[i][0]}">
+        $('.top-categories-grid-style-1').append(`<div class="cat-item All_courses" id="${All_Course[i][0]}">
         <div class="rt-cart-item">
             <div class="item-img">
                 <img src="${All_Course[i][2]}" alt="cat-slider" width="696" height="491">
@@ -60,7 +60,7 @@ main_course_function = () => {
         Course_data = data
         console.log(Course_data)
     }).done(function () {
-        // sessionStorage.removeItem("Course_ID")
+        sessionStorage.removeItem("Course_ID")
         fetch_course()
     })
 }
@@ -169,7 +169,7 @@ $(document).ready(function () {
 
 
     $('.All_courses').click(function() {
-        $(this).attr('id')
-        console.log($(this).attr('id'))
+        course_id = parseFloat($(this).attr('id'));
+        sessionStorage.setItem("Course_ID", course_id)
     })
 })

@@ -264,7 +264,7 @@ Fetch_All_Course = () => {
             data[i][2] = title
             data[i][3] = Image
             data[i][4] = sh_desc
-            data[i][5] = full_data
+            data[i][5] = shorten(full_data)
             var str = '<button class="m-2" onclick="del_course(' + ts + ')">&nbsp;Delete&nbsp;</button><button class="m-2" onclick="edit_course(' + ts + ')">&nbsp;Edit&nbsp;</button>'
             data[i][6] = str
         }
@@ -302,6 +302,22 @@ document.querySelector("#submit").addEventListener("click", () => {
 document.querySelector("#update").addEventListener("click", () => {
     update_course(parseFloat(Edit_Course[1]))
 });
+
+
+
+//---------- Shorten Function
+shorten = (text, length = 100) => {
+    if (text == null) {
+        return "";
+    }
+    if (text.length <= length) {
+        return text;
+    }
+    text = text.substring(0, length);
+    // last = text.lastIndexOf(" ");
+    // text = text.substring(0, last);
+    return text + "...";
+}
 
 
 
