@@ -37,19 +37,19 @@ fetch_course = () => {
     }
 
     if (JSON.parse(Course_data[0][4])['Meta_description'] != "") {
-        $('meta[name="description"]').attr('content', JSON.parse(Course_data[0][5])['Meta_description']);
+        $('meta[name="description"]').attr('content', JSON.parse(Course_data[0][4])['Meta_description']);
     }
 
     if (JSON.parse(Course_data[0][4])['Meta_keywords'] != "") {
-        $('meta[name="keywords"]').attr('content', JSON.parse(Course_data[0][5])['Meta_keywords']);
+        $('meta[name="keywords"]').attr('content', JSON.parse(Course_data[0][4])['Meta_keywords']);
     }
 
     if (JSON.parse(Course_data[0][4])['Meta_title'] != "") {
-        $('title').text(JSON.parse(Course_data[0][5])['Meta_title']);
+        $('title').text(JSON.parse(Course_data[0][4])['Meta_title']);
     }
 
     if (JSON.parse(Course_data[0][4])['Meta_robots'] != "") {
-        $('meta[name="robots"]').attr('content', JSON.parse(Course_data[0][5])['Meta_robots']);
+        $('meta[name="robots"]').attr('content', JSON.parse(Course_data[0][4])['Meta_robots']);
     }
 }
 
