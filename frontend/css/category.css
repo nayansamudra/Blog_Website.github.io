@@ -371,7 +371,7 @@ h6 {
   cursor: pointer;
 }
 
-@media (min-width:992px) and (max-width:1050px) {
+@media (min-width:992px) and (max-width:1125px) {
   .main_heading_logo_1 {
     padding-top: 7px !important;
     font-size: large !important;
@@ -677,7 +677,7 @@ body .sidebarBtn .bar:last-child {
     max-width:100%
   }
   input[type="search"] {
-    width: 130px !important; 
+    width: 95px !important; 
   }
   .main-menu__nav ul li {
     margin-right: 2px !important;
