@@ -16,6 +16,10 @@
 
     <!-- Manual CSS  -->
     <link type="text/css" rel="stylesheet" href="css/index.css" />
+
+    <!-- Google Login -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
 </head>
 
 <body>
@@ -33,19 +37,29 @@
                         <div class="site-branding">
                             <a class="dark-logo" href="index.html">
                                 <div class="row">
-                                    <div class="col px-0"><img width="75" height="52" src="img/Logo.png" alt="neeon"></div>
+                                    <div class="col px-0"><img width="75" height="52" src="img/Logo.png" alt="neeon">
+                                    </div>
                                     <div class="col">
-                                        <div class="row main_heading_logo_1" style="color:#000; font-size: xx-large; font-weight: bolder; max-height: 35px;">TRADING</div>
-                                        <div class="row main_heading_logo_2" style="color:#8d8d8d; font-size: large; font-weight: bolder;">&nbsp;DUNIYA</div>
+                                        <div class="row main_heading_logo_1"
+                                            style="color:#000; font-size: xx-large; font-weight: bolder; max-height: 35px;">
+                                            TRADING</div>
+                                        <div class="row main_heading_logo_2"
+                                            style="color:#8d8d8d; font-size: large; font-weight: bolder;">&nbsp;DUNIYA
+                                        </div>
                                     </div>
                                 </div>
                             </a>
                             <a class="light-logo" href="index.html">
                                 <div class="row">
-                                    <div class="col px-0"><img width="75" height="52" src="img/Logo.png" alt="neeon"></div>
+                                    <div class="col px-0"><img width="75" height="52" src="img/Logo.png" alt="neeon">
+                                    </div>
                                     <div class="col">
-                                        <div class="row main_heading_logo_1" style="color:#ffffff; font-size: xx-large; font-weight: bolder;max-height: 35px;">TRADING</div>
-                                        <div class="row main_heading_logo_2" style="color:#8d8d8d; font-size: large; font-weight: bolder;">&nbsp;DUNIYA</div>
+                                        <div class="row main_heading_logo_1"
+                                            style="color:#ffffff; font-size: xx-large; font-weight: bolder;max-height: 35px;">
+                                            TRADING</div>
+                                        <div class="row main_heading_logo_2"
+                                            style="color:#8d8d8d; font-size: large; font-weight: bolder;">&nbsp;DUNIYA
+                                        </div>
                                     </div>
                                 </div>
                             </a>
@@ -124,7 +138,10 @@
                                     <input class="form-control me-2" type="search" placeholder="Search"
                                         aria-label="Search">
                                     <button class="btn btn-outline-success me-2" type="submit">Search</button>
-                                    <button type="button" class="btn btn-outline-primary">Login</button>
+                                    <div id="g_id_onload"
+                                        data-client_id="256759331803-9358s5ucdfr47b04nf43c3m2rqjuceve.apps.googleusercontent.com"
+                                        data-callback="onSignIn"></div>
+                                    <div class="g_id_signin" data-type="standard"></div>
                                 </form>
                             </li>
                         </ul>
@@ -150,8 +167,11 @@
                         <div class="row">
                             <div class="col px-0"><img width="50" height="52" src="img/Logo.png" alt="neeon"></div>
                             <div class="col">
-                                <div class="row main_heading_logo_1" style="color:#000; font-size: large; font-weight: bolder; max-height: 20px;">TRADING</div>
-                                <div class="row main_heading_logo_2" style="color:#8d8d8d; font-size: medium; font-weight: bolder;">&nbsp;DUNIYA</div>
+                                <div class="row main_heading_logo_1"
+                                    style="color:#000; font-size: large; font-weight: bolder; max-height: 20px;">TRADING
+                                </div>
+                                <div class="row main_heading_logo_2"
+                                    style="color:#8d8d8d; font-size: medium; font-weight: bolder;">&nbsp;DUNIYA</div>
                             </div>
                         </div>
                     </a>
@@ -160,7 +180,10 @@
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
                         id="search_box">
                     <button class="btn btn-outline-success me-2" type="submit">Search</button>
-                    <button type="button" class="btn btn-outline-primary">Login</button>
+                    <div id="g_id_onload"
+                        data-client_id="256759331803-9358s5ucdfr47b04nf43c3m2rqjuceve.apps.googleusercontent.com"
+                        data-callback="onSignIn"></div>
+                    <div class="g_id_signin" data-type="standard"></div>
                 </form>
                 <span class="sidebarBtn">
                     <span class="bar"></span>

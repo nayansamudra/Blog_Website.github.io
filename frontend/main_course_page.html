@@ -26,16 +26,13 @@
     <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
 
     <script>
-        api_url = ""
-        root = "/"
+        root = "https://tradingduniya.com"
 
         function signOut() {
             google.accounts.id.disableAutoSelect()
         }
 
         tci_logout = (skip = false) => {
-
-            if (skip == false) { alert("User Not Registered, Login with a registerd Email-ID") }
             signOut()
             localStorage.clear();
         }
@@ -45,30 +42,16 @@
             const responsePayload = jwt_decode(response.credential);
 
             var email = responsePayload.email
+            console.log(email)
             console.log(response.credential)
             console.log(response)
-            // return
 
-            // console.log("Email: " + profile.getEmail());
+            cred = response.credential
 
-            $.post(api_url + "/verify_user", { email: email }, function (data, status) {
+            $.post(root + "/auth", { g_token: cred }, function (data, status) {
                 console.log("Data: " + data + "\nStatus: " + status);
                 if (data == "success") {
-                    setCookie("user", email, 1)
-                    window.location.replace("/message-center");
-                }
-                else if (data == "unverified") {
-                    var otp = prompt("Please Enter the OTP sent on your registered email address " + email + ". This is a one time process to verify email address")
-
-                    $.post(api_url + "/verify_email_otp", { email: email, otp: otp }, function (data, status) {
-                        console.log("Data: " + data + "\nStatus: " + status);
-                        if (data == "success") {
-                            setCookie("user", email, 1)
-                            window.location.replace("/message-center");
-                        }
-                        else { alert("OTP Incorrect Please Retry"); tci_logout(true) }
-                    })
-
+                    console.log("Auth Success")
                 }
                 else {
                     tci_logout()
@@ -197,7 +180,7 @@
                                         aria-label="Search">
                                     <button class="btn btn-outline-success me-2" type="submit">Search</button>
                                     <div id="g_id_onload"
-                                        data-client_id="256759331803-sfjlu7hdaia8jtfuqojpifnjgjacsekn.apps.googleusercontent.com"
+                                        data-client_id="256759331803-9358s5ucdfr47b04nf43c3m2rqjuceve.apps.googleusercontent.com"
                                         data-callback="onSignIn"></div>
                                     <div class="g_id_signin" data-type="standard"></div>
                                 </form>
@@ -239,7 +222,7 @@
                         id="search_box">
                     <button class="btn btn-outline-success me-2" type="submit">Search</button>
                     <div id="g_id_onload"
-                        data-client_id="256759331803-sfjlu7hdaia8jtfuqojpifnjgjacsekn.apps.googleusercontent.com"
+                        data-client_id="256759331803-9358s5ucdfr47b04nf43c3m2rqjuceve.apps.googleusercontent.com"
                         data-callback="onSignIn"></div>
                     <div class="g_id_signin" data-type="standard"></div>
                 </form>

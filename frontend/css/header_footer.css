@@ -363,7 +363,7 @@ h6 {
   cursor: pointer;
 }
 
-@media (min-width:992px) and (max-width:1050px) {
+@media (min-width:992px) and (max-width:1125px) {
   .main_heading_logo_1 {
     padding-top: 7px !important;
     font-size: large !important;
@@ -663,7 +663,7 @@ body .sidebarBtn .bar:last-child {
 
 /* Login Button */
 
-@media (min-width:992px) and (max-width:1200px){
+@media (min-width:992px) and (max-width:1250px){
   #navbar-wrap .container {
     max-width:100%
   }

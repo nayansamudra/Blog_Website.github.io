@@ -69,15 +69,31 @@ main_course_function = () => {
 add_review = () => {
     var Review = $('#comment').val()
     Dict = {
-        Rate : rating,
+        Rate: rating,
         Review: Review
     }
-    review_data = JSON.stringify(Dict) 
-    $.post(root + main_route + '/submit_review', { course_id: course_id, desc : review_data }, function (data, status) {
+    review_data = JSON.stringify(Dict)
+    $.post(root + main_route + '/submit_review', { course_id: course_id, desc: review_data }, function (data, status) {
         console.log("Status: " + status);
     }).done(function () {
         alert("Review Submitted")
     })
+}
+
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
 }
 
 
@@ -86,9 +102,24 @@ document.querySelector("#Review_Submit").addEventListener("click", () => {
     add_review()
 });
 
+
 $(document).ready(function () {
 
     $.ajaxSetup({ async: false }); // to stop async
+
+    // td_token_value = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IkRGNVZZUzRLSVVCR05ZQ1A5TUlCQ1pSRkFPM1VRQ0lJIiwiZW1haWwiOm51bGwsInN0YXJ0IjoxNjc5NTU0MDcxLjU4MDY2NywiZXhwIjoxNjc5NjE2MDAwLjU4MDY2N30.Dr5XaUYz_mPxO6yz4KnIVeAXGgDwEl1lxsQofQQSR7g"
+
+    // getCookie("td_token")
+
+    Login_Dict = jwt_decode(getCookie("td_token"))
+
+
+    if (Login_Dict['email'] == null) {
+        alert('please Login')
+    } 
+    else {
+        alert('user is already logged in')
+    }
 
     counter_for_click = 0
     counter_for_theme = 0

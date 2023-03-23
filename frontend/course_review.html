@@ -20,6 +20,10 @@
     <!-- Manual CSS  -->
     <link type="text/css" rel="stylesheet" href="css/Course_Review.css" />
     <link type="text/css" rel="stylesheet" href="css/header_footer.css" />
+
+    <!-- Google Login -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
 </head>
 
 <body>
@@ -37,19 +41,29 @@
                         <div class="site-branding">
                             <a class="dark-logo" href="index.html">
                                 <div class="row">
-                                    <div class="col px-0"><img width="75" height="52" src="img/Logo.png" alt="neeon"></div>
+                                    <div class="col px-0"><img width="75" height="52" src="img/Logo.png" alt="neeon">
+                                    </div>
                                     <div class="col">
-                                        <div class="row main_heading_logo_1" style="color:#000; font-size: xx-large; font-weight: bolder; max-height: 35px;">TRADING</div>
-                                        <div class="row main_heading_logo_2" style="color:#8d8d8d; font-size: large; font-weight: bolder;">&nbsp;DUNIYA</div>
+                                        <div class="row main_heading_logo_1"
+                                            style="color:#000; font-size: xx-large; font-weight: bolder; max-height: 35px;">
+                                            TRADING</div>
+                                        <div class="row main_heading_logo_2"
+                                            style="color:#8d8d8d; font-size: large; font-weight: bolder;">&nbsp;DUNIYA
+                                        </div>
                                     </div>
                                 </div>
                             </a>
                             <a class="light-logo" href="index.html">
                                 <div class="row">
-                                    <div class="col px-0"><img width="75" height="52" src="img/Logo.png" alt="neeon"></div>
+                                    <div class="col px-0"><img width="75" height="52" src="img/Logo.png" alt="neeon">
+                                    </div>
                                     <div class="col">
-                                        <div class="row main_heading_logo_1" style="color:#ffffff; font-size: xx-large; font-weight: bolder;max-height: 35px;">TRADING</div>
-                                        <div class="row main_heading_logo_2" style="color:#8d8d8d; font-size: large; font-weight: bolder;">&nbsp;DUNIYA</div>
+                                        <div class="row main_heading_logo_1"
+                                            style="color:#ffffff; font-size: xx-large; font-weight: bolder;max-height: 35px;">
+                                            TRADING</div>
+                                        <div class="row main_heading_logo_2"
+                                            style="color:#8d8d8d; font-size: large; font-weight: bolder;">&nbsp;DUNIYA
+                                        </div>
                                     </div>
                                 </div>
                             </a>
@@ -128,7 +142,10 @@
                                     <input class="form-control me-2" type="search" placeholder="Search"
                                         aria-label="Search">
                                     <button class="btn btn-outline-success me-2" type="submit">Search</button>
-                                    <button type="button" class="btn btn-outline-primary">Login</button>
+                                    <div id="g_id_onload"
+                                        data-client_id="256759331803-9358s5ucdfr47b04nf43c3m2rqjuceve.apps.googleusercontent.com"
+                                        data-callback="onSignIn"></div>
+                                    <div class="g_id_signin" data-type="standard"></div>
                                 </form>
                             </li>
                         </ul>
@@ -154,8 +171,11 @@
                         <div class="row">
                             <div class="col px-0"><img width="50" height="52" src="img/Logo.png" alt="neeon"></div>
                             <div class="col">
-                                <div class="row main_heading_logo_1" style="color:#000; font-size: large; font-weight: bolder; max-height: 20px;">TRADING</div>
-                                <div class="row main_heading_logo_2" style="color:#8d8d8d; font-size: medium; font-weight: bolder;">&nbsp;DUNIYA</div>
+                                <div class="row main_heading_logo_1"
+                                    style="color:#000; font-size: large; font-weight: bolder; max-height: 20px;">TRADING
+                                </div>
+                                <div class="row main_heading_logo_2"
+                                    style="color:#8d8d8d; font-size: medium; font-weight: bolder;">&nbsp;DUNIYA</div>
                             </div>
                         </div>
                     </a>
@@ -164,7 +184,10 @@
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
                         id="search_box">
                     <button class="btn btn-outline-success me-2" type="submit">Search</button>
-                    <button type="button" class="btn btn-outline-primary">Login</button>
+                    <div id="g_id_onload"
+                        data-client_id="256759331803-9358s5ucdfr47b04nf43c3m2rqjuceve.apps.googleusercontent.com"
+                        data-callback="onSignIn"></div>
+                    <div class="g_id_signin" data-type="standard"></div>
                 </form>
                 <span class="sidebarBtn">
                     <span class="bar"></span>
@@ -478,7 +501,8 @@
         <div class="swiper-button-prev swiper-navBtn"></div>
         <!-- <div class="swiper-pagination"></div> -->
 
-        <a href="all_courses.html"><button type="button" class="ms-5 mt-5 btn btn-outline-danger" id="all_courses">Show All Courses</button></a>
+        <a href="all_courses.html"><button type="button" class="ms-5 mt-5 btn btn-outline-danger" id="all_courses">Show
+                All Courses</button></a>
     </div>
 
     <!-- start main post section style 1 -->
@@ -546,7 +570,8 @@
                                     </h3>
                                     <p>
                                         If any courses is missing and you want to add, just type the course details and
-                                        click on Add Courses. Share Course and it's Website, Telegram, Instagram, Youtube ID as well
+                                        click on Add Courses. Share Course and it's Website, Telegram, Instagram,
+                                        Youtube ID as well
                                     </p>
                                     <form action="#" class="rt-contact-form subscribe-form rt-form" novalidate="true">
                                         <div class="rt-form-group">
@@ -594,7 +619,8 @@
                                 </select>
                             </div>
                             <div class="col-md-auto col-12 py-1 d-flex justify-content-center" id="button_id">
-                                <a href="#Course_Comparision"><input type="button" class="btn btn-primary" value="Compare"></a>
+                                <a href="#Course_Comparision"><input type="button" class="btn btn-primary"
+                                        value="Compare"></a>
                             </div>
                         </div>
                     </form>
@@ -663,7 +689,7 @@
                                 <td id="Table_Students_Review_2"></td>
                             </tr>
                         </tbody>
-                    </table>   
+                    </table>
                 </div>
             </div>
             <!-- end row -->

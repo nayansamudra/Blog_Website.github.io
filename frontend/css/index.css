@@ -387,6 +387,13 @@ h6 {
   }
 }
 
+.rt-mobile-header .nsm7Bb-HzV7m-LgbsSe-BPrWId {
+  display: none !important;
+}
+.rt-mobile-header .nsm7Bb-HzV7m-LgbsSe-Bz112c {
+  margin-right: 0 !important;
+}
+
 /*=====================================
 //  Mobile menu
 ======================================*/
@@ -1440,6 +1447,9 @@ theme-switch-box
 @media (min-width:992px) and (max-width:1200px){
   #navbar-wrap .container {
     max-width:100%
+  }
+  input[type="search"] {
+    width: 130px !important; 
   }
   .main-menu__nav ul li {
     margin-right: 2px !important;
