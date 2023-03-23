@@ -23,7 +23,7 @@ fetch_blog_list = () => {
                 <img src="${Object.values(distinctValues_1)[i][3]}" alt="cat-slider" width="696" height="491">
                 <div class="item-content">
                     <h4 class="title">
-                        <a href="Category.html" class="category">${Object.keys(distinctValues_1)[i]}</a>
+                        <a href="category.html" class="category">${Object.keys(distinctValues_1)[i]}</a>
                     </h4>
                     <p class="count">
                         <span class="anim-overflow"> (${Object.values(distinctValues)[i]}) </span>
@@ -67,14 +67,14 @@ fetch_blog_list = () => {
                     style="visibility: visible; animation-duration: 800ms; animation-delay: 100ms; animation-name: fadeInUp;">
                     <div class="rt-post-overlay rt-post-overlay-md layout-6 Blog_ID" id="${distinctData[i][0]}">
                         <div class="post-img">
-                            <a href="Main_Blog_Page.html" class="img-link">
+                            <a href="main_blog_page.html" class="img-link">
                                 <img src="${distinctData[i][3]}" alt="post-xl_37" width="900" height="600">
                             </a>
                         </div>
                         <div class="post-content">
                             <a href="javascript:void(0)" class="life-style">${distinctData[i][2]}</a>
                             <h3 class="post-title">
-                                <a href="Main_Blog_Page.html">${distinctData[i][1]}</a>
+                                <a href="main_blog_page.html">${distinctData[i][1]}</a>
                             </h3>
                             <div class="post-meta">
                                 <ul>

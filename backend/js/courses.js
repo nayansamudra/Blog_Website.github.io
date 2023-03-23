@@ -13,7 +13,9 @@ add_course = () => {
     var Image = $("#Image_input").val()
     console.log(Image)
 
-    var Rating = $('#myDropdown option:selected').text();
+    // var Rating = $('#myDropdown option:selected').text();
+    var Rating = $('#Rating_input').val();
+    if(parseFloat(Rating)>5){alert("Rating Should be Below 5"); return}
     var Website = $("#Website_input").val();
     var Main_social_media = $("#Main_social_media_input").val();
     var Audience = $("#Audience_input").val();
@@ -25,7 +27,7 @@ add_course = () => {
     var Tools_for_students = $("#Tools_for_students_input").val();
     var Revision_Session = $("#Revision_Session_input").val();
     var Live_Market_Session = $("#Live_Market_Session_input").val();
-    var Students_Review = $("#Students_Review_input").val();
+    // var Students_Review = $("#Students_Review_input").val();
     var Meta_title = $("#Meta_title_input").val();
     var Meta_keywords = $("#Meta_keywords_input").val();
     var Meta_description = $("#Meta_description_input").val();
@@ -46,7 +48,7 @@ add_course = () => {
         Tools_for_students: Tools_for_students,
         Revision_Session: Revision_Session,
         Live_Market_Session: Live_Market_Session,
-        Students_Review: Students_Review,
+        // Students_Review: Students_Review,
         Meta_title: Meta_title,
         Meta_keywords: Meta_keywords,
         Meta_description: Meta_description,
@@ -103,7 +105,9 @@ update_course = (ts) => {
     var Image = $("#Image_input").val()
     console.log(Image)
 
-    var Rating = $('#myDropdown option:selected').text();
+    // var Rating = $('#myDropdown option:selected').text();
+    var Rating = $('#Rating_input').val();
+    if(parseFloat(Rating)>5){alert("Rating Should be Below 5"); return}
     var Website = $("#Website_input").val();
     var Main_social_media = $("#Main_social_media_input").val();
     var Audience = $("#Audience_input").val();
@@ -115,7 +119,7 @@ update_course = (ts) => {
     var Tools_for_students = $("#Tools_for_students_input").val();
     var Revision_Session = $("#Revision_Session_input").val();
     var Live_Market_Session = $("#Live_Market_Session_input").val();
-    var Students_Review = $("#Students_Review_input").val();
+    // var Students_Review = $("#Students_Review_input").val();
     var Meta_title = $("#Meta_title_input").val();
     var Meta_keywords = $("#Meta_keywords_input").val();
     var Meta_description = $("#Meta_description_input").val();
@@ -136,7 +140,7 @@ update_course = (ts) => {
         Tools_for_students: Tools_for_students,
         Revision_Session: Revision_Session,
         Live_Market_Session: Live_Market_Session,
-        Students_Review: Students_Review,
+        // Students_Review: Students_Review,
         Meta_title: Meta_title,
         Meta_keywords: Meta_keywords,
         Meta_description: Meta_description,
@@ -149,14 +153,14 @@ update_course = (ts) => {
 
     if ($("#Image_input").val() == '') {
         var formData = new FormData();
-        formData.append('course_id', parseFloat(Edit_Course[1]))
+        formData.append('course_id', parseFloat(Edit_Course[0]))
         formData.append('title', title);
         formData.append('sh_desc', sh_desc);
         formData.append('data', data);
     }
     else {
         var formData = new FormData();
-        formData.append('course_id', parseFloat(Edit_Course[1]))
+        formData.append('course_id', parseFloat(Edit_Course[0]))
         formData.append('title', title);
         formData.append('file', $("#Image_input")[0].files[0]);
         formData.append('sh_desc', sh_desc);
@@ -204,9 +208,9 @@ edit_course = (ts) => {
     }
     $("#Name_input").val(Edit_Course[1]);
 
-    var optionText = JSON.parse(Edit_Course[4])['Rating'];
-    $('#myDropdown option:contains(' + optionText + ')').prop('selected', true);
-    // $("#Rating_input").val(JSON.parse(Edit_Course[4])['Rating']);
+    // var optionText = JSON.parse(Edit_Course[4])['Rating'];
+    // $('#myDropdown option:contains(' + optionText + ')').prop('selected', true);
+    $("#Rating_input").val(JSON.parse(Edit_Course[4])['Rating']);
     $("#Website_input").val(JSON.parse(Edit_Course[4])['Website']);
     $("#Main_social_media_input").val(JSON.parse(Edit_Course[4])['Main_social_media']);
     $("#Audience_input").val(JSON.parse(Edit_Course[4])['Audience']);
@@ -218,7 +222,7 @@ edit_course = (ts) => {
     $("#Tools_for_students_input").val(JSON.parse(Edit_Course[4])['Tools_for_students']);
     $("#Revision_Session_input").val(JSON.parse(Edit_Course[4])['Revision_Session']);
     $("#Live_Market_Session_input").val(JSON.parse(Edit_Course[4])['Live_Market_Session']);
-    $("#Students_Review_input").val(JSON.parse(Edit_Course[4])['Students_Review']);
+    // $("#Students_Review_input").val(JSON.parse(Edit_Course[4])['Students_Review']);
     $("#Meta_title_input").val(JSON.parse(Edit_Course[4])['Meta_title']);
     $("#Meta_keywords_input").val(JSON.parse(Edit_Course[4])['Meta_keywords']);
     $("#Meta_description_input").val(JSON.parse(Edit_Course[4])['Meta_description']);
@@ -233,7 +237,7 @@ edit_course = (ts) => {
 del_course = (ts) => {
     if (confirm("Are you Sure?")) { }
     else { return }
-    $.post(root + main_route + '/delete_course', { blog_id: ts }, function (data, status) {
+    $.post(root + main_route + '/delete_course', { course_id: ts }, function (data, status) {
         console.log("Data: " + data + "\nStatus: " + status);
         Fetch_All_Course()
         $(':input').val('');

@@ -28,7 +28,7 @@ fetch_course = () => {
                 <img src="${All_Course[i][2]}" alt="cat-slider" width="696" height="491">
                 <div class="item-content">
                     <h4 class="title mb-4">
-                        <a href="Main_Course_Page.html" class="category">${All_Course[i][1]}</a>
+                        <a href="main_course_page.html" class="category">${All_Course[i][1]}</a>
                     </h4>
                 </div>
             </div>
@@ -53,6 +53,7 @@ fetch_course = () => {
     }
 }
 
+
 main_course_function = () => {
     $.post(root + main_route + '/fetch_course', { course_id: course_id }, function (data, status) {
         console.log("Status: " + status);
@@ -64,6 +65,27 @@ main_course_function = () => {
     })
 }
 
+
+add_review = () => {
+    var Review = $('#comment').val()
+    Dict = {
+        Rate : rating,
+        Review: Review
+    }
+    review_data = JSON.stringify(Dict) 
+    $.post(root + main_route + '/submit_review', { course_id: course_id, desc : review_data }, function (data, status) {
+        console.log("Status: " + status);
+    }).done(function () {
+        alert("Review Submitted")
+    })
+}
+
+
+//---------- Review Submit
+document.querySelector("#Review_Submit").addEventListener("click", () => {
+    add_review()
+});
+
 $(document).ready(function () {
 
     $.ajaxSetup({ async: false }); // to stop async
@@ -73,7 +95,7 @@ $(document).ready(function () {
 
     if (sessionStorage.getItem("data-theme") == null) {
         $('html').attr('data-theme', 'light')
-        sessionStorage.setItem("data-theme",'light')
+        sessionStorage.setItem("data-theme", 'light')
     }
     else {
         $('html').attr('data-theme', sessionStorage.getItem("data-theme"))
@@ -167,29 +189,29 @@ $(document).ready(function () {
     });
 
 
-    $('.All_courses').click(function() {
+    $('.All_courses').click(function () {
         course_id = parseFloat($(this).attr('id'));
         sessionStorage.setItem("Course_ID", course_id)
     })
 
 
-    $('.form_hover').hover(()=>{
-        $(this).attr('class','fa fa-star form_hover checked')
+    $('.form_hover').hover(() => {
+        $(this).attr('class', 'fa fa-star form_hover checked')
     })
 
-    $('.star').hover(function() {
+    $('.star').hover(function () {
         $(this).addClass('active');
         $(this).prevAll('.star').addClass('active');
-      }, function() {
+    }, function () {
         $(this).removeClass('active');
         $(this).prevAll('.star').removeClass('active');
-      });
-      
-      $('.star').click(function() {
+    });
+
+    $('.star').click(function () {
         $('.star').removeClass('selected');
         $(this).addClass('selected');
         $(this).prevAll('.star').addClass('selected');
-        var rating = $(this).data('value');
+        rating = $(this).data('value');
         console.log('Rating is ' + rating);
-      });
+    });
 })

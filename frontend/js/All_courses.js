@@ -16,13 +16,13 @@ fetch_course_list = () => {
                 style="visibility: visible; animation-duration: 800ms; animation-delay: 100ms; animation-name: fadeInUp;">
                 <div class="rt-post-overlay rt-post-overlay-md layout-6 Course_ID" id="${distinctData[i][0]}">
                     <div class="post-img">
-                        <a href="Main_Course_Page.html" class="img-link">
+                        <a href="main_course_page.html" class="img-link">
                             <img src="${distinctData[i][2]}" alt="post-xl_37" width="900" height="600">
                         </a>
                     </div>
                     <div class="post-content">
                         <h3 class="post-title">
-                            <a href="Main_Course_Page.html">${distinctData[i][1]}</a>
+                            <a href="main_course_page.html">${distinctData[i][1]}</a>
                         </h3>
                         <div class="post-meta">
                             <ul>
@@ -162,7 +162,7 @@ $(document).ready(function () {
     $('.card').click(function () {
         Course_ID = $(this).attr('id')
         sessionStorage.setItem('Course_ID', Course_ID)
-        window.location.href = "Main_Course_Page.html"
+        window.location.href = "main_course_page.html"
     })
 
     $('.Course_ID').on('click', function () {

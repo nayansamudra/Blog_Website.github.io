@@ -52,7 +52,7 @@ fetch_blog_list = () => {
                 <img src="${Object.values(distinctValues_1)[i][3]}" alt="cat-slider" width="696" height="491">
                 <div class="item-content">
                     <h4 class="title">
-                        <a href="Category.html" class="category">${Object.keys(distinctValues_1)[i]}</a>
+                        <a href="category.html" class="category">${Object.keys(distinctValues_1)[i]}</a>
                     </h4>
                     <p class="count">
                         <span class="anim-overflow"> (${Object.values(distinctValues)[i]}) </span>

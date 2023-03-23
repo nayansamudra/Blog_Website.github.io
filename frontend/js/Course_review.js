@@ -133,7 +133,7 @@ $(document).ready(function () {
     $('.card').click(function () {
         Course_ID = $(this).attr('id')
         sessionStorage.setItem('Course_ID', Course_ID)
-        window.location.href = "Main_Course_Page.html"
+        window.location.href = "main_course_page.html"
     })
 
     $('#button_id').click(() => {
