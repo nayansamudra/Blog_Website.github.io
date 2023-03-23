@@ -367,21 +367,27 @@ h6 {
   }
 }
 
-@media (max-width:500px) {
+@media (max-width:520px) {
   .main_heading_logo_1 {
     padding-top: 7px !important;
     font-size: large !important;
   }
-  #search_box {
-    width: 75px !important;
-  }
+  
   .main_heading_logo_1,
   .main_heading_logo_2{
     font-size: small !important;
   }
 }
 
-@media (max-width:375px) {
+@media (max-width:750px) {
+  #search_box {
+    width: 100px !important;
+    padding-left: 2px !important;
+    padding-right: 0 !important;
+  }
+}
+
+@media (max-width:500px) {
   #search_box {
     width: 55px !important;
   }
@@ -392,6 +398,9 @@ h6 {
 }
 .rt-mobile-header .nsm7Bb-HzV7m-LgbsSe-Bz112c {
   margin-right: 0 !important;
+}
+.rt-mobile-header .nsm7Bb-HzV7m-LgbsSe .n1UuX-DkfjY {
+  margin-right: 2px !important;
 }
 
 /*=====================================
@@ -1444,7 +1453,7 @@ theme-switch-box
 
 /* Login Button */
 
-@media (min-width:992px) and (max-width:1200px){
+@media (min-width:992px) and (max-width:1250px){
   #navbar-wrap .container {
     max-width:100%
   }

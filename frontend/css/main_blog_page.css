@@ -668,7 +668,7 @@ body .sidebarBtn .bar:last-child {
 
 /* Login Button */
 
-@media (min-width:992px) and (max-width:1200px){
+@media (min-width:992px) and (max-width:1250px){
   #navbar-wrap .container {
     max-width:100%
   }
