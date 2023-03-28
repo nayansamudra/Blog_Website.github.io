@@ -27,14 +27,40 @@ fetch_course_list = () => {
     }
 }
 
+
+
 fetch_course = (ts) => {
-    $.post(root + main_route + '/fetch_course',{course_id: ts}, function (data, status) {
+    $.post(root + main_route + '/fetch_course', { course_id: ts }, function (data, status) {
         console.log("Status: " + status);
         Course_Data = data
     }).done(function () {
         console.log("Done")
     })
 }
+
+
+
+add_missing_courses = () => {
+    var Course_name = $('#Course_name').val()
+    Dict = {
+        desc: Course_name
+    }
+    courses_data = JSON.stringify(Dict)
+    $.post(root + main_route + '/submit_missing_couses', { desc: courses_data }, function (data, status) {
+        console.log("Status: " + status);
+    }).done(function () {
+        alert("Missing Courses Submitted")
+    })
+}
+
+
+
+//---------- Add Courses
+document.querySelector("#Add_Course").addEventListener("click", () => {
+    add_missing_courses()
+});
+
+
 
 $(document).ready(function () {
 
@@ -103,7 +129,7 @@ $(document).ready(function () {
         console.log(All_Course)
         Latest_Course_Image = All_Course[All_Course.length - 1][3]
     }).done(function () {
-        if(All_Course.length != 0){
+        if (All_Course.length != 0) {
             fetch_course_list()
         }
     })
@@ -181,7 +207,7 @@ $(document).ready(function () {
         $('#Table_Revision_Session_2').text(JSON.parse(Course_2_Data[0][4])['Revision_Session'])
         $('#Table_Live_Market_Session_2').text(JSON.parse(Course_2_Data[0][4])['Live_Market_Session'])
         $('#Table_Students_Review_2').text(JSON.parse(Course_2_Data[0][4])['Rating'] + '🌟')
-        
+
         $('#Course_Comparision').show();
     })
 })

@@ -531,9 +531,9 @@ Fetch_All_Blog = () => {
             All_Blog[i][7] = str;
         }
         if (All_Blog) {
-            if (counter_for_datatable == 0) {
-                counter_for_datatable += 1;
-                datatable = $("#BlogDatatable").DataTable({
+            if (counter_for_datatable_3 == 0) {
+                counter_for_datatable_3 += 1;
+                datatable_3 = $("#BlogDatatable").DataTable({
                     paging: true,
                     pageLength: 50,
                     info: false,
@@ -541,9 +541,9 @@ Fetch_All_Blog = () => {
                     scrollY: 250,
                 });
             }
-            datatable.clear();
-            datatable.rows.add(All_Blog);
-            datatable.draw();
+            datatable_3.clear();
+            datatable_3.rows.add(All_Blog);
+            datatable_3.draw();
         }
     }).fail(function (response) {
         console.log("Error: " + response);
@@ -603,15 +603,15 @@ td_logout = () => {
 
 
 //---------- Show_Hide Table
-show_hide = () => {
-    counter_for_show_hide += 1;
-    if(counter_for_show_hide %2 == 0){
-        $('.wrapper_1_button').text('Hide')
-        $('#table_datatable').show()
+show_hide_3 = () => {
+    counter_for_show_hide_3 += 1;
+    if(counter_for_show_hide_3 % 2 == 0){
+        $('.wrapper_1_button_3').text('Hide')
+        $('#table_datatable_3').show()
     }
     else{
-        $('.wrapper_1_button').text('Show')
-        $('#table_datatable').hide()
+        $('.wrapper_1_button_3').text('Show')
+        $('#table_datatable_3').hide()
     }
 }
 
@@ -627,8 +627,8 @@ $(document).ready(function () {
     $("#update").hide();
     $("#submit").show();
 
-    counter_for_datatable = 0;
-    counter_for_show_hide = 0;
+    counter_for_datatable_3 = 0;
+    counter_for_show_hide_3 = 0;
     temp = [];
 
     $("input[type='file']").on("change", function () {

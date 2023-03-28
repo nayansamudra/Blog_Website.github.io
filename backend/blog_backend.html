@@ -40,10 +40,56 @@
         <div class="mx-0 row d-flex justify-content-center">
             <div class="wrapper_1">
                 <div class="mb-3 d-flex justify-content-between">
-                    <h4 class="text-left">All Blogs</h4>
+                    <h4 class="text-left">Fetch to be Review</h4>
                     <button class="btn btn-outline-secondary wrapper_1_button" onclick="show_hide()">Hide</button>
                 </div>
                 <div id="table_datatable">
+                    <table id="CommentsDatatable" class="row-border" style="font-size:14px;width:100%">
+                        <thead>
+                            <tr>
+                                <th>&nbsp;Timestamp</th>
+                                <th>&nbsp;Comments ID</th>
+                                <th>&nbsp;Bloges ID</th>
+                                <th>&nbsp;Email</th>
+                                <th>&nbsp;Data</th>
+                                <th>&nbsp;Approval</th>
+                                <th>&nbsp;Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ReviewDatatable_data"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="wrapper_1">
+                <div class="mb-3 d-flex justify-content-between">
+                    <h4 class="text-left">Fetch Reviewed Comments</h4>
+                    <button class="btn btn-outline-secondary wrapper_1_button_2" onclick="show_hide_2()">Hide</button>
+                </div>
+                <div id="table_datatable_2">
+                    <table id="CommentsDatatable_1" class="row-border" style="font-size:14px;width:100%">
+                        <thead>
+                            <tr>
+                                <th>&nbsp;Timestamp</th>
+                                <th>&nbsp;Comments ID</th>
+                                <th>&nbsp;Bloges ID</th>
+                                <th>&nbsp;Email</th>
+                                <th>&nbsp;Data</th>
+                                <th>&nbsp;Approval</th>
+                                <th>&nbsp;Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ReviewDatatable_data_1"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="wrapper_1">
+                <div class="mb-3 d-flex justify-content-between">
+                    <h4 class="text-left">All Blogs</h4>
+                    <button class="btn btn-outline-secondary wrapper_1_button_3" onclick="show_hide_3()">Hide</button>
+                </div>
+                <div id="table_datatable_3">
                     <table id="BlogDatatable" class="row-border" style="font-size:14px; width:100%">
                         <thead>
                             <tr>
@@ -166,6 +212,7 @@
 
     <!-- Manual js-->
     <script src="js/blog_backend.js"></script>
+    <script src="js/comments_backend.js"></script>
 </body>
 
 </html>

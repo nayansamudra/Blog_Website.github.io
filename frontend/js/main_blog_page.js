@@ -85,6 +85,7 @@ fetch_blog_list = () => {
     }
 }
 
+
 fetch_blog = () => {
     $('#Blog_Category').text(Blog_data[0][2])
     $('#Blog_title').text(Blog_data[0][1])
@@ -113,6 +114,7 @@ fetch_blog = () => {
         $('meta[name="robots"]').attr('content', JSON.parse(Blog_data[0][5])['Meta_robots']);
     }
 }
+
 
 prev_next = () => {
     for (var i = 0; i < All_Blog.length; i++) {
@@ -145,6 +147,7 @@ prev_next = () => {
     }
 }
 
+
 main_blog_function = () => {
     $.post(root + main_route + '/fetch_blog', { blog_id: blog_id }, function (data, status) {
         console.log("Status: " + status);
@@ -156,6 +159,31 @@ main_blog_function = () => {
         prev_next()
     })
 }
+
+
+add_comment = () => {
+    var Comment = $('#comment').val()
+    var Name = $('#name').val()
+    Dict = {
+        Name: Name,
+        Comment: Comment
+    }
+    comment_data = JSON.stringify(Dict)
+    $.post(root + main_route + '/submit_comment', { blog_id: blog_id, desc: comment_data }, function (data, status) {
+        console.log("Status: " + status);
+    }).done(function () {
+        alert("Comment Submitted")
+    })
+}
+
+
+//---------- Review Submit
+document.querySelector("#Comment_Submit").addEventListener("click", () => {
+    if (blog_id != '') {
+        add_comment()
+    }
+});
+
 
 $(document).ready(function () {
 
@@ -223,19 +251,26 @@ $(document).ready(function () {
         console.log("Status: " + status);
         All_Blog = data
         console.log(All_Blog)
-        Latest_Blog_Image = All_Blog[All_Blog.length - 1][3]
+        if(All_Blog.length != 0){
+            Latest_Blog_Image = All_Blog[All_Blog.length - 1][3]
+        }
     }).done(function () {
-        fetch_blog_list()
+        if(All_Blog.length != 0){
+            fetch_blog_list()
+        }
     })
+    
+    if(All_Blog.length != 0){
+        if (sessionStorage.getItem("Blog_ID") != null) {
+            blog_id = sessionStorage.getItem("Blog_ID")
+        }
+        else {
+            blog_id = All_Blog[All_Blog.length - 1][0]
+        }
 
-    if (sessionStorage.getItem("Blog_ID") != null) {
-        blog_id = sessionStorage.getItem("Blog_ID")
-    }
-    else {
-        blog_id = All_Blog[All_Blog.length - 1][0]
+        main_blog_function()
     }
 
-    main_blog_function()
 
     $('.category').on('click', function () {
         clicked_category = $(this).text()

@@ -1,4 +1,18 @@
 
+//---------- Delete Missing Courses
+del_missing_course = (ts) => {
+    if (confirm("Are you Sure?")) { }
+    else { return }
+    $.post(root + main_route + '/delete_missing_couses', { course_id: ts }, function (data, status) {
+        // console.log("Data: " + data + "\nStatus: " + status);
+        fetch_missing_couses()
+    }).fail(function (response) {
+        console.log("Error: " + response);
+    })
+}
+
+
+
 //---------- Delete Review
 del_review = (ts) => {
     if (confirm("Are you Sure?")) { }
@@ -26,6 +40,7 @@ approve_review = (ts) => {
         console.log("Error: " + response);
     })
 }
+
 
 
 //---------- Reject Review
@@ -128,6 +143,44 @@ fetch_reviewed_review = () => {
 
 
 
+//-------- Fetch All Missing Courses
+fetch_missing_couses = () => {
+    $.post(root + main_route + '/fetch_missing_couses', function (data, status) {
+        fetch_missing_couse = JSON.parse(JSON.stringify(data));
+        fetch_missing_couse_1 = JSON.parse(JSON.stringify(data));
+        for (var i = 0; i < data.length; i++) {
+            // data pre preprocessing
+            let ts = fetch_missing_couse[i][0]
+            let desc = fetch_missing_couse[i][1]
+            fetch_missing_couse[i][0] = moment.unix(fetch_missing_couse[i][0]).format("DD-MMM HH:mm A")
+            fetch_missing_couse[i][1] = ts
+            fetch_missing_couse[i][2] = shorten(desc)
+            var str = '<button class="m-2" onclick="del_missing_course(' + ts + ')">&nbsp;Delete&nbsp;</button>'
+            fetch_missing_couse[i][3] = str
+        }
+        if (fetch_missing_couse) {
+            if (counter_for_datatable_2 == 0) {
+                counter_for_datatable_2 += 1
+                datatable_2 = $("#MissingCourseDatatable").DataTable({
+                    "paging": true,
+                    "ordering": false,
+                    "pageLength": 50,
+                    "info": false,
+                    "scrollX": true,
+                    "scrollY": 250,
+                });
+            }
+            datatable_2.clear();
+            datatable_2.rows.add(fetch_missing_couse);
+            datatable_2.draw();
+        }
+    }).fail(function (response) {
+        console.log("Error: " + response);
+    });
+}
+
+
+
 //---------- Shorten Function
 shorten = (text, length = 75) => {
     if (text == null) {
@@ -152,7 +205,7 @@ td_logout = () => {
     localStorage.clear();
     var pastDate = new Date(0);
     document.cookie = "td_token=; expires=" + pastDate.toUTCString() + "; path=/";
-    
+
     window.location.href = "/admin"
 }
 
@@ -160,11 +213,11 @@ td_logout = () => {
 //---------- Show_Hide Table 1
 show_hide = () => {
     counter_for_show_hide += 1;
-    if(counter_for_show_hide %2 == 0){
+    if (counter_for_show_hide % 2 == 0) {
         $('.wrapper_1_button').text('Hide')
         $('#table_datatable').show()
     }
-    else{
+    else {
         $('.wrapper_1_button').text('Show')
         $('#table_datatable').hide()
     }
@@ -173,13 +226,26 @@ show_hide = () => {
 //---------- Show_Hide Table 2
 show_hide_2 = () => {
     counter_for_show_hide_2 += 1;
-    if(counter_for_show_hide_2 %2 == 0){
+    if (counter_for_show_hide_2 % 2 == 0) {
         $('.wrapper_1_button_2').text('Hide')
         $('#table_datatable_2').show()
     }
-    else{
+    else {
         $('.wrapper_1_button_2').text('Show')
         $('#table_datatable_2').hide()
+    }
+}
+
+//---------- Show_Hide Table 4
+show_hide_4 = () => {
+    counter_for_show_hide_4 += 1;
+    if (counter_for_show_hide_4 % 2 == 0) {
+        $('.wrapper_1_button_4').text('Hide')
+        $('#table_datatable_4').show()
+    }
+    else {
+        $('.wrapper_1_button_4').text('Show')
+        $('#table_datatable_4').hide()
     }
 }
 
@@ -195,12 +261,16 @@ $(document).ready(function () {
 
     counter_for_datatable = 0
     counter_for_datatable_1 = 0
+    counter_for_datatable_2 = 0
+
     counter_for_show_hide = 0
     counter_for_show_hide_2 = 0
+    counter_for_show_hide_4 = 0
 
 
     fetch_to_be_reviewe()
     fetch_reviewed_review()
+    fetch_missing_couses()
 
     $('#ReviewDatatable tbody').on('click', 'td', function () {
 
@@ -219,6 +289,22 @@ $(document).ready(function () {
     });
 
     $('#ReviewDatatable_1 tbody').on('click', 'td', function () {
+
+        var cell = $(this);
+        var text = cell.text();
+
+        if (cell.children().length === 0 && cell.contents().length === 1 && cell.contents()[0].nodeType === Node.TEXT_NODE) {
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    console.log('Text copied to clipboard: ' + text);
+                })
+                .catch(err => {
+                    console.error('Failed to copy text: ' + err);
+                });
+        }
+    });
+
+    $('#MissingCourseDatatable tbody').on('click', 'td', function () {
 
         var cell = $(this);
         var text = cell.text();

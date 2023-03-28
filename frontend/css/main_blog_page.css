@@ -1694,6 +1694,86 @@ Footer
   color: #cccccc;
 }
 
+/* --------
+User Reiew 
+-------- */
+
+.rev-section{
+  margin: auto;
+  padding: 0;
+  max-width: 1100px;
+  text-align: center;
+}
+
+.reviews{
+  margin: 2rem auto;
+  margin-top: 0 !important;
+  display: flex;
+  flex-wrap: wrap;
+}
+.review{
+  margin: 0;
+  margin-top: 1.5rem;
+  min-width: 100%;
+  flex: 1;
+}
+
+.body-review{
+  background-color: rgb(238, 238, 238);
+  padding: 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+[data-theme="dark"] .body-review{
+  background-color: #171818;
+}
+[data-theme="dark"] .name-review{
+  color: #d7d7d7;
+}
+.name-review{
+  font-size: 1.5rem;
+  color: rgb(50, 50, 50);
+  margin-bottom: .25rem;
+}
+.place-review{
+  color: violet;
+  font-style: italic;
+}
+.rev-rating{
+  color: rgb(253, 180, 42);
+  margin: 1rem 0;
+}
+.desc-review{
+  line-height: 1.5rem;
+  letter-spacing: 1px;
+  color: rgb(150, 150, 150);
+}
+
+@media (max-width:768px) {
+  .body-review .col-auto {
+    padding-right: 0 !important;
+    padding-left: 5px !important;
+  }
+  .body-review .col {
+    padding-left: 0 !important;
+    padding-right: 5px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+  }
+}
+@media (max-width:500px) {
+  .rev-rating {
+    margin: 0 !important;
+  }
+  .name-review {
+    font-size: 1rem;
+  }
+  .desc-review {
+    font-size: 14px;
+    line-height: 1.2rem;
+  }
+}
+
 /* --------------
 theme-switch-box 
 --------------- */
@@ -1833,3 +1913,4 @@ theme-switch-box
     min-height: 1000px !important
   }
 }
+

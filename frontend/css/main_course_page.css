@@ -855,13 +855,15 @@ User Reiew
 }
 
 @media (max-width:768px) {
-  .body-review .col-3 {
-    width: 35%;
+  .body-review .col-auto {
     padding-right: 0 !important;
+    padding-left: 5px !important;
   }
-  .body-review .col-9 {
-    width: 65%;
+  .body-review .col {
     padding-left: 0 !important;
+    padding-right: 5px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
   }
 }
 @media (max-width:500px) {
@@ -870,5 +872,9 @@ User Reiew
   }
   .name-review {
     font-size: 1rem;
+  }
+  .desc-review {
+    font-size: 14px;
+    line-height: 1.2rem;
   }
 }

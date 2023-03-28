@@ -272,9 +272,9 @@ Fetch_All_Course = () => {
             All_Course[i][6] = str
         }
         if (All_Course) {
-            if (counter_for_datatable == 0) {
-                counter_for_datatable += 1
-                datatable = $("#CourseDatatable").DataTable({
+            if (counter_for_datatable_3 == 0) {
+                counter_for_datatable_3 += 1
+                datatable_3 = $("#CourseDatatable").DataTable({
                     "paging": true,
                     "ordering": false,
                     "pageLength": 50,
@@ -283,9 +283,9 @@ Fetch_All_Course = () => {
                     "scrollY": 250,
                 });
             }
-            datatable.clear();
-            datatable.rows.add(All_Course);
-            datatable.draw();
+            datatable_3.clear();
+            datatable_3.rows.add(All_Course);
+            datatable_3.draw();
         }
     }).fail(function (response) {
         console.log("Error: " + response);
