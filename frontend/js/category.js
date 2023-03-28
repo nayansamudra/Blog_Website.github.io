@@ -80,7 +80,7 @@ fetch_blog_list = () => {
                                 <ul>
                                     <li>
                                         <span class="rt-meta">
-                                            by <a href="" class="name">TCI</a>
+                                            by <a href="" class="name">TD</a>
                                         </span>
                                     </li>
                                     <li>
@@ -185,7 +185,9 @@ $(document).ready(function () {
         All_Blog = data
         console.log(All_Blog)
     }).done(function () {
-        fetch_blog_list()
+        if(All_Blog.length != 0){
+            fetch_blog_list()
+        }
     })
 
     $('.category').on('click', function () {

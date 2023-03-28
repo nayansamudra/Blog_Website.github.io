@@ -48,122 +48,111 @@ fetch_blog_list = () => {
         $('#Fourth_Blog_Title_1').text(list_of_next_three_catgory_blog[2][1])
         $('#Fourth_Blog_Date_1').text(moment.unix(list_of_next_three_catgory_blog[2][0]).format("MMMM DD, YYYY"))
     }
+}
 
-    distinctValues = {};
-    for (var i = 0; i < All_Blog.length; i++) {
-        if (All_Blog[i][2] in distinctValues) {
-            distinctValues[All_Blog[i][2]]++;
-        } else {
-            distinctValues[All_Blog[i][2]] = 1;
-        }
-    }
-    distinctValues_1 = {};
-    for (var i = 0; i < All_Blog.length; i++) {
-        if (All_Blog[i][2] in distinctValues_1) {
-            continue;
-        } else {
-            distinctValues_1[All_Blog[i][2]] = All_Blog[i];
-        }
+fetch_course = () => {
+    $('#Blog_title').text(Course_data[0][1])
+    $('#Blog_Date').text(moment.unix(Course_data[0][0]).format("MMMM DD, YYYY"))
+    $('#Blog_img').attr('src', Course_data[0][2])
+    $('#visit_site').attr('href', JSON.parse(Course_data[0][4])['Website'])
+    $('#Table_Name').text(Course_data[0][1])
+    $('#Table_Website').text(JSON.parse(Course_data[0][4])['Website'])
+    $('#Table_Main_social_Media').text(JSON.parse(Course_data[0][4])['Main_social_media'])
+    $('#Table_Audience').text(JSON.parse(Course_data[0][4])['Audience'])
+    $('#Table_Mentor').text(JSON.parse(Course_data[0][4])['Mentor'])
+    $('#Table_Course_Name').text(JSON.parse(Course_data[0][4])['Course_Name'])
+    $('#Table_Course_Price').text(JSON.parse(Course_data[0][4])['Course_Price'])
+    $('#Table_Support_System').text(JSON.parse(Course_data[0][4])['Support_System'])
+    $('#Table_Community_for_students').text(JSON.parse(Course_data[0][4])['Community_for_students'])
+    $('#Table_Tools_for_students').text(JSON.parse(Course_data[0][4])['Tools_for_students'])
+    $('#Table_Revision_Session').text(JSON.parse(Course_data[0][4])['Revision_Session'])
+    $('#Table_Live_Market_Session').text(JSON.parse(Course_data[0][4])['Live_Market_Session'])
+    $('#user_rating').text(JSON.parse(Course_data[0][4])['Rating'])
+    var numToActivate = parseFloat(JSON.parse(Course_data[0][4])['Rating']);
+    var spans = $('.fa-star');
+    for (var i = 0; i < numToActivate; i++) {
+        $(spans[i]).addClass('checked');
     }
 
-    for (var i = 0; i < Object.keys(distinctValues).length; i++) {
-        $('.top-categories-grid-style-1').append(`<div class="cat-item">
+    for (var i = 0; i < All_Course.length; i++) {
+        if (i > 12) { break }
+        $('.top-categories-grid-style-1').append(`<div class="cat-item All_courses" id="${All_Course[i][0]}">
         <div class="rt-cart-item">
             <div class="item-img">
-                <img src="${Object.values(distinctValues_1)[i][3]}" alt="cat-slider" width="696" height="491">
+                <img src="${All_Course[i][2]}" alt="cat-slider" width="696" height="491">
                 <div class="item-content">
-                    <h4 class="title">
-                        <a href="category.html" class="category">${Object.keys(distinctValues_1)[i]}</a>
+                    <h4 class="title mb-4">
+                        <a href="main_course_page.html" class="category">${All_Course[i][1]}</a>
                     </h4>
-                    <p class="count">
-                        <span class="anim-overflow"> (${Object.values(distinctValues)[i]}) </span>
-                    </p>
                 </div>
             </div>
         </div>
     </div>`)
     }
-}
 
-fetch_blog = () => {
-    $('#Blog_Category').text(Blog_data[0][2])
-    $('#Blog_title').text(Blog_data[0][1])
-    $('#Blog_Date').text(moment.unix(Blog_data[0][0]).format("MMMM DD, YYYY"))
-    $('#Blog_img').attr('src', Blog_data[0][3])
-    $('#Blog_Author_Name').text(JSON.parse(Blog_data[0][5])['Author_Name'])
-    $('.post-body').text('')
-    $('.post-body').html(JSON.parse(Blog_data[0][5])['Blog_Description'])
-    for (var i = 0; i < JSON.parse(Blog_data[0][5])['Tags'].length; i++) {
-        $('.tag-list').append(`<a href="javascript:void(0)" class="tag-link">${JSON.parse(Blog_data[0][5])['Tags'][i]}</a>`)
+    if (JSON.parse(Course_data[0][4])['Meta_description'] != "") {
+        $('meta[name="description"]').attr('content', JSON.parse(Course_data[0][4])['Meta_description']);
     }
 
-    if (JSON.parse(Blog_data[0][5])['Meta_description'] != "") {
-        $('meta[name="description"]').attr('content', JSON.parse(Blog_data[0][5])['Meta_description']);
+    if (JSON.parse(Course_data[0][4])['Meta_keywords'] != "") {
+        $('meta[name="keywords"]').attr('content', JSON.parse(Course_data[0][4])['Meta_keywords']);
     }
 
-    if (JSON.parse(Blog_data[0][5])['Meta_keywords'] != "") {
-        $('meta[name="keywords"]').attr('content', JSON.parse(Blog_data[0][5])['Meta_keywords']);
+    if (JSON.parse(Course_data[0][4])['Meta_title'] != "") {
+        $('title').text(JSON.parse(Course_data[0][4])['Meta_title']);
     }
 
-    if (JSON.parse(Blog_data[0][5])['Meta_title'] != "") {
-        $('title').text(JSON.parse(Blog_data[0][5])['Meta_title']);
-    }
-
-    if (JSON.parse(Blog_data[0][5])['Meta_robots'] != "") {
-        $('meta[name="robots"]').attr('content', JSON.parse(Blog_data[0][5])['Meta_robots']);
+    if (JSON.parse(Course_data[0][4])['Meta_robots'] != "") {
+        $('meta[name="robots"]').attr('content', JSON.parse(Course_data[0][4])['Meta_robots']);
     }
 }
 
-prev_next = () => {
-    for (var i = 0; i < All_Blog.length; i++) {
-        if (Blog_data[0][0] == All_Blog[i][0]) {
-            if (i == 0 && All_Blog.length != 1) {
-                $('#Previous_article_heading').text(All_Blog[All_Blog.length - 1][1])
-                $('#Next_article_heading').text(All_Blog[i + 1][1])
-                $('#Previous_article_Date').text(moment.unix(All_Blog[All_Blog.length - 1][0]).format("MMMM DD, YYYY"))
-                $('#Next_article_Date').text(moment.unix(All_Blog[i + 1][0]).format("MMMM DD, YYYY"))
-                $('.Previous_Button').attr("id", All_Blog[All_Blog.length - 1][0])
-                $('.Next_Button').attr("id", All_Blog[i + 1][0])
-            }
-            else if (i == (All_Blog.length - 1) && All_Blog.length != 1) {
-                $('#Previous_article_heading').text(All_Blog[i - 1][1])
-                $('#Next_article_heading').text(All_Blog[0][1])
-                $('#Previous_article_Date').text(moment.unix(All_Blog[i - 1][0]).format("MMMM DD, YYYY"))
-                $('#Next_article_Date').text(moment.unix(All_Blog[0][0]).format("MMMM DD, YYYY"))
-                $('.Previous_Button').attr("id", All_Blog[i - 1][0])
-                $('.Next_Button').attr("id", All_Blog[0][0])
-            }
-            else if (All_Blog.length != 1) {
-                $('#Previous_article_heading').text(All_Blog[i - 1][1])
-                $('#Next_article_heading').text(All_Blog[i + 1][1])
-                $('#Previous_article_Date').text(moment.unix(All_Blog[i - 1][0]).format("MMMM DD, YYYY"))
-                $('#Next_article_Date').text(moment.unix(All_Blog[i + 1][0]).format("MMMM DD, YYYY"))
-                $('.Previous_Button').attr("id", All_Blog[i - 1][0])
-                $('.Next_Button').attr("id", All_Blog[i + 1][0])
-            }
-        }
-    }
-}
 
-main_blog_function = () => {
-    $.post(root + main_route + '/fetch_blog', { blog_id: blog_id }, function (data, status) {
+main_course_function = () => {
+    $.post(root + main_route + '/fetch_course', { course_id: course_id }, function (data, status) {
         console.log("Status: " + status);
-        Blog_data = data
-        console.log(Blog_data)
+        Course_data = data
+        console.log(Course_data)
     }).done(function () {
-        sessionStorage.removeItem("Blog_ID")
-        fetch_blog()
-        prev_next()
+        sessionStorage.removeItem("Course_ID")
+        fetch_course()
     })
 }
 
+
+add_review = () => {
+    var Review = $('#comment').val()
+    var Name = $('#name').val()
+    Dict = {
+        Rate: rating,
+        Name: Name,
+        Review: Review
+    }
+    review_data = JSON.stringify(Dict)
+    $.post(root + main_route + '/submit_review', { course_id: course_id, desc: review_data }, function (data, status) {
+        console.log("Status: " + status);
+    }).done(function () {
+        alert("Review Submitted")
+    })
+}
+
+
+//---------- Review Submit
+document.querySelector("#Review_Submit").addEventListener("click", () => {
+    if (course_id != '') {
+        add_review()
+    }
+});
+
+
+// ---------- On Refresh
 $(document).ready(function () {
 
     $.ajaxSetup({ async: false }); // to stop async
 
     counter_for_click = 0
     counter_for_theme = 0
-    prev_next_array = []
+    counter_for_opacity = 0
 
     if (sessionStorage.getItem("data-theme") == null) {
         $('html').attr('data-theme', 'light')
@@ -178,7 +167,9 @@ $(document).ready(function () {
     }
 
     root = "https://tradingduniya.com";
-    main_route = "/blogs";
+    main_route = "/courses";
+    main_route_1 = "/blogs";
+
 
     $('.sidebarBtn').click(function () {
         $('.rt-slide-nav').toggle()
@@ -219,7 +210,24 @@ $(document).ready(function () {
         }
     });
 
-    $.post(root + main_route + '/fetch_blog_list', { catg: 'all' }, function (data, status) {
+    $.post(root + main_route + '/fetch_course_list', function (data, status) {
+        console.log("Status: " + status);
+        All_Course = data
+        console.log(All_Course)
+    }).done(function () {
+        console.log('DONE')
+    })
+
+    if (sessionStorage.getItem("Course_ID") != null) {
+        course_id = sessionStorage.getItem("Course_ID")
+    }
+    else {
+        if (All_Course.length != 0) {
+            course_id = All_Course[All_Course.length - 1][0]
+        }
+    }
+
+    $.post(root + main_route_1 + '/fetch_blog_list', { catg: 'all' }, function (data, status) {
         console.log("Status: " + status);
         All_Blog = data
         console.log(All_Blog)
@@ -227,20 +235,6 @@ $(document).ready(function () {
     }).done(function () {
         fetch_blog_list()
     })
-
-    if (sessionStorage.getItem("Blog_ID") != null) {
-        blog_id = sessionStorage.getItem("Blog_ID")
-    }
-    else {
-        blog_id = All_Blog[All_Blog.length - 1][0]
-    }
-
-    main_blog_function()
-
-    $('.category').on('click', function () {
-        clicked_category = $(this).text()
-        sessionStorage.setItem("clicked_category", clicked_category);
-    });
 
     if (All_Blog.length != 0) {
         $('.Latest_Blog').on('click', function () {
@@ -283,10 +277,9 @@ $(document).ready(function () {
         });
     }
 
-    $('.next-prev-wrap').on('click', function () {
-        blog_id = $(this).attr("id")
-        main_blog_function()
-    })
+    if (course_id != '') {
+        main_course_function()
+    }
 
     const form = document.querySelector('form');
     form.addEventListener('submit', function (event) {
@@ -312,11 +305,38 @@ $(document).ready(function () {
         }
     });
 
-    height = (Object.keys(distinctValues).length / 2)
-    if (height > 2) {
-        height = 1000
+
+    $('.All_courses').click(function () {
+        course_id = parseFloat($(this).attr('id'));
+        sessionStorage.setItem("Course_ID", course_id)
+    })
+
+
+    $('.form_hover').hover(() => {
+        $(this).attr('class', 'fa fa-star form_hover checked')
+    })
+
+    $('.star').hover(function () {
+        $(this).addClass('active');
+        $(this).prevAll('.star').addClass('active');
+    }, function () {
+        $(this).removeClass('active');
+        $(this).prevAll('.star').removeClass('active');
+    });
+
+    $('.star').click(function () {
+        $('.star').removeClass('selected');
+        $(this).addClass('selected');
+        $(this).prevAll('.star').addClass('selected');
+        rating = $(this).data('value');
+        console.log('Rating is ' + rating);
+    });
+
+    height = (All_Course.length / 2)
+    if (height > 6) {
+        height = 1600
     }
-    else if (height <= 2) {
+    else if (height <= 6) {
         height = (height * 150) + 100 + 600
     }
 

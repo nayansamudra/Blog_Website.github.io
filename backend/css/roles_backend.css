@@ -1,0 +1,107 @@
+/* Import Google Font - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #5372f0;
+}
+
+::selection {
+  color: #fff;
+  background: #5372f0;
+}
+
+.wrapper {
+  margin-top: 12px;
+  margin-bottom: 12px;
+  align-items: center;
+  justify-content: center;
+  width: 992px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 18px 25px 20px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.06);
+}
+
+.wrapper_1, .wrapper_2 {
+  margin-top: 12px;
+  margin-bottom: 12px;
+  align-items: center;
+  justify-content: center;
+  width: 98%;
+  background: #fff;
+  border-radius: 10px;
+  padding: 18px 25px 20px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.06);
+}
+
+.wrapper_2 h5{
+  cursor: pointer;
+}
+
+.wrapper :where(.title, li, li i, .details) {
+  display: flex;
+  align-items: center;
+}
+
+.Name h2,
+.Email h2,
+.Role h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-left: 8px;
+}
+
+#name_input,
+#email_input {
+  font-size: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 7px;
+  margin: 12px 0;
+  border-radius: 5px;
+  border: 1px solid #a6a6a6;
+  width: 100%;
+}
+
+.Submit_Button button {
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 9px 15px;
+  border-radius: 5px;
+  background: #5372f0;
+  transition: background 0.3s ease;
+}
+
+@media (max-width: 360px) {
+  .wrapper {
+    padding: 12px;
+  }
+}
+
+/* ------- 
+Datatable  
+-------- */
+th,
+td {
+  border: 1px solid black;
+}
+
+@media (max-width:470px) {
+  .Category select{
+    width: 65%;
+  }
+}

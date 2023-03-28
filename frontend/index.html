@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>TD - Blog</title>
+    <link rel="icon" href="img/Logo.png" sizes="32x32" />
+    <link rel="icon" href="img/Logo.png" sizes="192x192" />
     <!-- Bootstrap CSS  -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
@@ -35,7 +37,7 @@
 
                         <!-- start logo here -->
                         <div class="site-branding">
-                            <a class="dark-logo" href="index.html">
+                            <a class="dark-logo" href="/">
                                 <div class="row">
                                     <div class="col px-0"><img width="75" height="52" src="img/Logo.png" alt="neeon">
                                     </div>
@@ -49,7 +51,7 @@
                                     </div>
                                 </div>
                             </a>
-                            <a class="light-logo" href="index.html">
+                            <a class="light-logo" href="/">
                                 <div class="row">
                                     <div class="col px-0"><img width="75" height="52" src="img/Logo.png" alt="neeon">
                                     </div>
@@ -138,15 +140,26 @@
                                     <input class="form-control me-2" type="search" placeholder="Search"
                                         aria-label="Search">
                                     <button class="btn btn-outline-success me-2" type="submit">Search</button>
-                                    <div id="g_id_onload"
-                                        data-client_id="256759331803-9358s5ucdfr47b04nf43c3m2rqjuceve.apps.googleusercontent.com"
-                                        data-callback="onSignIn"></div>
-                                    <div class="g_id_signin" data-type="standard"></div>
+                                    <div class="sign-in-button">
+                                        <div id="g_id_onload"
+                                            data-client_id="256759331803-9358s5ucdfr47b04nf43c3m2rqjuceve.apps.googleusercontent.com"
+                                            data-callback="onSignIn"></div>
+                                        <div class="g_id_signin" data-type="standard"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center google-image">
+                                        <img src="" width="40px" style="border-radius: 50%;">
+                                    </div>
                                 </form>
+                                <div class="dropdown-navigation header-settings-dropdown"
+                                    style="position: absolute; z-index: 9999; top: 90px; opacity: 0; visibility: hidden; transform: translate(0px, -40px); transition: transform 0.4s ease-in-out 0s, opacity 0.4s ease-in-out 0s, visibility 0.4s ease-in-out 0s;">
+                                    <!-- DROPDOWN NAVIGATION BUTTON -->
+                                    <p class="dropdown-navigation-button button small secondary" onclick="td_logout()">
+                                        Logout
+                                    </p>
+                                    <!-- /DROPDOWN NAVIGATION BUTTON -->
+                                </div>
                             </li>
                         </ul>
-                        <!-- end header actions -->
-
                     </div>
                 </div>
                 <!-- end row -->
@@ -158,32 +171,28 @@
     </header>
     <!-- End Header  -->
     <!-- Start rt-mobile-header -->
-    <div class="rt-mobile-header mobile-sticky-on">
 
+    <div class="rt-mobile-header mobile-sticky-on">
         <div class="mobile-menu-bar-wrap" id="mobile-menu-bar-wrap">
             <div class="d-flex mobile-menu-bar">
                 <div class="logo">
-                    <a href="index.html">
+                    <a href="/">
                         <div class="row">
                             <div class="col px-0"><img width="50" height="52" src="img/Logo.png" alt="neeon"></div>
-                            <!-- <div class="col">
+                            <div class="col">
                                 <div class="row main_heading_logo_1"
                                     style="color:#000; font-size: large; font-weight: bolder; max-height: 20px;">TRADING
                                 </div>
                                 <div class="row main_heading_logo_2"
                                     style="color:#8d8d8d; font-size: medium; font-weight: bolder;">&nbsp;DUNIYA</div>
-                            </div> -->
+                            </div>
                         </div>
                     </a>
                 </div>
                 <form class="d-flex mobile_form" role="search">
-                    <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
                         id="search_box">
-                    <button class="btn btn-outline-success me-2" type="submit">Search</button> -->
-                    <div id="g_id_onload"
-                        data-client_id="256759331803-9358s5ucdfr47b04nf43c3m2rqjuceve.apps.googleusercontent.com"
-                        data-callback="onSignIn"></div>
-                    <div class="g_id_signin" data-type="standard"></div>
+                    <button class="btn btn-outline-success me-2" type="submit">Search</button>
                 </form>
                 <span class="sidebarBtn">
                     <span class="bar"></span>
@@ -259,7 +268,33 @@
             </div>
         </div>
     </div>
-    <!-- End rt-mobile-header -->   
+    <!-- End rt-mobile-header -->
+
+    <div class="mt-2 container only_mobile_view d-flex justify-content-end">
+        <div class="row d-flex justify-content-end">
+            <div class="col-auto">
+                <form role="search">
+                    <div class="sign-in-button">
+                        <div id="g_id_onload"
+                            data-client_id="256759331803-9358s5ucdfr47b04nf43c3m2rqjuceve.apps.googleusercontent.com"
+                            data-callback="onSignIn"></div>
+                        <div class="g_id_signin" data-type="standard"></div>
+                    </div>
+                    <div class="d-flex align-items-center google-image">
+                        <img src="" width="40px" style="border-radius: 50%;">
+                    </div>
+                </form>
+                <div class="dropdown-navigation header-settings-dropdown"
+                    style="position: absolute; z-index: 9999; top: 90px; opacity: 0; visibility: hidden; transform: translate(0px, -40px); transition: transform 0.4s ease-in-out 0s, opacity 0.4s ease-in-out 0s, visibility 0.4s ease-in-out 0s;">
+                    <!-- DROPDOWN NAVIGATION BUTTON -->
+                    <p class="dropdown-navigation-button button small secondary" onclick="td_logout()">
+                        Logout
+                    </p>
+                    <!-- /DROPDOWN NAVIGATION BUTTON -->
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Heading and 7 Buttons  -->
     <div class="mt-5 pt-5 container" id="Main_Heading">
@@ -435,14 +470,14 @@
     <section class="mb-5 rt-feature-section feature-section-style-1 overflow-hidden"
         data-bg-image="media/elements/element_1.png" style="background-image: url(&quot;img/element_1.png&quot;);">
         <div class="container">
-            <div class="row gutter-24">
-                <div class="col-xl-3 col-md-6 wow fadeInUp animated" data-wow-delay="200ms" data-wow-duration="800ms"
-                    style="visibility: visible; animation-duration: 800ms; animation-delay: 200ms; animation-name: fadeInUp;">
+            <div class="row">
+                <div class="col-xl-3 col-md-6 mt-2 wow fadeInUp animated" data-wow-delay="400ms"
+                    data-wow-duration="800ms"
+                    style="visibility: visible; animation-duration: 800ms; animation-delay: 400ms; animation-name: fadeInUp;">
                     <div class="rt-post post-sm style-1 Latest_Blog">
                         <div class="post-img">
                             <a href="main_blog_page.html">
-                                <img id="Latest_Blog_Image_1" src="img/post-sm_1.jpg" alt="post" width="100"
-                                    height="100">
+                                <img id="Latest_Blog_Image_1" src="img/Picture1.jpg" alt="post">
                             </a>
                         </div>
                         <div class="ms-4 post-content">
@@ -460,14 +495,14 @@
                         </div>
                     </div>
                 </div>
-                <!-- end col -->
 
-                <div class="col-xl-3 col-md-6  wow fadeInUp animated" data-wow-delay="400ms" data-wow-duration="800ms"
+                <div class="col-xl-3 col-md-6 mt-2 wow fadeInUp animated" data-wow-delay="400ms"
+                    data-wow-duration="800ms"
                     style="visibility: visible; animation-duration: 800ms; animation-delay: 400ms; animation-name: fadeInUp;">
                     <div class="rt-post post-sm style-1 Second_Blog">
                         <div class="post-img">
                             <a href="main_blog_page.html">
-                                <img src="img/post-sm_2.jpg" alt="post" width="100" height="100"
+                                <img src="img/Picture1.png" alt="post" width="100" height="100"
                                     id="Second_Blog_Image_1">
                             </a>
                         </div>
@@ -486,15 +521,14 @@
                         </div>
                     </div>
                 </div>
-                <!-- end col -->
 
-                <div class="col-xl-3 col-md-6 wow fadeInUp animated" data-wow-delay="600ms" data-wow-duration="800ms"
+                <div class="col-xl-3 col-md-6 mt-2 wow fadeInUp animated" data-wow-delay="600ms"
+                    data-wow-duration="800ms"
                     style="visibility: visible; animation-duration: 800ms; animation-delay: 600ms; animation-name: fadeInUp;">
                     <div class="rt-post post-sm style-1 Third_Blog">
                         <div class="post-img">
                             <a href="main_blog_page.html">
-                                <img src="img/post-sm_3.jpg" alt="post" width="100" height="100"
-                                    id="Third_Blog_Image_1">
+                                <img src="img/Picture2.png" alt="post" id="Third_Blog_Image_1">
                             </a>
                         </div>
                         <div class="ms-4 post-content">
@@ -512,8 +546,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- end col -->
-                <div class="col-xl-3 col-md-6 wow fadeInUp animated" data-wow-delay="800ms" data-wow-duration="800ms"
+
+                <div class="col-xl-3 col-md-6 mt-2 wow fadeInUp animated" data-wow-delay="800ms"
+                    data-wow-duration="800ms"
                     style="visibility: visible; animation-duration: 800ms; animation-delay: 800ms; animation-name: fadeInUp;">
                     <div class="rt-post post-sm style-1 Fourth_Blog">
                         <div class="post-img">
@@ -537,13 +572,327 @@
                         </div>
                     </div>
                 </div>
-                <!-- end col -->
-
             </div>
-            <!-- end row -->
         </div>
-        <!-- end container -->
     </section>
+
+    <!-- <div class="mt-5 container">
+        <div class="row">
+            <div class="col-xl-3 col-md-6">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-auto">
+                            <div class="bottom-img">
+                                <a href="main_blog_page.html">
+                                    <img id="Latest_Blog_Image_1" src="img/Picture1.jpg" alt="post">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="post-content">
+                                <a href="category.html" id="Latest_Blog_category_1"
+                                    class="rt-post-cat-normal category">Sports</a>
+                                <h3 class="post-title">
+                                    <a href="main_blog_page.html" id="Latest_Blog_Title_1">
+                                        Top Beste ampute are Speak Market.
+                                    </a>
+                                </h3>
+                                <span class="rt-meta">
+                                    <i class="far fa-calendar-alt icon"></i>
+                                    <span id="Latest_Blog_Date_1"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-auto">
+                            <div class="bottom-img">
+                                <a href="main_blog_page.html">
+                                    <img id="Latest_Blog_Image_1" src="img/Picture1.jpg" alt="post">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="post-content">
+                                <a href="category.html" id="Latest_Blog_category_1"
+                                    class="rt-post-cat-normal category">Sports</a>
+                                <h3 class="post-title">
+                                    <a href="main_blog_page.html" id="Latest_Blog_Title_1">
+                                        Top Beste ampute are Speak Market.
+                                    </a>
+                                </h3>
+                                <span class="rt-meta">
+                                    <i class="far fa-calendar-alt icon"></i>
+                                    <span id="Latest_Blog_Date_1"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-auto">
+                            <div class="bottom-img">
+                                <a href="main_blog_page.html">
+                                    <img id="Latest_Blog_Image_1" src="img/Picture1.jpg" alt="post">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="post-content">
+                                <a href="category.html" id="Latest_Blog_category_1"
+                                    class="rt-post-cat-normal category">Sports</a>
+                                <h3 class="post-title">
+                                    <a href="main_blog_page.html" id="Latest_Blog_Title_1">
+                                        Top Beste ampute are Speak Market.
+                                    </a>
+                                </h3>
+                                <span class="rt-meta">
+                                    <i class="far fa-calendar-alt icon"></i>
+                                    <span id="Latest_Blog_Date_1"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-auto">
+                            <div class="bottom-img">
+                                <a href="main_blog_page.html">
+                                    <img id="Latest_Blog_Image_1" src="img/Picture1.jpg" alt="post">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="post-content">
+                                <a href="category.html" id="Latest_Blog_category_1"
+                                    class="rt-post-cat-normal category">Sports</a>
+                                <h3 class="post-title">
+                                    <a href="main_blog_page.html" id="Latest_Blog_Title_1">
+                                        Top Beste ampute are Speak Market.
+                                    </a>
+                                </h3>
+                                <span class="rt-meta">
+                                    <i class="far fa-calendar-alt icon"></i>
+                                    <span id="Latest_Blog_Date_1"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- start Footer -->
+    <footer class="footer">
+        <div class="footer-top footer-style-1">
+            <div class="container">
+                <div class="row gutter-30">
+                    <div class="col-xl-3 col-md-6 wow fadeInUp animated" data-wow-delay="200ms"
+                        data-wow-duration="800ms"
+                        style="visibility: visible; animation-duration: 800ms; animation-delay: 200ms; animation-name: fadeInUp;">
+                        <div class="footer-widget">
+                            <div class="logo footer-logo">
+                                <a class="dark-logo" href="/">
+                                    <div class="row">
+                                        <div class="col px-0"><img width="75" height="52" src="img/Logo.png"
+                                                alt="neeon">
+                                        </div>
+                                        <div class="col">
+                                            <div class="row footer_main_heading_logo_1"
+                                                style="color:#fff; font-size: xx-large; font-weight: bolder; max-height: 35px;">
+                                                TRADING</div>
+                                            <div class="row footer_main_heading_logo_2"
+                                                style="color:#8d8d8d; font-size: large; font-weight: bolder;">
+                                                &nbsp;DUNIYA
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <p class="text">
+                                When an unknown printer took a galley
+                                and scrambled it to make specimen
+                                book not only five centurie.
+                            </p>
+                            <ul class="footer-social gutter-15">
+                                <li class="social-item">
+                                    <a href="https://www.facebook.com/" class="social-link fb" target="_blank">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                </li>
+                                <li class="social-item">
+                                    <a href="https://web.telegram.org/k/" class="social-link tg" target="_blank">
+                                        <i class="fab fa-telegram"></i>
+                                    </a>
+                                </li>
+                                <li class="social-item">
+                                    <a href="https://www.youtube.com/" class="social-link yt" target="_blank">
+                                        <i class="fab fa-youtube"></i>
+                                    </a>
+                                </li>
+                                <li class="social-item">
+                                    <a href="https://www.instagram.com/" class="social-link ig" target="_blank">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- end col -->
+
+                    <div class="col-xl-3 col-md-6 wow fadeInUp animated" data-wow-delay="400ms"
+                        data-wow-duration="800ms"
+                        style="visibility: visible; animation-duration: 800ms; animation-delay: 400ms; animation-name: fadeInUp;">
+                        <div class="footer-widget">
+                            <h3 class="footer-widget-title">Quick links</h3>
+                            <!--  start footer-post-list -->
+                            <div class="footer-post-list">
+                                <div class="item mb--30">
+                                    <div class="rt-post post-sm white-style">
+                                        <div class="post-img">
+                                            <a href="main_blog_page.html">
+                                                <img src="img/post-sm_1.jpg" alt="post" width="100" height="100">
+                                            </a>
+                                        </div>
+                                        <div class="ms-3 post-content">
+                                            <h4 class="post-title">
+                                                <a href="main_blog_page.html">
+                                                    Top Beste ampute are
+                                                    Speak Market.
+                                                </a>
+                                            </h4>
+                                            <span class="rt-meta">
+                                                <i class="far fa-calendar-alt icon"></i>
+                                                DECEMBER 9, 2022
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item">
+                                    <div class="rt-post post-sm white-style">
+                                        <div class="post-img">
+                                            <a href="main_blog_page.html">
+                                                <img src="img/post-sm_2.jpg" alt="post" width="100" height="100">
+                                            </a>
+                                        </div>
+                                        <div class="ms-3 post-content">
+                                            <h4 class="post-title">
+                                                <a href="main_blog_page.html">
+                                                    Top Beste ampute are
+                                                    Speak Market.
+                                                </a>
+                                            </h4>
+                                            <span class="rt-meta">
+                                                <i class="far fa-calendar-alt icon"></i>
+                                                DECEMBER 9, 2022
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--  end footer-post-list -->
+                        </div>
+                    </div>
+                    <!-- end col -->
+
+                    <div class="col-xl-3 col-6 wow fadeInUp d-flex justify-content-xl-center justify-content-start animated"
+                        data-wow-delay="400ms" data-wow-duration="800ms"
+                        style="visibility: visible; animation-duration: 800ms; animation-delay: 400ms; animation-name: fadeInUp;">
+                        <div class="footer-widget">
+                            <h3 class="footer-widget-title">Categories</h3>
+                            <ul class="widget-list cat-list">
+                                <li class="widget-list-item">
+                                    <a href="#" class="widget-list-link">
+                                        Politics
+                                    </a>
+                                </li>
+                                <li class="widget-list-item">
+                                    <a href="#" class="widget-list-link">
+                                        Business
+                                    </a>
+                                </li>
+                                <li class="widget-list-item">
+                                    <a href="#" class="widget-list-link">
+                                        Technology
+                                    </a>
+                                </li>
+                                <li class="widget-list-item">
+                                    <a href="#" class="widget-list-link">
+                                        Health
+                                    </a>
+                                </li>
+                                <li class="widget-list-item">
+                                    <a href="#" class="widget-list-link">
+                                        Sports
+                                    </a>
+                                </li>
+                                <li class="widget-list-item">
+                                    <a href="#" class="widget-list-link">
+                                        Entertainment
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- end col -->
+
+                    <div class="col-xl-3 col-6 wow fadeInUp animated" data-wow-delay="600ms" data-wow-duration="800ms"
+                        style="visibility: visible; animation-duration: 800ms; animation-delay: 600ms; animation-name: fadeInUp;">
+                        <div class="footer-widget">
+                            <h3 class="footer-widget-title">More</h3>
+                            <ul class="widget-list cat-list">
+                                <li class="widget-list-item">
+                                    <a href="#" class="widget-list-link">
+                                        Terms Of Use
+                                    </a>
+                                </li>
+                                <li class="widget-list-item">
+                                    <a href="#" class="widget-list-link">
+                                        Privacy Policy
+                                    </a>
+                                </li>
+                                <li class="widget-list-item">
+                                    <a href="#" class="widget-list-link">
+                                        Fulfilment Policy
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- end col -->
+
+                </div>
+            </div>
+        </div>
+        <!-- End footer top -->
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-area d-flex align-items-center justify-content-center">
+                    <p class="copyright-text mb-0 wow fadeInUp animated" data-wow-delay="200ms"
+                        data-wow-duration="800ms"
+                        style="visibility: visible; animation-duration: 800ms; animation-delay: 200ms; animation-name: fadeInUp;">
+                        <span class="currentYear">2023</span> © All right reserved by
+                        <a href="https://www.tradingduniya.com/" rel="nofollow">Trading Duniya</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- End footer bottom -->
+
+    </footer>
 
     <!-- theme-switch-box  -->
     <div class="theme-switch-box-wrap">
@@ -582,6 +931,7 @@
 
     <!-- Manual js-->
     <script src="js/index.js"></script>
+    <script src="js/login.js"></script>
 </body>
 
 </html>

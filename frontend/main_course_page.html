@@ -4,7 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TD Blog Page</title>
+    <title>TD Course Page</title>
+    <link rel="icon" href="img/Logo.png" sizes="32x32" />
+    <link rel="icon" href="img/Logo.png" sizes="192x192" />
     <meta name="description" content="Place the meta description text here.">
     <meta name="keywords" content="Keyword 1, Keyword 2, Keyword 3">
     <meta name="robots" content="index, follow">
@@ -25,42 +27,6 @@
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
 
-    <script>
-        root = "https://tradingduniya.com"
-
-        function signOut() {
-            google.accounts.id.disableAutoSelect()
-        }
-
-        tci_logout = (skip = false) => {
-            signOut()
-            localStorage.clear();
-        }
-
-        function onSignIn(response) {
-            // console.log(response)
-            const responsePayload = jwt_decode(response.credential);
-
-            var email = responsePayload.email
-            console.log(email)
-            console.log(response.credential)
-            console.log(response)
-
-            cred = response.credential
-
-            $.post(root + "/auth", { g_token: cred }, function (data, status) {
-                console.log("Data: " + data + "\nStatus: " + status);
-                if (data == "success") {
-                    console.log("Auth Success")
-                }
-                else {
-                    tci_logout()
-                }
-
-            });
-        }
-    </script>
-
 </head>
 
 <body>
@@ -76,7 +42,7 @@
 
                         <!-- start logo here -->
                         <div class="site-branding">
-                            <a class="dark-logo" href="index.html">
+                            <a class="dark-logo" href="/">
                                 <div class="row">
                                     <div class="col px-0"><img width="75" height="52" src="img/Logo.png" alt="neeon">
                                     </div>
@@ -90,7 +56,7 @@
                                     </div>
                                 </div>
                             </a>
-                            <a class="light-logo" href="index.html">
+                            <a class="light-logo" href="/">
                                 <div class="row">
                                     <div class="col px-0"><img width="75" height="52" src="img/Logo.png" alt="neeon">
                                     </div>
@@ -179,15 +145,26 @@
                                     <input class="form-control me-2" type="search" placeholder="Search"
                                         aria-label="Search">
                                     <button class="btn btn-outline-success me-2" type="submit">Search</button>
-                                    <div id="g_id_onload"
-                                        data-client_id="256759331803-9358s5ucdfr47b04nf43c3m2rqjuceve.apps.googleusercontent.com"
-                                        data-callback="onSignIn"></div>
-                                    <div class="g_id_signin" data-type="standard"></div>
+                                    <div class="sign-in-button">
+                                        <div id="g_id_onload"
+                                            data-client_id="256759331803-9358s5ucdfr47b04nf43c3m2rqjuceve.apps.googleusercontent.com"
+                                            data-callback="onSignIn"></div>
+                                        <div class="g_id_signin" data-type="standard"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center google-image">
+                                        <img src="" width="40px" style="border-radius: 50%;">
+                                    </div>
                                 </form>
+                                <div class="dropdown-navigation header-settings-dropdown"
+                                    style="position: absolute; z-index: 9999; top: 90px; opacity: 0; visibility: hidden; transform: translate(0px, -40px); transition: transform 0.4s ease-in-out 0s, opacity 0.4s ease-in-out 0s, visibility 0.4s ease-in-out 0s;">
+                                    <!-- DROPDOWN NAVIGATION BUTTON -->
+                                    <p class="dropdown-navigation-button button small secondary" onclick="td_logout()">
+                                        Logout
+                                    </p>
+                                    <!-- /DROPDOWN NAVIGATION BUTTON -->
+                                </div>
                             </li>
                         </ul>
-                        <!-- end header actions -->
-
                     </div>
                 </div>
                 <!-- end row -->
@@ -199,32 +176,29 @@
     </header>
     <!-- End Header  -->
     <!-- Start rt-mobile-header -->
+
     <div class="rt-mobile-header mobile-sticky-on">
 
         <div class="mobile-menu-bar-wrap" id="mobile-menu-bar-wrap">
             <div class="d-flex mobile-menu-bar">
                 <div class="logo">
-                    <a href="index.html">
+                    <a href="/">
                         <div class="row">
                             <div class="col px-0"><img width="50" height="52" src="img/Logo.png" alt="neeon"></div>
-                            <!-- <div class="col">
+                            <div class="col">
                                 <div class="row main_heading_logo_1"
                                     style="color:#000; font-size: large; font-weight: bolder; max-height: 20px;">TRADING
                                 </div>
                                 <div class="row main_heading_logo_2"
                                     style="color:#8d8d8d; font-size: medium; font-weight: bolder;">&nbsp;DUNIYA</div>
-                            </div> -->
+                            </div>
                         </div>
                     </a>
                 </div>
                 <form class="d-flex mobile_form" role="search">
-                    <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
                         id="search_box">
-                    <button class="btn btn-outline-success me-2" type="submit">Search</button> -->
-                    <div id="g_id_onload"
-                        data-client_id="256759331803-9358s5ucdfr47b04nf43c3m2rqjuceve.apps.googleusercontent.com"
-                        data-callback="onSignIn"></div>
-                    <div class="g_id_signin" data-type="standard"></div>
+                    <button class="btn btn-outline-success me-2" type="submit">Search</button>
                 </form>
                 <span class="sidebarBtn">
                     <span class="bar"></span>
@@ -302,6 +276,32 @@
     </div>
     <!-- End rt-mobile-header -->
 
+    <div class="mt-2 container only_mobile_view d-flex justify-content-end">
+        <div class="row d-flex justify-content-end">
+            <div class="col-auto">
+                <form role="search">
+                    <div class="sign-in-button">
+                        <div id="g_id_onload"
+                            data-client_id="256759331803-9358s5ucdfr47b04nf43c3m2rqjuceve.apps.googleusercontent.com"
+                            data-callback="onSignIn"></div>
+                        <div class="g_id_signin" data-type="standard"></div>
+                    </div>
+                    <div class="d-flex align-items-center google-image">
+                        <img src="" width="40px" style="border-radius: 50%;">
+                    </div>
+                </form>
+                <div class="dropdown-navigation header-settings-dropdown"
+                    style="position: absolute; z-index: 9999; top: 90px; opacity: 0; visibility: hidden; transform: translate(0px, -40px); transition: transform 0.4s ease-in-out 0s, opacity 0.4s ease-in-out 0s, visibility 0.4s ease-in-out 0s;">
+                    <!-- DROPDOWN NAVIGATION BUTTON -->
+                    <p class="dropdown-navigation-button button small secondary" onclick="td_logout()">
+                        Logout
+                    </p>
+                    <!-- /DROPDOWN NAVIGATION BUTTON -->
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- start rt-sidebar-section-layout-2 -->
     <section class="rt-sidebar-section-layout-2" style="transform: none;">
         <div class="container" style="transform: none;">
@@ -328,7 +328,7 @@
                                         <ul>
                                             <li>
                                                 <span class="rt-meta">
-                                                    by <a href="https://tradingcafeindia.com/" class="name"><span
+                                                    by <a href="https://tradingduniya.com/" class="name"><span
                                                             id="Blog_Author_Name">TD</span></a>
                                                 </span>
                                             </li>
@@ -415,6 +415,14 @@
                                                 <td id="Table_Name"></td>
                                             </tr>
                                             <tr>
+                                                <td>Website</td>
+                                                <td id="Table_Website"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Main social Media</td>
+                                                <td id="Table_Main_social_Media"></td>
+                                            </tr>
+                                            <tr>
                                                 <td>Audience</td>
                                                 <td id="Table_Audience"></td>
                                             </tr>
@@ -489,7 +497,6 @@
                                                             <i class="social-icon fas fa-cloud"></i>
                                                         </a>
                                                     </li>
-
                                                     <li>
                                                         <a class="wh" target="_blank" href="https://www.whatsapp.com/">
                                                             <i class="social-icon fab fa-whatsapp"></i>
@@ -501,6 +508,91 @@
                                     </div>
                                 </div>
                                 <!-- end social-share-box-2 -->
+
+                                <!-- user Comments -->
+                                <h4 class="heading">User Review</h4>
+                                <div class="rev-section">
+                                    <div class="reviews">
+                                        <div class="review">
+                                            <div class="body-review">
+                                                <div class="container">
+                                                    <div class="d-flex align-items-center row">
+                                                        <div class="col-3">
+                                                            <div class="name-review">Sam.B</div>
+                                                            <div class="place-review">Germany</div>
+                                                            <div class="rev-rating">
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star-half"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <div class="desc-review">Lorem ipsum dolor, sit amet
+                                                                consectetur
+                                                                adipisicing elit. Obcaecati eligendi suscipit illum
+                                                                officia ex eos.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="review">
+                                            <div class="body-review">
+                                                <div class="container">
+                                                    <div class="d-flex align-items-center row">
+                                                        <div class="col-3">
+                                                            <div class="name-review">Rose.F</div>
+                                                            <div class="place-review">Paris</div>
+                                                            <div class="rev-rating">
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star-half"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <div class="desc-review">Lorem ipsum dolor, sit amet
+                                                                consectetur
+                                                                adipisicing elit. Obcaecati eligendi suscipit illum
+                                                                officia ex eos.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="review">
+                                            <div class="body-review">
+                                                <div class="container">
+                                                    <div class="d-flex align-items-center row">
+                                                        <div class="col-3">
+                                                            <div class="name-review">Harry</div>
+                                                            <div class="place-review">New York</div>
+                                                            <div class="rev-rating">
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star-half"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <div class="desc-review">Lorem ipsum dolor, sit amet
+                                                                consectetur
+                                                                adipisicing elit. Obcaecati eligendi suscipit illum
+                                                                officia ex eos.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
 
                                 <!-- start blog-post-comment -->
@@ -521,6 +613,14 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="rt-form-group">
+                                                    <label for="name">Your Name *</label>
+                                                    <input type="text" name="name" id="name" class="form-control"
+                                                        data-error="Name field is required" required="">
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="rt-form-group">
                                                     <label for="comment">Review *</label>
                                                     <textarea name="comment" id="comment" class="form-control text-area"
                                                         data-error="Comment field is required" required=""></textarea>
@@ -528,7 +628,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <button type="submit" class="submit-btn disabled" id="Review_Submit">
+                                                <button type="button" class="submit-btn disabled" id="Review_Submit">
                                                     Post Review
                                                 </button>
                                             </div>
@@ -559,12 +659,12 @@
                 </div>
                 <!-- end col-->
 
-                <div class="col-xl-3 col-lg-8 mx-auto sticky-coloum-item d-flex justify-content-center"
-                    style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1.5px;">
+                <div class="col-xl-3 col-lg-8 mx-auto sticky-coloum-item d-flex justify-content-center Right_Col"
+                    style="position: relative; overflow: visible; box-sizing: border-box; min-height: 570px">
 
                     <!-- end rt-sidebar -->
                     <div class="theiaStickySidebar"
-                        style="padding-top: 0px; padding-bottom: 1px; position: absolute; width: 306px; top: 0px;">
+                        style="padding-top: 0px; padding-bottom: 1px; position: absolute; width: 90%; top: 0px;">
                         <div class="rt-sidebar sticky-wrap">
 
                             <div class="sidebar-wrap mb--40">
@@ -710,6 +810,208 @@
         <!-- end container -->
     </section>
 
+    <!-- start Footer -->
+    <footer class="footer">
+        <div class="footer-top footer-style-1">
+            <div class="container">
+                <div class="row gutter-30">
+                    <div class="col-xl-3 col-md-6 wow fadeInUp animated" data-wow-delay="200ms"
+                        data-wow-duration="800ms"
+                        style="visibility: visible; animation-duration: 800ms; animation-delay: 200ms; animation-name: fadeInUp;">
+                        <div class="footer-widget">
+                            <div class="logo footer-logo">
+                                <a class="dark-logo" href="/">
+                                    <div class="row">
+                                        <div class="col px-0"><img width="75" height="52" src="img/Logo.png"
+                                                alt="neeon">
+                                        </div>
+                                        <div class="col">
+                                            <div class="row footer_main_heading_logo_1"
+                                                style="color:#fff; font-size: xx-large; font-weight: bolder; max-height: 35px;">
+                                                TRADING</div>
+                                            <div class="row footer_main_heading_logo_2"
+                                                style="color:#8d8d8d; font-size: large; font-weight: bolder;">
+                                                &nbsp;DUNIYA
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <p class="text">
+                                When an unknown printer took a galley
+                                and scrambled it to make specimen
+                                book not only five centurie.
+                            </p>
+                            <ul class="footer-social gutter-15">
+                                <li class="social-item">
+                                    <a href="https://www.facebook.com/" class="social-link fb" target="_blank">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                </li>
+                                <li class="social-item">
+                                    <a href="https://web.telegram.org/k/" class="social-link tg" target="_blank">
+                                        <i class="fab fa-telegram"></i>
+                                    </a>
+                                </li>
+                                <li class="social-item">
+                                    <a href="https://www.youtube.com/" class="social-link yt" target="_blank">
+                                        <i class="fab fa-youtube"></i>
+                                    </a>
+                                </li>
+                                <li class="social-item">
+                                    <a href="https://www.instagram.com/" class="social-link ig" target="_blank">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- end col -->
+
+                    <div class="col-xl-3 col-md-6 wow fadeInUp animated" data-wow-delay="400ms"
+                        data-wow-duration="800ms"
+                        style="visibility: visible; animation-duration: 800ms; animation-delay: 400ms; animation-name: fadeInUp;">
+                        <div class="footer-widget">
+                            <h3 class="footer-widget-title">Recent Posts</h3>
+
+                            <!--  start footer-post-list -->
+                            <div class="footer-post-list">
+                                <div class="item mb--30">
+                                    <div class="rt-post post-sm white-style">
+                                        <div class="post-img">
+                                            <a href="main_blog_page.html">
+                                                <img src="img/post-sm_1.jpg" alt="post" width="100" height="100">
+                                            </a>
+                                        </div>
+                                        <div class="ms-3 post-content">
+                                            <h4 class="post-title">
+                                                <a href="main_blog_page.html">
+                                                    Top Beste ampute are
+                                                    Speak Market.
+                                                </a>
+                                            </h4>
+                                            <span class="rt-meta">
+                                                <i class="far fa-calendar-alt icon"></i>
+                                                DECEMBER 9, 2022
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item">
+                                    <div class="rt-post post-sm white-style">
+                                        <div class="post-img">
+                                            <a href="main_blog_page.html">
+                                                <img src="img/post-sm_2.jpg" alt="post" width="100" height="100">
+                                            </a>
+                                        </div>
+                                        <div class="ms-3 post-content">
+                                            <h4 class="post-title">
+                                                <a href="main_blog_page.html">
+                                                    Top Beste ampute are
+                                                    Speak Market.
+                                                </a>
+                                            </h4>
+                                            <span class="rt-meta">
+                                                <i class="far fa-calendar-alt icon"></i>
+                                                DECEMBER 9, 2022
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--  end footer-post-list -->
+                        </div>
+                    </div>
+                    <!-- end col -->
+
+                    <div class="col-xl-3 col-6 wow fadeInUp d-flex justify-content-xl-center justify-content-start animated"
+                        data-wow-delay="400ms" data-wow-duration="800ms"
+                        style="visibility: visible; animation-duration: 800ms; animation-delay: 400ms; animation-name: fadeInUp;">
+                        <div class="footer-widget">
+                            <h3 class="footer-widget-title">Categories</h3>
+                            <ul class="widget-list cat-list">
+                                <li class="widget-list-item">
+                                    <a href="#" class="widget-list-link">
+                                        Politics
+                                    </a>
+                                </li>
+                                <li class="widget-list-item">
+                                    <a href="#" class="widget-list-link">
+                                        Business
+                                    </a>
+                                </li>
+                                <li class="widget-list-item">
+                                    <a href="#" class="widget-list-link">
+                                        Technology
+                                    </a>
+                                </li>
+                                <li class="widget-list-item">
+                                    <a href="#" class="widget-list-link">
+                                        Health
+                                    </a>
+                                </li>
+                                <li class="widget-list-item">
+                                    <a href="#" class="widget-list-link">
+                                        Sports
+                                    </a>
+                                </li>
+                                <li class="widget-list-item">
+                                    <a href="#" class="widget-list-link">
+                                        Entertainment
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- end col -->
+
+                    <div class="col-xl-3 col-6 wow fadeInUp animated" data-wow-delay="600ms" data-wow-duration="800ms"
+                        style="visibility: visible; animation-duration: 800ms; animation-delay: 600ms; animation-name: fadeInUp;">
+                        <div class="footer-widget">
+                            <h3 class="footer-widget-title">More</h3>
+                            <ul class="widget-list cat-list">
+                                <li class="widget-list-item">
+                                    <a href="#" class="widget-list-link">
+                                        Terms Of Use
+                                    </a>
+                                </li>
+                                <li class="widget-list-item">
+                                    <a href="#" class="widget-list-link">
+                                        Privacy Policy
+                                    </a>
+                                </li>
+                                <li class="widget-list-item">
+                                    <a href="#" class="widget-list-link">
+                                        Fulfilment Policy
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- end col -->
+
+                </div>
+            </div>
+        </div>
+        <!-- End footer top -->
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-area d-flex align-items-center justify-content-center">
+                    <p class="copyright-text mb-0 wow fadeInUp animated" data-wow-delay="200ms"
+                        data-wow-duration="800ms"
+                        style="visibility: visible; animation-duration: 800ms; animation-delay: 200ms; animation-name: fadeInUp;">
+                        <span class="currentYear">2023</span> © All right reserved by
+                        <a href="https://www.tradingduniya.com/" rel="nofollow">Trading Duniya</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- End footer bottom -->
+
+    </footer>
+
     <!-- theme-switch-box  -->
     <div class="theme-switch-box-wrap">
         <div class="theme-switch-box">
@@ -746,7 +1048,8 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- Manual js-->
-    <script src="js/Main_Course_Page.js"></script>
+    <script src="js/main_course_page.js"></script>
+    <script src="js/login.js"></script>
 </body>
 
 </html>

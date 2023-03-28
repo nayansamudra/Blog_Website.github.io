@@ -1,53 +1,89 @@
 fetch_blog_list = () => {
     // Latest Blog Section 
-    $('#Latest_Blog_Image').attr('src', Latest_Blog_Image)
-    $('#Latest_Blog_category').text(All_Blog[All_Blog.length - 1][2])
-    $('#Latest_Blog_Title').text(All_Blog[All_Blog.length - 1][1])
-    $('#Latest_Blog_Date').text(moment.unix(All_Blog[All_Blog.length - 1][0]).format("MMMM DD, YYYY"))
+    if (All_Blog.length != 0) {
+        $('#Latest_Blog_Image').attr('src', Latest_Blog_Image)
+        $('#Latest_Blog_category').text(All_Blog[All_Blog.length - 1][2])
+        $('#Latest_Blog_Title').text(All_Blog[All_Blog.length - 1][1])
+        $('#Latest_Blog_Date').text(moment.unix(All_Blog[All_Blog.length - 1][0]).format("MMMM DD, YYYY"))
 
-    $('#Latest_Blog_Image_1').attr('src', Latest_Blog_Image)
-    $('#Latest_Blog_category_1').text(All_Blog[All_Blog.length - 1][2])
-    $('#Latest_Blog_Title_1').text(All_Blog[All_Blog.length - 1][1])
-    $('#Latest_Blog_Date_1').text(moment.unix(All_Blog[All_Blog.length - 1][0]).format("MMMM DD, YYYY"))
+        $('#Latest_Blog_Image_1').attr('src', Latest_Blog_Image)
+        $('#Latest_Blog_category_1').text(All_Blog[All_Blog.length - 1][2])
+        $('#Latest_Blog_Title_1').text(All_Blog[All_Blog.length - 1][1])
+        $('#Latest_Blog_Date_1').text(moment.unix(All_Blog[All_Blog.length - 1][0]).format("MMMM DD, YYYY"))
 
-    comapre_category = All_Blog[All_Blog.length - 1][2]
-    list_of_next_three_catgory_blog = []
-    for (var i = (All_Blog.length - 2); i > 0; i--) {
-        if (All_Blog[i][2] != comapre_category && list_of_next_three_catgory_blog.length < 3) {
-            list_of_next_three_catgory_blog.push(All_Blog[i])
-            comapre_category = All_Blog[i][2]
+        comapre_category = All_Blog[All_Blog.length - 1][2]
+        list_of_next_three_catgory_blog = []
+        for (var i = (All_Blog.length - 2); i >= 0; i--) {
+            if (All_Blog[i][2] != comapre_category && list_of_next_three_catgory_blog.length < 3) {
+                list_of_next_three_catgory_blog.push(All_Blog[i])
+                comapre_category = All_Blog[i][2]
+            }
         }
     }
 
-    $('#Second_Blog_Image').attr('src', list_of_next_three_catgory_blog[0][3])
-    $('#Second_Blog_Category').text(list_of_next_three_catgory_blog[0][2])
-    $('#Second_Blog_Title').text(list_of_next_three_catgory_blog[0][1])
-    $('#Second_Blog_Date').text(moment.unix(list_of_next_three_catgory_blog[0][0]).format("MMMM DD, YYYY"))
+    if (list_of_next_three_catgory_blog.length != 0 && list_of_next_three_catgory_blog.length < 2) {
+        $('#Second_Blog_Image').attr('src', list_of_next_three_catgory_blog[0][3])
+        $('#Second_Blog_Category').text(list_of_next_three_catgory_blog[0][2])
+        $('#Second_Blog_Title').text(list_of_next_three_catgory_blog[0][1])
+        $('#Second_Blog_Date').text(moment.unix(list_of_next_three_catgory_blog[0][0]).format("MMMM DD, YYYY"))
 
-    $('#Second_Blog_Image_1').attr('src', list_of_next_three_catgory_blog[0][3])
-    $('#Second_Blog_Category_1').text(list_of_next_three_catgory_blog[0][2])
-    $('#Second_Blog_Title_1').text(list_of_next_three_catgory_blog[0][1])
-    $('#Second_Blog_Date_1').text(moment.unix(list_of_next_three_catgory_blog[0][0]).format("MMMM DD, YYYY"))
+        $('#Second_Blog_Image_1').attr('src', list_of_next_three_catgory_blog[0][3])
+        $('#Second_Blog_Category_1').text(list_of_next_three_catgory_blog[0][2])
+        $('#Second_Blog_Title_1').text(list_of_next_three_catgory_blog[0][1])
+        $('#Second_Blog_Date_1').text(moment.unix(list_of_next_three_catgory_blog[0][0]).format("MMMM DD, YYYY"))
+    }
+    else if (list_of_next_three_catgory_blog.length != 0 && list_of_next_three_catgory_blog.length < 3) {
+        $('#Second_Blog_Image').attr('src', list_of_next_three_catgory_blog[0][3])
+        $('#Second_Blog_Category').text(list_of_next_three_catgory_blog[0][2])
+        $('#Second_Blog_Title').text(list_of_next_three_catgory_blog[0][1])
+        $('#Second_Blog_Date').text(moment.unix(list_of_next_three_catgory_blog[0][0]).format("MMMM DD, YYYY"))
 
-    $('#Third_Blog_Image').attr('src', list_of_next_three_catgory_blog[1][3])
-    $('#Third_Blog_Category').text(list_of_next_three_catgory_blog[1][2])
-    $('#Third_Blog_Title').text(list_of_next_three_catgory_blog[1][1])
-    $('#Third_Blog_Date').text(moment.unix(list_of_next_three_catgory_blog[1][0]).format("MMMM DD, YYYY"))
+        $('#Second_Blog_Image_1').attr('src', list_of_next_three_catgory_blog[0][3])
+        $('#Second_Blog_Category_1').text(list_of_next_three_catgory_blog[0][2])
+        $('#Second_Blog_Title_1').text(list_of_next_three_catgory_blog[0][1])
+        $('#Second_Blog_Date_1').text(moment.unix(list_of_next_three_catgory_blog[0][0]).format("MMMM DD, YYYY"))
 
-    $('#Third_Blog_Image_1').attr('src', list_of_next_three_catgory_blog[1][3])
-    $('#Third_Blog_Category_1').text(list_of_next_three_catgory_blog[1][2])
-    $('#Third_Blog_Title_1').text(list_of_next_three_catgory_blog[1][1])
-    $('#Third_Blog_Date_1').text(moment.unix(list_of_next_three_catgory_blog[1][0]).format("MMMM DD, YYYY"))
+        $('#Third_Blog_Image').attr('src', list_of_next_three_catgory_blog[1][3])
+        $('#Third_Blog_Category').text(list_of_next_three_catgory_blog[1][2])
+        $('#Third_Blog_Title').text(list_of_next_three_catgory_blog[1][1])
+        $('#Third_Blog_Date').text(moment.unix(list_of_next_three_catgory_blog[1][0]).format("MMMM DD, YYYY"))
 
-    $('#Fourth_Blog_Image').attr('src', list_of_next_three_catgory_blog[2][3])
-    $('#Fourth_Blog_Category').text(list_of_next_three_catgory_blog[2][2])
-    $('#Fourth_Blog_Title').text(list_of_next_three_catgory_blog[2][1])
-    $('#Fourth_Blog_Date').text(moment.unix(list_of_next_three_catgory_blog[2][0]).format("MMMM DD, YYYY"))
+        $('#Third_Blog_Image_1').attr('src', list_of_next_three_catgory_blog[1][3])
+        $('#Third_Blog_Category_1').text(list_of_next_three_catgory_blog[1][2])
+        $('#Third_Blog_Title_1').text(list_of_next_three_catgory_blog[1][1])
+        $('#Third_Blog_Date_1').text(moment.unix(list_of_next_three_catgory_blog[1][0]).format("MMMM DD, YYYY"))
+    }
+    else if (list_of_next_three_catgory_blog.length != 0 && list_of_next_three_catgory_blog.length < 4) {
+        $('#Second_Blog_Image').attr('src', list_of_next_three_catgory_blog[0][3])
+        $('#Second_Blog_Category').text(list_of_next_three_catgory_blog[0][2])
+        $('#Second_Blog_Title').text(list_of_next_three_catgory_blog[0][1])
+        $('#Second_Blog_Date').text(moment.unix(list_of_next_three_catgory_blog[0][0]).format("MMMM DD, YYYY"))
 
-    $('#Fourth_Blog_Image_1').attr('src', list_of_next_three_catgory_blog[2][3])
-    $('#Fourth_Blog_Category_1').text(list_of_next_three_catgory_blog[2][2])
-    $('#Fourth_Blog_Title_1').text(list_of_next_three_catgory_blog[2][1])
-    $('#Fourth_Blog_Date_1').text(moment.unix(list_of_next_three_catgory_blog[2][0]).format("MMMM DD, YYYY"))
+        $('#Second_Blog_Image_1').attr('src', list_of_next_three_catgory_blog[0][3])
+        $('#Second_Blog_Category_1').text(list_of_next_three_catgory_blog[0][2])
+        $('#Second_Blog_Title_1').text(list_of_next_three_catgory_blog[0][1])
+        $('#Second_Blog_Date_1').text(moment.unix(list_of_next_three_catgory_blog[0][0]).format("MMMM DD, YYYY"))
+
+        $('#Third_Blog_Image').attr('src', list_of_next_three_catgory_blog[1][3])
+        $('#Third_Blog_Category').text(list_of_next_three_catgory_blog[1][2])
+        $('#Third_Blog_Title').text(list_of_next_three_catgory_blog[1][1])
+        $('#Third_Blog_Date').text(moment.unix(list_of_next_three_catgory_blog[1][0]).format("MMMM DD, YYYY"))
+
+        $('#Third_Blog_Image_1').attr('src', list_of_next_three_catgory_blog[1][3])
+        $('#Third_Blog_Category_1').text(list_of_next_three_catgory_blog[1][2])
+        $('#Third_Blog_Title_1').text(list_of_next_three_catgory_blog[1][1])
+        $('#Third_Blog_Date_1').text(moment.unix(list_of_next_three_catgory_blog[1][0]).format("MMMM DD, YYYY"))
+
+        $('#Fourth_Blog_Image').attr('src', list_of_next_three_catgory_blog[2][3])
+        $('#Fourth_Blog_Category').text(list_of_next_three_catgory_blog[2][2])
+        $('#Fourth_Blog_Title').text(list_of_next_three_catgory_blog[2][1])
+        $('#Fourth_Blog_Date').text(moment.unix(list_of_next_three_catgory_blog[2][0]).format("MMMM DD, YYYY"))
+
+        $('#Fourth_Blog_Image_1').attr('src', list_of_next_three_catgory_blog[2][3])
+        $('#Fourth_Blog_Category_1').text(list_of_next_three_catgory_blog[2][2])
+        $('#Fourth_Blog_Title_1').text(list_of_next_three_catgory_blog[2][1])
+        $('#Fourth_Blog_Date_1').text(moment.unix(list_of_next_three_catgory_blog[2][0]).format("MMMM DD, YYYY"))
+    }
 }
 
 $(document).ready(function () {
@@ -119,39 +155,53 @@ $(document).ready(function () {
     }).done(function () {
         fetch_blog_list()
     })
-
-    // $.post(root + main_route + '/fetch_blog', { blog_id: All_Blog[All_Blog.length - 1][0] }, function (data, status) {
-    //     console.log("Status: " + status);
-    //     Latest_Blog = data
-    //     console.log(Latest_Blog)
-    // }).done(function () {
-    //     $('#Latest_Blog_Author').text(JSON.parse(Latest_Blog[0][5])['Author_Name'])
-    // })
+    
 
     $('.category').on('click', function () {
         clicked_category = $(this).text()
         sessionStorage.setItem("clicked_category", clicked_category);
     });
 
-    $('.Latest_Blog').on('click', function () {
-        Blog_ID = All_Blog[All_Blog.length - 1][0]
-        sessionStorage.setItem("Blog_ID", Blog_ID);
-    });
+    if (All_Blog.length != 0) {
+        $('.Latest_Blog').on('click', function () {
+            Blog_ID = All_Blog[All_Blog.length - 1][0]
+            sessionStorage.setItem("Blog_ID", Blog_ID);
+        });
+    }
 
-    $('.Second_Blog').on('click', function () {
-        Blog_ID = list_of_next_three_catgory_blog[0][0]
-        sessionStorage.setItem("Blog_ID", Blog_ID);
-    });
-
-    $('.Third_Blog').on('click', function () {
-        Blog_ID = list_of_next_three_catgory_blog[1][0]
-        sessionStorage.setItem("Blog_ID", Blog_ID);
-    });
-
-    $('.Fourth_Blog').on('click', function () {
-        Blog_ID = list_of_next_three_catgory_blog[2][0]
-        sessionStorage.setItem("Blog_ID", Blog_ID);
-    });
+    if(list_of_next_three_catgory_blog.length != 0 && list_of_next_three_catgory_blog.length < 2) {
+        $('.Second_Blog').on('click', function () {
+            Blog_ID = list_of_next_three_catgory_blog[0][0]
+            sessionStorage.setItem("Blog_ID", Blog_ID);
+        });
+    }
+    else if(list_of_next_three_catgory_blog.length != 0 && list_of_next_three_catgory_blog.length < 3) {
+        $('.Second_Blog').on('click', function () {
+            Blog_ID = list_of_next_three_catgory_blog[0][0]
+            sessionStorage.setItem("Blog_ID", Blog_ID);
+        });
+        
+        $('.Third_Blog').on('click', function () {
+            Blog_ID = list_of_next_three_catgory_blog[1][0]
+            sessionStorage.setItem("Blog_ID", Blog_ID);
+        });
+    }
+    else if(list_of_next_three_catgory_blog.length != 0 && list_of_next_three_catgory_blog.length < 4) {
+        $('.Second_Blog').on('click', function () {
+            Blog_ID = list_of_next_three_catgory_blog[0][0]
+            sessionStorage.setItem("Blog_ID", Blog_ID);
+        });
+        
+        $('.Third_Blog').on('click', function () {
+            Blog_ID = list_of_next_three_catgory_blog[1][0]
+            sessionStorage.setItem("Blog_ID", Blog_ID);
+        });
+        
+        $('.Fourth_Blog').on('click', function () {
+            Blog_ID = list_of_next_three_catgory_blog[2][0]
+            sessionStorage.setItem("Blog_ID", Blog_ID);
+        });
+    }
 
     const form = document.querySelector('form');
     form.addEventListener('submit', function (event) {

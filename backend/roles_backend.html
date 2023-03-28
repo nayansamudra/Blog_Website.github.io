@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TD Admin - Roles backend</title>
+    <!-- Bootstrap CSS  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+
+    <!-- Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Manual CSS  -->
+    <link type="text/css" rel="stylesheet" href="css/roles_backend.css" />
+
+    <!-- Datatable.css-->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/bs4/dt-1.11.3/r-2.2.9/datatables.min.css" />
+
+    <!-- Google Login -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="mx-0 row d-flex justify-content-center">
+            <div class="wrapper_2 d-flex justify-content-between">
+                <h3>TD Roles Manager</h3>
+                <h5><u>Sign Out</u></h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="mx-0 row d-flex justify-content-center">
+            <div class="wrapper_1">
+                <div class="mb-3 d-flex justify-content-between">
+                    <h4 class="text-left">All Members</h4>
+                    <button class="btn btn-outline-secondary wrapper_1_button" onclick="show_hide()">Hide</button>
+                </div>
+                <div id="table_datatable">
+                    <table id="memberDatatable" class="row-border" style="font-size:14px; width:100%">
+                        <thead>
+                            <tr>
+                                <th>&nbsp;Timestamp</th>
+                                <th>&nbsp;Member ID</th>
+                                <th>&nbsp;Name</th>
+                                <th>&nbsp;Email</th>
+                                <th>&nbsp;Roles</th>
+                                <th>&nbsp;Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="memberDatatable_data"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="mx-0 row d-flex justify-content-center">
+            <div class="wrapper">
+                <div class="Name">
+                    <h2 class="required-field">Name</h2>
+                    <input type="text" spellcheck="false" id="name_input">
+                </div>
+                <div class="Email">
+                    <h2 class="required-field">Email</h2>
+                    <input type="email" spellcheck="false" id="email_input" placeholder="name@example.com">
+                </div>
+                <div class="Role">
+                    <h2 class="required-field">Role</h2>
+                    <input type="checkbox" id="Courses" name="Courses" value="Courses">
+                    <label for="Courses"> Courses</label>
+                    <input type="checkbox" id="Roles" name="Roles" value="Roles">
+                    <label for="Roles"> Roles</label>
+                    <input type="checkbox" id="Blogs" name="Blogs" value="Blogs">
+                    <label for="Blogs"> Blogs</label>
+                </div>
+                <div class="text-center mt-3 Submit_Button">
+                    <button id="submit">Submit</button>
+                    <button class="mx-2" id="update">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+        integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Bootstrap JavaScript bundle (including Popper for positioning dropdowns, poppers, and tooltips)  -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+
+    <!-- CK Editor -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/super-build/ckeditor.js"></script>
+
+    <!-- Moment.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Datatable.js-->
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.3/r-2.2.9/datatables.min.js"></script>
+
+    <!-- Manual js-->
+    <script src="js/roles_backend.js"></script>
+</body>
+
+</html>
