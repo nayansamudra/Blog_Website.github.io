@@ -86,6 +86,8 @@ fetch_blog_list = () => {
     }
 }
 
+
+
 $(document).ready(function () {
 
     $.ajaxSetup({ async: false }); // to stop async

@@ -29,8 +29,11 @@ add_member = () => {
             console.log("Data: " + data + "\nStatus: " + status);
             if (data == "success") {
                 alert("Member added Successfully!");
-                Fetch_All_Member();
+                Fetch_All_Members();
                 $(":input").val("");
+                $("#Courses").prop("checked", false)
+                $("#Roles").prop("checked", false)
+                $("#Blogs").prop("checked", false)
                 $("#update").hide();
                 $("#submit").show();
             } else {
@@ -77,8 +80,11 @@ update_member = (ts) => {
                 console.log("Data: " + data + "\nStatus: " + status);
                 if (data == "success") {
                     alert("Member updated Successfully!");
-                    Fetch_All_Member();
+                    Fetch_All_Members();
                     $(":input").val("");
+                    $("#Courses").prop("checked", false)
+                    $("#Roles").prop("checked", false)
+                    $("#Blogs").prop("checked", false)
                     $("#update").hide();
                     $("#submit").show();
                 } else {
@@ -108,7 +114,27 @@ edit_member = (ts) => {
     }
     $("#name_input").val(Edit_Member[1]);
     $('#email_input').val(Edit_Member[2]);
+    checked_checkbox = JSON.parse(Edit_Member[3])
+    if (checked_checkbox['courses'] == 1) {
+        $("#Courses").prop("checked", true)
+    }
+    else if (checked_checkbox['courses'] == 0) {
+        $("#Courses").prop("checked", false)
+    }
 
+    if (checked_checkbox['roles'] == 1) {
+        $("#Roles").prop("checked", true)
+    }
+    else if (checked_checkbox['courses'] == 0) {
+        $("#Roles").prop("checked", false)
+    }
+
+    if (checked_checkbox['blogs'] == 1) {
+        $("#Blogs").prop("checked", true)
+    }
+    else if (checked_checkbox['courses'] == 0) {
+        $("#Blogs").prop("checked", false)
+    }
 };
 
 
@@ -116,6 +142,7 @@ edit_member = (ts) => {
 //---------- Delete Member
 del_member = (email) => {
     if (confirm("Are you Sure?")) {
+        console.log('email')
     } else {
         return;
     }
@@ -124,7 +151,7 @@ del_member = (email) => {
         { email: email },
         function (data, status) {
             console.log("Data: " + data + "\nStatus: " + status);
-            Fetch_All_Member();
+            Fetch_All_Members();
             $(":input").val("");
 
             $("#update").hide();
@@ -138,7 +165,7 @@ del_member = (email) => {
 
 
 //---------- Fetch All Member
-Fetch_All_Member = () => {
+Fetch_All_Members = () => {
     $.post(root + main_route + "/fetch_members", function (data, status) {
         All_Member_1 = JSON.parse(JSON.stringify(data));
         All_Member = JSON.parse(JSON.stringify(data));
@@ -154,11 +181,7 @@ Fetch_All_Member = () => {
             All_Member[i][3] = email;
             All_Member[i][4] = shorten(roles);
             var str =
-                '<button class="m-2" onclick="del_member(' +
-                email +
-                ')">&nbsp;Delete&nbsp;</button><button class="m-2" onclick="edit_member(' +
-                ts +
-                ')">&nbsp;Edit&nbsp;</button>';
+                `<button class="m-2" onclick="del_member('${email}')">&nbsp;Delete&nbsp;</button><button class="m-2" onclick="edit_member(${ts})">&nbsp;Edit&nbsp;</button>`;
             All_Member[i][5] = str;
         }
         if (All_Member) {
@@ -192,7 +215,7 @@ document.querySelector("#submit").addEventListener("click", () => {
 
 //---------- Blog Update
 document.querySelector("#update").addEventListener("click", () => {
-    update_member(parseFloat(Edit_member[1]));
+    update_member(parseFloat(Edit_Member[0]));
 });
 
 
@@ -260,7 +283,7 @@ $(document).ready(function () {
     temp = [];
 
 
-    // Fetch_All_Members();
+    Fetch_All_Members();
 
     $("#memberDatatable tbody").on("click", "td", function () {
         var cell = $(this);

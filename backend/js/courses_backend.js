@@ -1,7 +1,7 @@
 //---------- Add Course
 add_course = () => {
     var title = $("#Name_input").val();
-    var sh_desc = "";
+    var sh_desc = $("#Short_Description_input").val();
     var data_dict = {}
 
     // input validation
@@ -93,7 +93,7 @@ add_course = () => {
 //---------- Update Course
 update_course = (ts) => {
     var title = $("#Name_input").val();
-    var sh_desc = "";
+    var sh_desc = $("#Short_Description_input").val();;
     var data_dict = {}
 
     // input validation
@@ -207,6 +207,7 @@ edit_course = (ts) => {
         }
     }
     $("#Name_input").val(Edit_Course[1]);
+    $("#Short_Description_input").val(Edit_Course[3]);
 
     // var optionText = JSON.parse(Edit_Course[4])['Rating'];
     // $('#myDropdown option:contains(' + optionText + ')').prop('selected', true);
@@ -303,7 +304,7 @@ document.querySelector("#submit").addEventListener("click", () => {
 
 //---------- Course Update
 document.querySelector("#update").addEventListener("click", () => {
-    update_course(parseFloat(Edit_Course[1]))
+    update_course(parseFloat(Edit_Course[0]))
 });
 
 

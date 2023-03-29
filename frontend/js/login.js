@@ -89,6 +89,49 @@ function onSignIn(response) {
 }
 
 
+//---------- Fetch_all_blog_list
+fetch_all_blog_list = () => {
+    if(All_Blog_List.length == 1){
+        $('#footer_img_post_1').attr('src', All_Blog_List[All_Blog_List.length - 1][3])
+        $('#footer_title_post_1').text(All_Blog_List[All_Blog_List.length - 1][1])
+        $('#footer_date_post_1').text(moment.unix(All_Blog_List[All_Blog_List.length - 1][0]).format("MMMM DD, YYYY"))
+    }
+    else if(All_Blog_List.length >= 2){
+        $('#footer_img_post_1').attr('src', All_Blog_List[All_Blog_List.length - 1][3])
+        $('#footer_title_post_1').text(All_Blog_List[All_Blog_List.length - 1][1])
+        $('#footer_date_post_1').text(moment.unix(All_Blog_List[All_Blog_List.length - 1][0]).format("MMMM DD, YYYY"))
+        
+        $('#footer_img_post_2').attr('src', All_Blog_List[All_Blog_List.length - 2][3])
+        $('#footer_title_post_2').text(All_Blog_List[All_Blog_List.length - 2][1])
+        $('#footer_date_post_2').text(moment.unix(All_Blog_List[All_Blog_List.length - 2][0]).format("MMMM DD, YYYY"))
+    } 
+}
+
+$('#footer_img_post_1').on('click', function () {
+    if(All_Blog_List.length >= 1)
+    Blog_ID = All_Blog_List[All_Blog_List.length - 1][0]
+    sessionStorage.setItem("Blog_ID", Blog_ID);
+});
+
+$('#footer_title_post_1').on('click', function () {
+    if(All_Blog_List.length >= 1)
+    Blog_ID = All_Blog_List[All_Blog_List.length - 1][0]
+    sessionStorage.setItem("Blog_ID", Blog_ID);
+});
+
+$('#footer_img_post_2').on('click', function () {
+    if(All_Blog_List.length >= 2)
+    Blog_ID = All_Blog_List[All_Blog_List.length - 2][0]
+    sessionStorage.setItem("Blog_ID", Blog_ID);
+});
+
+$('#footer_title_post_2').on('click', function () {
+    if(All_Blog_List.length >= 2)
+    Blog_ID = All_Blog_List[All_Blog_List.length - 2][0]
+    sessionStorage.setItem("Blog_ID", Blog_ID);
+});
+
+
 // ---------- On Refresh
 $(document).ready(function () {
 
@@ -97,6 +140,19 @@ $(document).ready(function () {
     login_function()
 
     counter_for_opacity = 0
+
+    root = "https://tradingduniya.com";
+    main_route = "/blogs";
+
+    $.post(root + main_route + '/fetch_blog_list', { catg: 'all' }, function (data, status) {
+        console.log("Status: " + status);
+        All_Blog_List = data
+        console.log(All_Blog_List)
+    }).done(function () {
+        if(All_Blog_List.length != 0){
+            fetch_all_blog_list()
+        }
+    })
 
     $('.google-image').click(() => {
         counter_for_opacity += 1

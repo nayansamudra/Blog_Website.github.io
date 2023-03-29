@@ -137,6 +137,38 @@ add_review = () => {
 }
 
 
+view_review = () => {
+    $.post(root + main_route + '/fetch_review', { course_id: course_id }, function (data, status) {
+        console.log("Status: " + status);
+        All_Review = data
+    }).done(function () {
+        $('.reviews').empty()
+        for (var i = 0; i < All_Review.length; i++) {
+            $('.reviews').append(`<div class="review">
+            <div class="py-2 body-review">
+                <div class="container">
+                    <div class="d-flex align-items-center row">
+                        <div class="col-auto">
+                            <div class="name-review">${JSON.parse(All_Review[i][3])['Name']}</div>
+                            <div class="m-0 rev-rating rev-rating-${i}">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="desc-review">${JSON.parse(All_Review[i][3])['Review']}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div></div>`)
+            Star_rating_len = JSON.parse(All_Review[i][3])['Rate']
+            for (var j = 0; j < Star_rating_len; j++) {
+                $(`.rev-rating-${i}`).append(`<i class="fas fa-star"></i>`)
+            }
+        }
+    })
+}
+
+
 //---------- Review Submit
 document.querySelector("#Review_Submit").addEventListener("click", () => {
     if (course_id != '') {
@@ -305,6 +337,8 @@ $(document).ready(function () {
         }
     });
 
+    view_review()
+
 
     $('.All_courses').click(function () {
         course_id = parseFloat($(this).attr('id'));
@@ -344,7 +378,7 @@ $(document).ready(function () {
         $('.Right_Col').css('min-height', height)
     }
 
-    $(window).resize(function(){
+    $(window).resize(function () {
         if ($(window).width() < 1200) {
             $('.Right_Col').css('min-height', height)
         }

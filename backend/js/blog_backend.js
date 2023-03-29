@@ -561,7 +561,7 @@ document.querySelector("#submit").addEventListener("click", () => {
 
 //---------- Blog Update
 document.querySelector("#update").addEventListener("click", () => {
-    update_blog(parseFloat(Edit_Blog[1]));
+    update_blog(parseFloat(Edit_Blog[0]));
 });
 
 

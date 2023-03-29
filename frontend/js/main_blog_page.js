@@ -177,6 +177,37 @@ add_comment = () => {
 }
 
 
+view_comment = () => {
+    $.post(root + main_route + '/fetch_comment', { blog_id: blog_id }, function (data, status) {
+        console.log("Status: " + status);
+        All_Comments = data
+    }).done(function () {
+        $('.reviews').empty()
+        for (var i = 0; i < All_Comments.length; i++) {
+            $('.reviews').append(`<div class="review">
+            <div class="py-2 body-review">
+                <div class="container">
+                    <div class="d-flex align-items-center row">
+                        <div class="col-auto">
+                            <div class="name-review">${JSON.parse(All_Comments[i][3])['Name']}</div>
+                            <div class="m-0 rev-rating rev-rating-${i}">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="desc-review">${JSON.parse(All_Comments[i][3])['Review']}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div></div>`)
+            Star_rating_len = JSON.parse(All_Comments[i][3])['Rate']
+            for (var j = 0; j < Star_rating_len; j++) {
+                $(`.rev-rating-${i}`).append(`<i class="fas fa-star"></i>`)
+            }
+        }
+    })
+}
+
 //---------- Review Submit
 document.querySelector("#Comment_Submit").addEventListener("click", () => {
     if (blog_id != '') {
@@ -346,6 +377,8 @@ $(document).ready(function () {
             alert('No matches found');
         }
     });
+
+    view_comment()
 
     height = (Object.keys(distinctValues).length / 2)
     if (height > 2) {

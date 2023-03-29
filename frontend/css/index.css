@@ -1330,19 +1330,12 @@ post section style 1
   display: inline-block;
   margin-bottom: 10px;
 }
-
-/* .bottom-img {
-  border-radius: 50%;
-  height: 100px;
-  width: 100px;
-  overflow: hidden;
+@media (max-width:1200px) {
+  .Bottom-Blogs-col {
+    padding-top: 10px !important;
+    padding-right: 10px !important;
+  }
 }
-
-.bottom-img img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-} */
 
 /* ----
 Footer
@@ -1424,7 +1417,7 @@ Footer
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  color: var(--color-white);
+  color: #fff;
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -1511,6 +1504,9 @@ Footer
   font-weight: 600;
 }
 .post-sm .post-content .post-title {
+  font-size: 1rem;
+}
+.post-content .post-title {
   font-size: 1rem;
 }
 .post-title {

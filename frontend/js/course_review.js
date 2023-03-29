@@ -28,6 +28,57 @@ fetch_course_list = () => {
 }
 
 
+fetch_blog_list = () => {
+    // Latest Blog Section 
+    if (All_Blog.length == 1) {
+        $('#Second_Blog_Image').attr('src', All_Blog[All_Blog.length - 1][3])
+        $('#Second_Blog_Category').text(All_Blog[All_Blog.length - 1][2])
+        $('#Second_Blog_Title').text(All_Blog[All_Blog.length - 1][1])
+        $('#Second_Blog_Date').text(moment.unix(All_Blog[All_Blog.length - 1][0]).format("MMMM DD, YYYY"))
+        $('.Second_Blog').attr('id',All_Blog[All_Blog.length - 1][0])
+    }
+    else if (All_Blog.length == 2) {
+        $('#Second_Blog_Image').attr('src', All_Blog[All_Blog.length - 1][3])
+        $('#Second_Blog_Category').text(All_Blog[All_Blog.length - 1][2])
+        $('#Second_Blog_Title').text(All_Blog[All_Blog.length - 1][1])
+        $('#Second_Blog_Date').text(moment.unix(All_Blog[All_Blog.length - 1][0]).format("MMMM DD, YYYY"))
+        $('.Second_Blog').attr('id',All_Blog[All_Blog.length - 1][0])
+
+        $('#Third_Blog_Image').attr('src', All_Blog[All_Blog.length - 2][3])
+        $('#Third_Blog_Category').text(All_Blog[All_Blog.length - 2][2])
+        $('#Third_Blog_Title').text(All_Blog[All_Blog.length - 2][1])
+        $('#Third_Blog_Date').text(moment.unix(All_Blog[All_Blog.length - 2][0]).format("MMMM DD, YYYY"))
+        $('.Third_Blog').attr('id',All_Blog[All_Blog.length - 2][0])
+    }
+    else if (All_Blog.length == 3) {
+        $('#Second_Blog_Image').attr('src', All_Blog[All_Blog.length - 3][3])
+        $('#Second_Blog_Category').text(All_Blog[All_Blog.length - 3][2])
+        $('#Second_Blog_Title').text(All_Blog[All_Blog.length - 3][1])
+        $('#Second_Blog_Date').text(moment.unix(All_Blog[All_Blog.length - 3][0]).format("MMMM DD, YYYY"))
+        $('.Second_Blog').attr('id',All_Blog[All_Blog.length - 3][0])
+
+        $('#Third_Blog_Image').attr('src', All_Blog[All_Blog.length - 2][3])
+        $('#Third_Blog_Category').text(All_Blog[All_Blog.length - 2][2])
+        $('#Third_Blog_Title').text(All_Blog[All_Blog.length - 2][1])
+        $('#Third_Blog_Date').text(moment.unix(All_Blog[All_Blog.length - 2][0]).format("MMMM DD, YYYY"))
+        $('.Third_Blog').attr('id',All_Blog[All_Blog.length - 2][0])
+    }
+    else if (All_Blog.length >= 4) {
+        $('#Second_Blog_Image').attr('src', All_Blog[All_Blog.length - 4][3])
+        $('#Second_Blog_Category').text(All_Blog[All_Blog.length - 4][2])
+        $('#Second_Blog_Title').text(All_Blog[All_Blog.length - 4][1])
+        $('#Second_Blog_Date').text(moment.unix(All_Blog[All_Blog.length - 4][0]).format("MMMM DD, YYYY"))
+        $('.Second_Blog').attr('id',All_Blog[All_Blog.length - 4][0])
+
+        $('#Third_Blog_Image').attr('src', All_Blog[All_Blog.length - 3][3])
+        $('#Third_Blog_Category').text(All_Blog[All_Blog.length - 3][2])
+        $('#Third_Blog_Title').text(All_Blog[All_Blog.length - 3][1])
+        $('#Third_Blog_Date').text(moment.unix(All_Blog[All_Blog.length - 3][0]).format("MMMM DD, YYYY"))
+        $('.Third_Blog').attr('id',All_Blog[All_Blog.length - 3][0])
+    }
+}
+
+
 
 fetch_course = (ts) => {
     $.post(root + main_route + '/fetch_course', { course_id: ts }, function (data, status) {
@@ -83,6 +134,9 @@ $(document).ready(function () {
 
     root = "https://tradingduniya.com";
     main_route = "/courses";
+    
+    main_route_1 = "/blogs";
+    
 
     $('.sidebarBtn').click(function () {
         $('.rt-slide-nav').toggle()
@@ -134,6 +188,16 @@ $(document).ready(function () {
         }
     })
 
+    $.post(root + main_route_1 + '/fetch_blog_list', { catg: 'all' }, function (data, status) {
+        console.log("Status: " + status);
+        All_Blog = data
+        console.log(All_Blog)
+    }).done(function () {
+        if(All_Blog.length != 0){
+            fetch_blog_list()
+        }
+    })
+
     const form = document.querySelector('form');
     form.addEventListener('submit', function (event) {
         event.preventDefault();
@@ -163,6 +227,21 @@ $(document).ready(function () {
         sessionStorage.setItem('Course_ID', Course_ID)
         window.location.href = "main_course_page.html"
     })
+
+    $('.category').on('click', function () {
+        clicked_category = $(this).text()
+        sessionStorage.setItem("clicked_category", clicked_category);
+    });
+
+    $('.Second_Blog').on('click', function () {
+        Blog_ID = $('.Second_Blog').attr('id')
+        sessionStorage.setItem("Blog_ID", Blog_ID);
+    });
+    
+    $('.Third_Blog').on('click', function () {
+        Blog_ID = $('.Third_Blog').attr('id')
+        sessionStorage.setItem("Blog_ID", Blog_ID);
+    });
 
     $('#button_id').click(() => {
         Course_1_val = $('#course_1').val()
